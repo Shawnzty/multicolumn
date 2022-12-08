@@ -3,8 +3,8 @@ function state = getState(r, T, dt, stimIn)
 %   Detailed explanation goes here
 
 % if none - OFF
-isNoneBefore = r(round(stimIn/dt-100)) == r(round(stimIn/dt-90)); % isNone == true
-isNoneAfter = r(round(T/dt-100))== r(round(T/dt-90));
+isNoneBefore = r(round(stimIn/dt-100)) == r(round(stimIn/dt-99)); % isNone == true
+isNoneAfter = r(round(T/dt-100)) == r(round(T/dt-99));
 % if converge - OFF
 gammaPowerBefore0 = getGammaPower(r(round(stimIn/dt-40001):round(stimIn/dt-30001)));
 gammaPowerBefore1 = getGammaPower(r(round(stimIn/dt-30001):round(stimIn/dt-20001)));

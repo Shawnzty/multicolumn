@@ -1,4 +1,4 @@
-function [r,v,g] = once(I_bar, I_sensPre, I_sensNot, I_sensBoth, I_attn, Delta)
+function [r,v,g] = once(I_bar, I_sensPre, I_sensNot, I_sensBoth, I_attn, Delta, allTime)
 %ONCE run the simulation once including five conditions
 %   INPUT arguments includes parameters of the column model
 %   OUTPUT arguments are the results of computation, including the time
@@ -6,13 +6,13 @@ function [r,v,g] = once(I_bar, I_sensPre, I_sensNot, I_sensBoth, I_attn, Delta)
 %   conductance.
 %   this function only execute computation but NOT SAVE.
 
-time = 2000;
+% time = allTime;
 dt = 0.01;
-timeax = 0:dt:time;
-timeax = timeax';
-step_all = time/dt;
+% timeax = 0:dt:time;
+% timeax = timeax';
+step_all = allTime/dt;
 stimIn = 1000;
-stimDur = 1000;
+stimDur = allTime-stimIn;
 stimOut = 0;
 step_stimIn = stimIn/dt;
 step_stim = stimDur/dt;
@@ -95,34 +95,7 @@ for t = tau_max+1:step_all
         v(:,t+1,:) = v(:,t,:)+fn_v(a,b,c,r(:,t,:),v(:,t,:),I_bar+I_bar_ext(:,t,:))*dt;
         g(:,:,t+1,:) = squeeze(g(:,:,t,:))+fn_g(repmat(pagetranspose(r(:,t,:)),[16,1,1]),squeeze(g(:,:,t,:)),tau_d,g_bar,p,N)*dt;% g(to,from)
 end
-% % get the pathway currents
-% % from Y to X
-% v_x = zeros(16,16,step_all+1);
-% v_y = zeros(16,16,step_all+1); % mean membrane potential
-% 
-% for i = 1:16 % iterate by column, copy same value of all populations
-%     v_x(:,i,:) = v;
-% end
-% 
-% for i = 1:16 % iterate by column, give potential to each population
-%     if mod(i,2) == 0 % even columns are inhibitory
-%         v_y(:,i,:) = -70;
-%     else
-%         v_y(:,i,:) = 0; % odd columns are excitatory
-%     end
-% end
-% 
-% pd = v_x - v_y;
-% pc = pd.*g; % pathway current
 
-% %% save data
-% condition = 6;
-% if saveAllData == 0
-%     filename = "cond" + num2str(condition) + ".mat";
-% else
-%     filename = prefix + "cond" + num2str(condition) + ".mat";
-% end
-% save("data/"+filename);
 end
 
 %% Functions for a,b,c,r,v,g
