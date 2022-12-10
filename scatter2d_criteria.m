@@ -20,12 +20,13 @@ disagree = [disagree;outRatio];
 
 figure();
 sz = 4;
-scatter(roi(:,1), roi(:,2), sz,'filled',"MarkerFaceColor","#ED254E",'Marker','square'); L1 = "ROI";
+scatter(roi(:,1), roi(:,2), sz,'filled',"MarkerFaceColor",[153 79 178]/256,'Marker','square'); L1 = "ROI";
 hold on
-scatter(disagree(:,1), disagree(:,2), sz,'filled',"MarkerFaceColor","#F9DC5C",'Marker','square'); L2 = "Disagree";
+scatter(disagree(:,1), disagree(:,2), sz,'filled',"MarkerFaceColor",[245 189 31]/256,'Marker','square'); L2 = "Disagree";
 scatter(noosc(:,1), noosc(:,2), sz,'filled',"MarkerFaceColor","#011936",'Marker','square'); L3 = "No osc";
 scatter(0.2,0.005, sz,'filled',"MarkerFaceColor","#FFFFFF",'Marker','square'); L4 = "Inf";
 
+set(gca,'box','on');
 xlabel("\Delta_{E}");
 ylabel("\Delta_{I}");
 axis([0 0.5 0 0.05]);

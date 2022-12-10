@@ -1,15 +1,4 @@
-signal = r_cond4(110000:200000,1);    
-Fs = 100000;            % Sampling frequency                    
-L = length(signal);             % Length of signal
-
-figure();
-Y = fft(signal);
-P2 = abs(Y/L);
-P1 = P2(1:L/2+1);
-P1(2:end-1) = 2*P1(2:end-1);
-f = Fs*(0:(L/2))/L;
-plot(f,P1) 
-title("Single-Sided Amplitude Spectrum of X(t)")
-xlabel("f (Hz)")
-ylabel("|P1(f)|")
-xlim([0 100]);
+topColor = [1 0 0];
+middleColor = [1 1 1];
+bottomColor = [0 0 1];
+upperHalf = [linspace(topColor(1),middleColor(1),100);linspace(topColor(2),middleColor(2),100);linspace(topColor(3),middleColor(3),100)]';
