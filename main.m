@@ -4,11 +4,9 @@ clc;
 initime = clock;
 
 mkdir("figure");
-mkdir("figure/asCriteria1");
-mkdir("figure/asCriteria2");
-mkdir("figure/asAllCriteria");
-mkdir("figure/asAll_OFF")
-mkdir("figure/none");
+mkdir("figure/agree");
+mkdir("figure/disagree");
+mkdir("figure/noOsc")
 
 % mkdir("figure/ON_ON");
 % mkdir("figure/ON_ON/asCriteria1");
@@ -31,11 +29,11 @@ mkdir("figure/none");
 % for parfor
 delta_e_start = 0; % cannot equal to 0
 delta_e_end = 0.5; % can equal to 0.5
-delta_e_steps = 100;
+delta_e_steps = 200;
 
 delta_i_start = 0; % cannot equal to 0
-delta_i_end = 0.06; % can equal to 0.5
-delta_i_steps = 100;
+delta_i_end = 0.05; % can equal to 0.5
+delta_i_steps = 200;
 
 parfor Delta_e_n = 1:delta_e_steps % linspace(0.001,0.5,10) % 0.28 % changable
     Delta_e = delta_e_start+ Delta_e_n*(delta_e_end/delta_e_steps);
@@ -76,7 +74,7 @@ Delta = repmat([Delta_e, Delta_i, Delta_e, Delta_i, Delta_e, Delta_i, Delta_e, D
 Delta = repmat(Delta,[1,1,5]);
 
 [r,v,g] = once(I_bar, I_sensPre, I_sensNot, I_sensBoth, I_attn, Delta, 2000);
-isPloted = plotTC(r,5, Iattn, Delta_e,Delta_i,2,3000);
+isPloted = plotTC(r,5, Iattn, Delta_e,Delta_i,2,4000);
 disp(etime(clock, startTime));
 % end
 end

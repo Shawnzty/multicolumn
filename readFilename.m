@@ -3,7 +3,8 @@ function coord = readFilename(folder,pattern)
 %   Detailed explanation goes here
     files = struct2cell(dir(folder))';
     filenames = files(:,1);
-    coord = zeros(length(filenames),4);
+    col = count(pattern,'%f');
+    coord = zeros(length(filenames),col);
     for i = 1:length(filenames)
         item = string(filenames(i));
         out = sscanf(item,pattern)';

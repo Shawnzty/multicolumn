@@ -5,8 +5,8 @@ initime = clock;
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.3;
-Delta_i = 0.01; % none % changable
+Delta_e = 0.44;
+Delta_i = 0.024; % none % changable
 Iattn = 0.02;
 
 startTime = clock;
@@ -80,23 +80,24 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     state = '';
     % for both criteria and plot envelop\
     envMthd = 'peak';
-    envWdo = 3000;
+    envWdo = 4000;
     [cond1Up_tmp, ] = envelope(r_cond1(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [cond2Up_tmp, ] = envelope(r_cond2(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [cond3Up_tmp, ] = envelope(r_cond3(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [cond4Up_tmp, ] = envelope(r_cond4(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [cond5Up_tmp, ] = envelope(r_cond5(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
-    [criteria,] = asCriteria(cond1Up_tmp, cond2Up_tmp, cond3Up_tmp, cond4Up_tmp, cond5Up_tmp, maxDurStim, Delta_e, Delta_i, Iattn);
-    cond1Mean = mean(cond1Up_tmp(60001:90000));cond2Mean = mean(cond2Up_tmp(60001:90000));cond3Mean = mean(cond3Up_tmp(60001:90000));
-    cond4Mean = mean(cond4Up_tmp(60001:90000));cond5Mean = mean(cond5Up_tmp(60001:90000));
-    diff13 = cond1Mean - cond3Mean; diff34 = cond4Mean - cond3Mean;
-    disp("1-3:"+diff13); disp("4-3:"+diff34);
-    ratio1 = diff13/diff34;
-    ratio2 = diff34/diff13;
-    disp("ratio1:"+ratio1); disp("ratio2:"+ratio2);
+    [criteria,] = asCriteria(cond1Up_tmp, cond2Up_tmp, cond3Up_tmp, cond4Up_tmp, cond5Up_tmp,r_cond4(180000:200000,1),...
+        maxDurStim, Delta_e, Delta_i, Iattn);
+%     cond1Mean = mean(cond1Up_tmp(60001:90000));cond2Mean = mean(cond2Up_tmp(60001:90000));cond3Mean = mean(cond3Up_tmp(60001:90000));
+%     cond4Mean = mean(cond4Up_tmp(60001:90000));cond5Mean = mean(cond5Up_tmp(60001:90000));
+%     diff13 = cond1Mean - cond3Mean; diff34 = cond4Mean - cond3Mean;
+%     disp("1-3:"+diff13); disp("4-3:"+diff34);
+%     ratio1 = diff13/diff34;
+%     ratio2 = diff34/diff13;
+%     disp("ratio1:"+ratio1); disp("ratio2:"+ratio2);
     % base on average of peak: criteria = (r(pop,:,:), stimIn/dt); % '' or 'asCriteria1/' or 'asCriteria2/' or 'asAllCriteria/'
 
-    figure('visible','off');
+    figure('visible','on');
 %     rectangle('Position',[stimIn 0.00005+lower stimDur upper],'FaceColor','#F5F5F5', ...
 %         'EdgeColor','#F5F5F5','LineWidth',1);
 %     hold on
@@ -117,7 +118,6 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     disp(criteria);
     saveas(gcf, location);
     
-    envMthd = 'peak';
     % envelop only during stimulus
     cond1Up = cat(1, r_cond1(1:step_stimIn), cond1Up_tmp); %, r_cond1(step_stimIn+step_stim+comp+1:length(r_cond1)));
     cond2Up = cat(1, r_cond2(1:step_stimIn), cond2Up_tmp); % , r_cond2(step_stimIn+step_stim+comp+1:length(r_cond1)));
@@ -125,7 +125,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     cond4Up = cat(1, r_cond4(1:step_stimIn), cond4Up_tmp); % , r_cond4(step_stimIn+step_stim+comp+1:length(r_cond1)));
     cond5Up = cat(1, r_cond5(1:step_stimIn), cond5Up_tmp); % , r_cond5(step_stimIn+step_stim+comp+1:length(r_cond1)));
 
-    figure('visible','off');
+    figure('visible','on');
 %     rectangle('Position',[stimIn 0.00005+lower stimDur upper],'FaceColor','#F5F5F5', ...
 %         'EdgeColor','#F5F5F5','LineWidth',1);
 %     hold on

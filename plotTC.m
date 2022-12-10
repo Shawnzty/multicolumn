@@ -17,20 +17,11 @@ stimDur = 1000;
 step_stimIn = stimIn/dt;
 step_stim = stimDur/dt;
 
-r_cond1 = r(pop,:,1);
-r_cond1 = r_cond1';
-
-r_cond2 = r(pop,:,2);
-r_cond2 = r_cond2';
-
-r_cond3 = r(pop,:,3);
-r_cond3 = r_cond3';
-
-r_cond4 = r(pop,:,4);
-r_cond4 = r_cond4';
-
-r_cond5 = r(pop,:,5);
-r_cond5 = r_cond5';
+r_cond1 = r(pop,:,1)';
+r_cond2 = r(pop,:,2)';
+r_cond3 = r(pop,:,3)';
+r_cond4 = r(pop,:,4)';
+r_cond5 = r(pop,:,5)';
 
 % isINF or NaN
 maxVal = max(r_cond4);
@@ -47,7 +38,8 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     [cond3Up_tmp, ] = envelope(r_cond3(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [cond4Up_tmp, ] = envelope(r_cond4(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [cond5Up_tmp, ] = envelope(r_cond5(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
-    [location, location_env] = asCriteria(cond1Up_tmp, cond2Up_tmp, cond3Up_tmp, cond4Up_tmp, cond5Up_tmp, maxDurStim, Delta_e, Delta_i, Iattn);
+    [location, location_env] = asCriteria(cond1Up_tmp, cond2Up_tmp, cond3Up_tmp, cond4Up_tmp, cond5Up_tmp,...
+        r_cond4(180000:200000,1), maxDurStim, Delta_e, Delta_i, Iattn);
 
     if rawORenv ~= 1
     figure('visible','off');

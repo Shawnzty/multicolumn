@@ -1,8 +1,15 @@
-    plot(timeax,r_cond1,'Color','#0072BD');
-    hold on
-    plot(timeax,r_cond2,'Color','#D95319');
-    plot(timeax,r_cond3,'Color','#EDB120');
-    plot(timeax,r_cond4,'Color','#7E2F8E');
-    plot(timeax,r_cond5,'Color','#77AC30');
-    xlim([0 2000]);
-    % axis([0 2000 0 0.2]);
+signal = r_cond4(110000:200000,1);    
+Fs = 100000;            % Sampling frequency                    
+L = length(signal);             % Length of signal
+
+figure();
+Y = fft(signal);
+P2 = abs(Y/L);
+P1 = P2(1:L/2+1);
+P1(2:end-1) = 2*P1(2:end-1);
+f = Fs*(0:(L/2))/L;
+plot(f,P1) 
+title("Single-Sided Amplitude Spectrum of X(t)")
+xlabel("f (Hz)")
+ylabel("|P1(f)|")
+xlim([0 100]);

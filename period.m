@@ -1,5 +1,5 @@
 function [head,tail] = period(r,multiFreq)
-%PERIOD Summary of this function goes here
+%PERIOD Get last period
 %   Detailed explanation goes here
 head = zeros(5); tail = zeros(5);
 if multiFreq
