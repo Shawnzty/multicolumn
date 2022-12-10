@@ -34,7 +34,7 @@ colormap("autumn")
 xlabel("\Delta_{E}");
 ylabel("\Delta_{I}");
 zlabel("I_{attn}");
-axis([0 0.5 0 0.1 0 0.1]);
+axis([0 0.5 0 0.05 0 0.1]);
 view(0,90);
 % legend(["ON-ON","OFF-ON","OFF-OFF","ON-OFF"]);
 
