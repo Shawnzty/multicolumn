@@ -15,7 +15,7 @@ i = (strt_prd+end_prd)/2;
 slice = pc(:,:,i,cond);
 h = imagesc(slice);
 J = customcolormap([0 0.5 1], [1 0 0;1 1 1;0 0 1]);
-colorbar; colormap(J);
+c = colorbar; colormap(J);
 clim([-1 1]); % colorbar axis
 cap = num2str(i);
 title("Pathway current at "+"t = "+i/100+" ms", 'FontSize', 14);
@@ -25,6 +25,8 @@ xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16])
 xticklabels(axlabels);
 yticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16])
 yticklabels(axlabels);
+ylabel(c,'Intensity','FontSize',12,'Rotation',270);
+c.Label.Position(1) = 4;
 
 % Investigate by populations Current to 1L5e
 figure()

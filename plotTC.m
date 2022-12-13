@@ -53,7 +53,8 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     plot(timeax,r_cond4,'Color','#7E2F8E');
     plot(timeax,r_cond5,'Color','#77AC30');
 
-    title("Time series of " + popName(pop));
+    title(popName(pop) + "at \Delta_{E}=" + num2str(Delta_e) +...
+        ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn));
     axis([0 2000 0 maxDurStim*1.1]);
     xlabel("Time (ms)");
     ylabel("Firing rate (Hz)");
@@ -91,7 +92,8 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
 %     a = [timeax(1:step_stimIn), r_cond1(1:step_stimIn)];
 %     b = cat(1, a, [locs1, pks1]);
 
-    title("Envelope of time series of " + popName(pop));
+    title("Envelope of " + popName(pop) + "at \Delta_{E}=" + num2str(Delta_e) +...
+        ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn));
     axis([0 2000 0 maxDurStim*1.1]);
     xlabel("Time (ms)");
     ylabel("Firing rate (Hz)");

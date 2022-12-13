@@ -5,36 +5,14 @@ initime = clock;
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.44;
-Delta_i = 0.024; % none % changable
+Delta_e = 0.3;
+Delta_i = 0.025; % none % changable
 Iattn = 0.02;
 
 startTime = clock;
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
-ratio_sens_attn = 3; % linspace(0.5,5,20) % fix at 9000/3000 = 3
-Isens =  Iattn*ratio_sens_attn;
-
-ratio_barE_attn = 16/3; % linspace(0.5,5,20) % fix at 16/3=5.33
-I_bare = Iattn*ratio_barE_attn; % 3
-ratioEi_Ibar = 1600/2000; % fix at 1600/2000 = 0.8
-I_bari = I_bare*ratioEi_Ibar;
-
-ratioEi_Isens = 0.0619/0.0983; % 0.0619/0.0983
-I_sensPre = [Isens;Isens*ratioEi_Isens]; % [E;I][6;3]
-I_sensNot = 0.1*I_sensPre; % 0.01
-I_sensBoth = 1.1*I_sensPre; % 0.6
-
-ratioEi_Iattn = 0.085/0.1; % 0.085/0.1
-I_attn = [Iattn;Iattn*ratioEi_Iattn]; % renormalize to [0,1]
-
-I_bar = repmat([I_bare, I_bari, I_bare, I_bari, I_bare, I_bari, I_bare, I_bari],[1,2])'; % E, I % input current % assigned by sugino
-I_bar = repmat(I_bar,[1,1,5]);
-Delta = repmat([Delta_e, Delta_i, Delta_e, Delta_i, Delta_e, Delta_i, Delta_e, Delta_i],[1,2])'; % E, I % hetero
-Delta = repmat(Delta,[1,1,5]);
-
-[r,v,g] = once(I_bar, I_sensPre, I_sensNot, I_sensBoth, I_attn, Delta, 2000);
-
+[r,v,g] = once(Delta_e, Delta_i, Iattn, 2000);
 
 %% plot
 popName = {'1L23e','1L23i','1L4e','1L4i','1L5e','1L5i','1L6e','1L6i', ...
@@ -108,7 +86,8 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     plot(timeax,r_cond4,'Color','#7E2F8E');
     plot(timeax,r_cond5,'Color','#77AC30');
 
-    title("Time series of " + popName(pop));
+    title(popName(pop) + "at \Delta_{E}=" + num2str(Delta_e) +...
+        ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn));
     axis([0 2000 low maxDurStim*1.1]);
     xlabel("Time (ms)");
     ylabel("Firing rate (Hz)");
@@ -136,7 +115,8 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     plot(timeax,cond4Up,'Color','#7E2F8E');
     plot(timeax,cond5Up,'Color','#77AC30');
 
-    title("Envelope of time series of " + popName(pop));
+    title("Envelope of " + popName(pop) + "at \Delta_{E}=" + num2str(Delta_e) +...
+        ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn));
     axis([0 2000 low maxDurStim*1.1]);
     xlabel("Time (ms)");
     ylabel("Firing rate (Hz)");
