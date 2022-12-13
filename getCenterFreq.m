@@ -13,7 +13,7 @@ function [gamma, beta] = getCenterFreq(signal)
 if high > 25
     gamma = high;
     % if beta exist
-    if abs(mark3(1) - mark2(1)) > 10 * abs(mark3(1) - mark1(1))
+    if abs(mark3(1) - mark2(1)) > 0.001 && abs(mark3(1) - mark2(1)) > 5 * abs(mark3(1) - mark1(1))
         beta = low;
     else
         beta = 0;
