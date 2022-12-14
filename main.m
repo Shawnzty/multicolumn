@@ -43,7 +43,7 @@ for Delta_i_n = 1:delta_i_steps % none % changable
     Delta_i = delta_i_start + Delta_i_n*(delta_i_end/delta_i_steps);
 
 % for Iattn = linspace((0.05/20)+0.1,0.15,20)
-Iattn = 0.02;
+Iattn = 0.05;
 % if Iattn == 0
 %     continue
 % end

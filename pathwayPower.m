@@ -12,7 +12,7 @@ p(2,9) = 0.1;
 p(10,1) = 0.1;
 p = repmat(p,[1,1,5]);
 
-pp = getPP(v,g)*1e-06;
+pp = getPP(v,g); % power in unit of micro watt (\mu W)
 [head,tail] = period(r(5,150001:200000,:),false);
 
 axlabels = {'1L2/3e','1L2/3i','1L4e','1L4i','1L5e','1L5i','1L6e','1L6i', ...
@@ -37,11 +37,11 @@ xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16])
 xticklabels(axlabels);
 yticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16])
 yticklabels(axlabels);
-ylabel(c,'Power','FontSize',12,'Rotation',270);
+ylabel(c,'Power (\muW)','FontSize',12,'Rotation',270);
 c.Label.Position(1) = 4;
 
 %% pathway energy transmission in one period
-peTrans = squeeze(sum(pp,3)).*p*0.001*0.01*1000000;
+peTrans = squeeze(sum(pp,3)).*p*0.001*0.01;
 f = figure();
 slice = peTrans(:,:,cond);
 h = imagesc(slice);
@@ -50,7 +50,7 @@ c = colorbar; colormap('hot');
 set(gca,'ColorScale','log')
 % clim([-1 1]); % colorbar axis
 title("Energy transmission: \Delta_{E}=" + num2str(Delta_e) +...
-    ", \Delta_{I}=" + num2str(Delta_i), 'FontSize', 12);
+    ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn), 'FontSize', 12);
 xlabel("From")
 ylabel("To")
 xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16])
@@ -65,10 +65,15 @@ figure()
 bar(squeeze(peTrans(5,1:8,:)));
 xticks([1 2 3 4 5 6 7 8])
 xticklabels(axlabels(1:8));
+ylim([0 15]);
 xlabel("From")
 ylabel("Energy (\muJ)")
 title("Energy transmitted to 1L5e: \Delta_{E}=" + num2str(Delta_e) +...
-    ", \Delta_{I}=" + num2str(Delta_i), 'FontSize', 12);
+    ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn), 'FontSize', 12);
+legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','northeast');
+filename = append('peTrans_',num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
+    location = append('tryOneFigure/',filename);
+    saveas(gcf, location);
 
 %% Investigate by populations power to 1L5e
 figure()
@@ -86,7 +91,7 @@ legend({'From 1L2/3e','From 1L2/3i','From 1L4e','From 1L4i', ...
     'From 1L5e','From 1L5i','From 1L6e','From 1L6i'}, ...
     'Location','southeast','NumColumns',2);
 xlabel("Time (ms)")
-ylabel("Power")
+ylabel("Power (\muW)")
 end
 % legend('Position',[0.1435,0.59328,0.22506,0.31006])
 
