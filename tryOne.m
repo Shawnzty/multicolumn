@@ -5,8 +5,8 @@ initime = clock;
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.3;
-Delta_i = 0.04; % none % changable
+Delta_e = 0.2;
+Delta_i = 0.01; % none % changable
 Iattn = 0.02;
 
 time = 10000;
@@ -79,10 +79,10 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
 
     title(popName(pop) + " at \Delta_{E}=" + num2str(Delta_e) +...
         ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn));
-    axis([0 2000 low maxDurStim*1.1]);
+    axis([0 time low maxDurStim*1.1]);
     xlabel("Time (ms)");
     ylabel("Firing rate (Hz)");
-    legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','northwest');
+    legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','southeast');
     filename = append(num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
     location = append('tryOneFigure/',filename);
     saveas(gcf, location);
@@ -103,8 +103,9 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
 
     linkaxes([ax1 ax2 ax3 ax4 ax5],'xy');
     ax1.YLim = [low maxDurStim*1.1];
-%     title(popName(pop) + "by conds" + " at \Delta_{E}=" + num2str(Delta_e) +...
-%         ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn)');
+    filename = append('Each_',num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
+    location = append('tryOneFigure/',filename);
+    saveas(gcf, location);
 
     %% envelop only during stimulus
     cond1Up = cat(1, r_cond1(1:step_stimIn), cond1Up_tmp); %, r_cond1(step_stimIn+step_stim+comp+1:length(r_cond1)));
@@ -126,10 +127,10 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
 
     title("Envelope of " + popName(pop) + " at \Delta_{E}=" + num2str(Delta_e) +...
         ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn));
-    axis([0 2000 low maxDurStim*1.1]);
+    axis([0 time low maxDurStim*1.1]);
     xlabel("Time (ms)");
     ylabel("Firing rate (Hz)");
-    legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','northwest');
+    legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','southeast');
     filename = append('env_',num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
     location = append('tryOneFigure/',filename);
     saveas(gcf, location);

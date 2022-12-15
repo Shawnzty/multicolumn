@@ -13,13 +13,15 @@ p(10,1) = 0.1;
 p = repmat(p,[1,1,5]);
 
 pp = getPP(v,g); % power in unit of micro watt (\mu W)
-[head,tail] = period(r(5,150001:200000,:),false);
+% [head,tail] = period(r(5,150001:200000,:),false);
 
 axlabels = {'1L2/3e','1L2/3i','1L4e','1L4i','1L5e','1L5i','1L6e','1L6i', ...
     '2L2/3e','2L2/3i','2L4e','2L4i','2L5e','2L5i','2L6e','2L6i'};
 cond = 4;
-strt_prd = head(cond)+150000;
-end_prd = tail(cond)+150000;
+% strt_prd = head(cond)+150000;
+% end_prd = tail(cond)+150000;
+strt_prd = 300001;
+end_prd = 1000000;
 
 %% pathway power in heatmap
 f = figure();
@@ -40,8 +42,8 @@ yticklabels(axlabels);
 ylabel(c,'Power (\muW)','FontSize',12,'Rotation',270);
 c.Label.Position(1) = 4;
 
-%% pathway energy transmission in one period
-peTrans = squeeze(sum(pp,3)).*p*0.001*0.01;
+%% heatmap: pathway energy transmission in a period of time
+peTrans = squeeze(sum(pp(:,:,strt_prd:end_prd,:),3)).*p*0.001*0.01; % *p*ms*step
 f = figure();
 slice = peTrans(:,:,cond);
 h = imagesc(slice);
@@ -53,27 +55,27 @@ title("Energy transmission: \Delta_{E}=" + num2str(Delta_e) +...
     ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn), 'FontSize', 12);
 xlabel("From")
 ylabel("To")
-xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16])
+xticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16]);
 xticklabels(axlabels);
-yticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16])
+yticks([1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16]);
 yticklabels(axlabels);
 ylabel(c,'Energy (\muJ)','FontSize',12,'Rotation',270);
 c.Label.Position(1) = 4;
 
-%% showing the energy transmission of each pathway
+%% showing the energy transmission in each pathway in a period of time
 figure()
 bar(squeeze(peTrans(5,1:8,:)));
-xticks([1 2 3 4 5 6 7 8])
+xticks([1 2 3 4 5 6 7 8]);
 xticklabels(axlabels(1:8));
-ylim([0 15]);
+ylim([0 70]);
 xlabel("From")
 ylabel("Energy (\muJ)")
 title("Energy transmitted to 1L5e: \Delta_{E}=" + num2str(Delta_e) +...
     ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn), 'FontSize', 12);
 legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','northeast');
 filename = append('peTrans_',num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
-    location = append('tryOneFigure/',filename);
-    saveas(gcf, location);
+location = append('tryOneFigure/',filename);
+saveas(gcf, location);
 
 %% Investigate by populations power to 1L5e
 figure()
@@ -94,30 +96,3 @@ xlabel("Time (ms)")
 ylabel("Power (\muW)")
 end
 % legend('Position',[0.1435,0.59328,0.22506,0.31006])
-
-%% functions
-function pp = getPP(v,g)
-%PATHWAYCURRENT Summary of this function goes here
-%   Detailed explanation goes here
-
-% get the pathway powers
-% from Y to X
-step_all = size(v,2)-1;
-v_x = zeros(16,16,step_all+1,5);
-v_y = zeros(16,16,step_all+1,5); % mean membrane potential
-
-for i = 1:16 % iterate by column, copy same value of all populations
-    v_x(:,i,:,:) = v;
-end
-
-for i = 1:16 % iterate by column, give potential to each population
-    if mod(i,2) == 0 % even columns are inhibitory
-        v_y(:,i,:,:) = -70;
-    else
-        v_y(:,i,:,:) = 0; % odd columns are excitatory
-    end
-end
-
-pd = v_y - v_x; % pathway potential difference between Y and X
-pp = pd.*pd.*g; % pathway current from Y to X
-end
