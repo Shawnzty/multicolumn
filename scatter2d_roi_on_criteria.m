@@ -1,7 +1,7 @@
 % this script create a 3-D scatter plot showing different pattern of the
 % dynamics, including ON-ON, OFF-ON, OFF-OFF and ON-OFF
 % 3 dimensions are: DeltaE (x), DeltaI (y), and Isens(z)
-rootFolder = "figure_200_0.05/";
+rootFolder = "figure_200_0.02/";
 % ON-ON
 data = readFilename(rootFolder+"agree/*_*_*_*_*_*.png",'%f_%f_%f_%f_%f_%f');
 data( all(~data,2), : ) = [];
@@ -37,7 +37,7 @@ for i = 1:length(roi)
     coordColor(i,:) = colors(idx,:);
 end
 
-sz = 4;
+sz = 10;
 figure();
 
 
@@ -68,7 +68,11 @@ title("I_{attn}=0.02")
 % lgnd = legend([L1,L2,L3,L4]);
 % set(lgnd,'color','#FFFFFF');
 % plot(linspace(0,0.5,100),linspace(0,0.06,100));
-
+yline(0.01);
+xline(0.1)
+xline(0.12);
+xline(0.16);
+xline(0.2);
 
 % figure();
 % histogram(data(:,4));
