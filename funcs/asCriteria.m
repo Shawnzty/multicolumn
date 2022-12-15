@@ -18,11 +18,11 @@ function [location,location_env] = asCriteria(cond1, cond2, cond3, cond4, cond5,
 % criteria2 = cond3>cond2 && cond5>cond2 && cond1>cond2 && cond4>cond2;
 
 % base on envelop
-cond1 = cond1(80000:96000); % 60000:90000
-cond2 = cond2(80000:96000);
-cond3 = cond3(80000:96000);
-cond4 = cond4(80000:96000);
-cond5 = cond5(80000:96000);
+cond1 = cond1(end-20000:end-4000); % 60000:90000
+cond2 = cond2(end-20000:end-4000);
+cond3 = cond3(end-20000:end-4000);
+cond4 = cond4(end-20000:end-4000);
+cond5 = cond5(end-20000:end-4000);
 
 criteria1 = sum(cond1<cond3)==0 && sum(cond1<cond5)==0 && sum(cond4<cond3)==0 && sum(cond4<cond5)==0;
 criteria2 = sum(cond1<cond2)==0 && sum(cond3<cond2)==0 && sum(cond4<cond2)==0 && sum(cond5<cond2)==0;

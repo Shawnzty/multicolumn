@@ -29,11 +29,13 @@ mkdir("figure/noOsc")
 % for parfor
 delta_e_start = 0; % cannot equal to 0
 delta_e_end = 0.5; % can equal to 0.5
-delta_e_steps = 200;
+delta_e_steps = 100;
 
 delta_i_start = 0; % cannot equal to 0
 delta_i_end = 0.05; % can equal to 0.5
-delta_i_steps = 200;
+delta_i_steps = 100;
+
+alltime = 4000;
 
 parfor Delta_e_n = 1:delta_e_steps % linspace(0.001,0.5,10) % 0.28 % changable
     Delta_e = delta_e_start+ Delta_e_n*(delta_e_end/delta_e_steps);
@@ -52,8 +54,8 @@ close all;
 startTime = clock;
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
-[r,v,g] = once(Delta_e, Delta_i, Iattn, 2000);
-isPloted = plotTC(r,5, Iattn, Delta_e,Delta_i,2,4000);
+[r,v,g] = once(Delta_e, Delta_i, Iattn, alltime);
+isPloted = plotTC(r,5, Iattn, Delta_e,Delta_i,alltime,2,4000);
 disp(etime(clock, startTime));
 % end
 end

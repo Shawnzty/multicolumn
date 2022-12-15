@@ -69,10 +69,7 @@ title("I_{attn}=0.02")
 % set(lgnd,'color','#FFFFFF');
 % plot(linspace(0,0.5,100),linspace(0,0.06,100));
 yline(0.01);
-xline(0.1)
-xline(0.12);
-xline(0.16);
-xline(0.2);
+xline(0.3);
 
 % figure();
 % histogram(data(:,4));
