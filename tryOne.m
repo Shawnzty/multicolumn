@@ -5,8 +5,8 @@ initime = clock;
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.2;
-Delta_i = 0.01; % none % changable
+Delta_e = 0.3;
+Delta_i = 0.03325; % none % changable
 Iattn = 0.02;
 
 time = 10000;

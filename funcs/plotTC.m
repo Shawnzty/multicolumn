@@ -1,4 +1,4 @@
-function isPloted = plotTC(r,pop, Iattn, Delta_e,Delta_i, rawORenv, envWdo)
+function isPloted = plotTC(r,pop, Iattn, Delta_e,Delta_i, time, rawORenv, envWdo)
 %UNTITLED plot time course of the dynamics
 %   parameters include r,v,g
 %   save or not save, raw data or envelope
@@ -9,19 +9,18 @@ popName = {'1L23e','1L23i','1L4e','1L4i','1L5e','1L5i','1L6e','1L6i', ...
     '2L23e','2L23i','2L4e','2L4i','2L5e','2L5i','2L6e','2L6i'};
 
 dt = 0.01;
-time = 2000;
 timeax = 0:dt:time;
 timeax = timeax';
 stimIn = 1000;
-stimDur = 1000;
+stimDur = time-stimIn;
 step_stimIn = stimIn/dt;
 step_stim = stimDur/dt;
 
-r_cond1 = r(pop,:,1)';
-r_cond2 = r(pop,:,2)';
-r_cond3 = r(pop,:,3)';
-r_cond4 = r(pop,:,4)';
-r_cond5 = r(pop,:,5)';
+r_cond1 = r(pop,:,1);
+r_cond2 = r(pop,:,2);
+r_cond3 = r(pop,:,3);
+r_cond4 = r(pop,:,4);
+r_cond5 = r(pop,:,5);
 
 % isINF or NaN
 maxVal = max(r_cond4);
@@ -39,7 +38,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     [cond4Up_tmp, ] = envelope(r_cond4(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [cond5Up_tmp, ] = envelope(r_cond5(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [location, location_env] = asCriteria(cond1Up_tmp, cond2Up_tmp, cond3Up_tmp, cond4Up_tmp, cond5Up_tmp,...
-        r_cond4(180000:200000,1), maxDurStim, Delta_e, Delta_i, Iattn);
+        r_cond4(end-20000:end,1), maxDurStim, Delta_e, Delta_i, Iattn);
 
     if rawORenv ~= 1
     figure('visible','off');
@@ -55,10 +54,10 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
 
     title(popName(pop) + " at \Delta_{E}=" + num2str(Delta_e) +...
         ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn));
-    axis([0 2000 0 maxDurStim*1.1]);
+    axis([0 time 0 maxDurStim*1.1]);
     xlabel("Time (ms)");
     ylabel("Firing rate (Hz)");
-    legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','northwest');
+    legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','southeast');
     % disp(location);
     saveas(gcf, location);
     end
@@ -94,10 +93,10 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
 
     title("Envelope of " + popName(pop) + " at \Delta_{E}=" + num2str(Delta_e) +...
         ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn));
-    axis([0 2000 0 maxDurStim*1.1]);
+    axis([0 time 0 maxDurStim*1.1]);
     xlabel("Time (ms)");
     ylabel("Firing rate (Hz)");
-    legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','northwest');
+    legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','southeast');
     % disp(location);
     saveas(gcf, location_env);
     end
