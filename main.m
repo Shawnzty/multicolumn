@@ -7,6 +7,7 @@ mkdir("figure");
 mkdir("figure/agree");
 mkdir("figure/disagree");
 mkdir("figure/noOsc")
+addpath('funcs');
 
 % mkdir("figure/ON_ON");
 % mkdir("figure/ON_ON/asCriteria1");
@@ -39,13 +40,13 @@ alltime = 4000;
 
 parfor Delta_e_n = 1:delta_e_steps % linspace(0.001,0.5,10) % 0.28 % changable
     Delta_e = delta_e_start+ Delta_e_n*(delta_e_end/delta_e_steps);
-% for Delta_e = 0.0625
 
 for Delta_i_n = 1:delta_i_steps % none % changable
     Delta_i = delta_i_start + Delta_i_n*(delta_i_end/delta_i_steps);
+% Delta_e = 0.02; Delta_i = 0.0105;
 
 % for Iattn = linspace((0.05/20)+0.1,0.15,20)
-Iattn = 0.05;
+Iattn = 0.02;
 % if Iattn == 0
 %     continue
 % end
@@ -57,7 +58,7 @@ disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", I
 [r,v,g] = once(Delta_e, Delta_i, Iattn, alltime);
 isPloted = plotTC(r,5, Iattn, Delta_e,Delta_i,alltime,2,4000);
 disp(etime(clock, startTime));
+end
+end
 % end
-end
-end
 disp(etime(clock, initime)/60);
