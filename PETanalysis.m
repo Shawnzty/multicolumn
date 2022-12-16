@@ -6,7 +6,7 @@ pop = 5;
 sz = 10;
 
 %%
-load 0.3_0.3_0.015_0.045.mat;
+load data/0.3_0.3_0.015_0.045.mat;
 
 x = linspace(0.015,0.045,size(PET,2));
 figure();

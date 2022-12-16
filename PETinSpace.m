@@ -1,6 +1,7 @@
 clear;
 close all;
 initime = clock;
+addpath('funcs');
 
 % get the change of PET in parameter space
 delta_e_start = 0.3; % cannot equal to 0

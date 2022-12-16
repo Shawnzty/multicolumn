@@ -16,11 +16,11 @@ stimDur = time-stimIn;
 step_stimIn = stimIn/dt;
 step_stim = stimDur/dt;
 
-r_cond1 = r(pop,:,1);
-r_cond2 = r(pop,:,2);
-r_cond3 = r(pop,:,3);
-r_cond4 = r(pop,:,4);
-r_cond5 = r(pop,:,5);
+r_cond1 = r(pop,:,1)';
+r_cond2 = r(pop,:,2)';
+r_cond3 = r(pop,:,3)';
+r_cond4 = r(pop,:,4)';
+r_cond5 = r(pop,:,5)';
 
 % isINF or NaN
 maxVal = max(r_cond4);
