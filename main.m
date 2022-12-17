@@ -30,13 +30,13 @@ addpath('funcs');
 % for parfor
 delta_e_start = 0; % cannot equal to 0
 delta_e_end = 0.5; % can equal to 0.5
-delta_e_steps = 100;
+delta_e_steps = 2;
 
 delta_i_start = 0; % cannot equal to 0
 delta_i_end = 0.05; % can equal to 0.5
-delta_i_steps = 100;
+delta_i_steps = 2;
 
-alltime = 4000;
+alltime = 10000;
 
 parfor Delta_e_n = 1:delta_e_steps % linspace(0.001,0.5,10) % 0.28 % changable
     Delta_e = delta_e_start+ Delta_e_n*(delta_e_end/delta_e_steps);
@@ -46,7 +46,7 @@ for Delta_i_n = 1:delta_i_steps % none % changable
 % Delta_e = 0.02; Delta_i = 0.0105;
 
 % for Iattn = linspace((0.05/20)+0.1,0.15,20)
-Iattn = 0.02;
+Iattn = 0.04;
 % if Iattn == 0
 %     continue
 % end

@@ -4,13 +4,11 @@ initime = clock;
 addpath('funcs');
 
 % get the change of PET in parameter space
-delta_e_start = 0.3; % cannot equal to 0
-delta_e_end = 0.3; % can equal to 0.5
-delta_e_steps = 1;
-
-delta_i_start = 0.015; % cannot equal to 0
-delta_i_end = 0.045; % can equal to 0.5
-delta_i_steps = 100;
+Delta_e_start = 0.1; % cannot equal to 0
+Delta_e_end = 0.5; % can equal to 0.5
+Delta_i_start = 0.011; % cannot equal to 0
+Delta_i_end = 0.035; % can equal to 0.5
+Delta_steps = 101;
 
 Iattn = 0.02;
 time = 10000;
@@ -18,7 +16,7 @@ strt_prd = 300001;
 end_prd = 1000000;
 
 % container
-PET = zeros(delta_e_steps, delta_i_steps, 16, 16, 5);
+PET = zeros(Delta_steps, 16, 16, 5);
 
 % parameter
 p_base = [0.1184, 0.1552, 0.0846, 0.0629, 0.0323, 0.0000, 0.0076, 0.0000;
@@ -34,20 +32,17 @@ p(2,9) = 0.1;
 p(10,1) = 0.1;
 p = repmat(p,[1,1,5]);
 
-for Delta_e_n = 1:delta_e_steps
-    Delta_e = delta_e_start+ (Delta_e_n-1)*(delta_e_end/delta_e_steps);
-
-for Delta_i_n = 1:delta_i_steps
+for n = 1:Delta_steps
     startTime = clock;
-    Delta_i = delta_i_start + (Delta_i_n-1)*(delta_i_end/delta_i_steps);
+    Delta_e = Delta_e_start + (n-1)*(Delta_e_end-Delta_e_start)/(Delta_steps-1);
+    Delta_i = Delta_i_start + (n-1)*(Delta_i_end-Delta_i_start)/(Delta_steps-1);
     [r,v,g] = once(Delta_e, Delta_i, Iattn, time);
     pp = getPP(v,g); % power in unit of micro watt (\mu W), size: 16*16*time*5
     peTrans = squeeze(sum(pp(:,:,strt_prd:end_prd,:),3)).*p*0.001*0.01; % 16*16*5
-    PET(Delta_e_n, Delta_i_n,:,:,:) = peTrans;
+    PET(n,:,:,:) = peTrans;
     disp(etime(clock, startTime));
 end
-end
 
-filename = append(num2str(delta_e_start),'_',num2str(delta_e_end),'_',num2str(delta_i_start),'_',num2str(delta_i_end),'.mat');
+filename = append(num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',num2str(Delta_i_start),'_',num2str(Delta_i_end),'.mat');
 save(filename,'PET'); 
 disp(etime(clock, initime)/60);
