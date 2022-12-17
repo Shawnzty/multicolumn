@@ -2,11 +2,12 @@ clear;
 close all;
 clc;
 initime = clock;
+addpath('funcs');
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.3;
-Delta_i = 0.03325; % none % changable
+Delta_e = 0.1;
+Delta_i = 0.011; % none % changable
 Iattn = 0.02;
 
 time = 10000;
@@ -87,7 +88,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     location = append('tryOneFigure/',filename);
     saveas(gcf, location);
 
-    %%
+    %% plot raw one by one
     figure('visible','on');
     tiledlayout(5,1)
     ax1 = nexttile;

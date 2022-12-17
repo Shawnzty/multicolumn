@@ -1,7 +1,7 @@
 % this script create a 3-D scatter plot showing different pattern of the
 % dynamics, including ON-ON, OFF-ON, OFF-OFF and ON-OFF
 % 3 dimensions are: DeltaE (x), DeltaI (y), and Isens(z)
-rootFolder = "figure_200_0.02/";
+rootFolder = "figure_Iattn_0.02_2d_4000/";
 % ON-ON
 data = readFilename(rootFolder+"agree/*_*_*_*_*_*.png",'%f_%f_%f_%f_%f_%f');
 data( all(~data,2), : ) = [];
@@ -12,12 +12,21 @@ noosc( all(~noosc,2), : ) = [];
 
 
 diff = 2;
-idx = data(:,4) < diff & data(:,4) > 1/diff & data(:,1) ~= 0.5 & data(:,2) ~= 0.05;
+idx = data(:,4) < diff & data(:,4) > 1/diff;
 roi = data(idx,:);
 idx = ~idx;
 outRatio = data(idx,:);
 disagree = [disagree;outRatio];
 
+% remove dots on the edge
+% idx = roi(:,1) ~= 0.5 & roi(:,2) ~= 0.05;
+% roi = roi(idx,:);
+% idx = disagree(:,1) ~= 0.5 & disagree(:,2) ~= 0.05;
+% disagree = disagree(idx,:);
+% idx = noosc(:,1) ~= 0.5 & noosc(:,2) ~= 0.05;
+% noosc = noosc(idx,:);
+
+% color
 topColor = [256 0 0]/256; % R G B
 middleColor = [256 256 256]/256;
 bottomColor = [0 0 256]/256;
@@ -29,7 +38,6 @@ upperTicks = linspace(1,diff,100);
 lowerTicks = flip(1./upperTicks);
 ticks = flip(cat(2,lowerTicks(1:end-1),upperTicks)');
 
-
 coordColor = zeros(length(roi),3);
 % tbl = array2table(coord,'VariableNames',{'deltaE','deltaI','Iattn','Diff','Gamma','Beta'});
 for i = 1:length(roi)
@@ -37,9 +45,8 @@ for i = 1:length(roi)
     coordColor(i,:) = colors(idx,:);
 end
 
-sz = 10;
+sz = 18;
 figure();
-
 
 scatter(roi(:,1),roi(:,2),sz,coordColor,'filled','Marker','square'); L1 = "ROI";
 
@@ -68,8 +75,8 @@ title("I_{attn}=0.02")
 % lgnd = legend([L1,L2,L3,L4]);
 % set(lgnd,'color','#FFFFFF');
 % plot(linspace(0,0.5,100),linspace(0,0.06,100));
-yline(0.01);
-xline(0.3);
+plot([0.1 0.5], [0.011 0.035])
+
 
 % figure();
 % histogram(data(:,4));
