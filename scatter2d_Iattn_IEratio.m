@@ -1,22 +1,17 @@
 % this script create a 3-D scatter plot showing different pattern of the
 % dynamics, including ON-ON, OFF-ON, OFF-OFF and ON-OFF
 % 3 dimensions are: DeltaE (x), DeltaI (y), and Isens(z)
-rootFolder = "figure_Iattn_0.04_2d_4000/";
+rootFolder = "figure_40_diff/";
 % ON-ON
-data = readFilename(rootFolder+"agree/*_*_*_*_*_*.png",'%f_%f_%f_%f_%f_%f');
+data = readFilename(rootFolder+"asAllCriteria/*_*_*_*.png",'%f_%f_%f_%f');
 data( all(~data,2), : ) = [];
-disagree = readFilename(rootFolder+"disagree/*_*_*_*_*_*.png",'%f_%f_%f_%f_%f_%f');
-disagree( all(~disagree,2), : ) = [];
-noosc = readFilename(rootFolder+"noOsc/*_*_*_*_*_*.png",'%f_%f_%f_%f_%f_%f');
-noosc( all(~noosc,2), : ) = [];
-
-
 diff = 2;
-idx = data(:,4) < diff & data(:,4) > 1/diff;
-roi = data(idx,:);
-idx = ~idx;
-outRatio = data(idx,:);
-disagree = [disagree;outRatio];
+idx = data(:,4) < diff & data(:,4) > 1/diff; % & data(:,1) == 0.29487;
+coord = data(idx,:);
+
+x = 10*coord(:,2) ./ coord(:,1);
+y = coord(:,3);
+
 
 % remove dots on the edge
 % idx = roi(:,1) ~= 0.5 & roi(:,2) ~= 0.05;
@@ -38,17 +33,17 @@ upperTicks = linspace(1,diff,100);
 lowerTicks = flip(1./upperTicks);
 ticks = flip(cat(2,lowerTicks(1:end-1),upperTicks)');
 
-coordColor = zeros(length(roi),3);
+coordColor = zeros(length(y),3);
 % tbl = array2table(coord,'VariableNames',{'deltaE','deltaI','Iattn','Diff','Gamma','Beta'});
-for i = 1:length(roi)
-    [val,idx]=min(abs(roi(i,4)-ticks));
+for i = 1:length(y)
+    [val,idx]=min(abs(coord(i,4)-ticks));
     coordColor(i,:) = colors(idx,:);
 end
 
 sz = 18;
 figure();
 
-scatter(roi(:,1),roi(:,2),sz,coordColor,'filled','Marker','square'); L1 = "ROI";
+scatter(x,y,sz,coordColor,'filled','Marker','square');
 
 J = customcolormap([0 0.5 1], [topColor;middleColor;bottomColor]);
 colormap(J);
@@ -61,22 +56,15 @@ c.TickLabels = {'0.5', '0.67', '1', '1.5', '2'};
 ylabel(c,'Recovery ratio','FontSize',12,'Rotation',270);
 c.Label.Position(1) = 3;
 
-hold on
-scatter(disagree(:,1), disagree(:,2), sz,'filled',"MarkerFaceColor",[245 189 31]/256,'Marker','square'); L2 = "Disagree";
-scatter(noosc(:,1), noosc(:,2), sz,'filled',"MarkerFaceColor","#011936",'Marker','square'); L3 = "No osc";
-scatter(0.2,0.005, sz,'filled',"MarkerFaceColor",[197 201 204]/256,'Marker','square'); L4 = "Inf";
-
-set(gca,'Color',[197 201 204]/256);
+% set(gca,'Color',[197 201 204]/256);
 set(gca,'box','on');
-xlabel("\Delta_{E}");
-ylabel("\Delta_{I}");
-axis([0 0.5 0 0.05]);
-title("I_{attn}=0.02")
+xlabel("10\Delta_{I}/\Delta_{E}");
+ylabel("I_{attn}");
+% axis([0 2 0 0.05]);
+% title("I_{attn}=0.02")
 % lgnd = legend([L1,L2,L3,L4]);
 % set(lgnd,'color','#FFFFFF');
 % plot(linspace(0,0.5,100),linspace(0,0.06,100));
-% plot([0.075 0.5], [0.0096 0.035],'k','LineWidth',2)
-plot([0.1 0.5], [0.011 0.035],'k','LineWidth',2)
 
 % figure();
 % histogram(data(:,4));
