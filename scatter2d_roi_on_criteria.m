@@ -11,7 +11,7 @@ noosc = readFilename(rootFolder+"noOsc/*_*_*_*_*_*.png",'%f_%f_%f_%f_%f_%f');
 noosc( all(~noosc,2), : ) = [];
 
 
-diff = 2;
+diff = 100;
 idx = data(:,4) < diff & data(:,4) > 1/diff;
 roi = data(idx,:);
 idx = ~idx;
@@ -71,11 +71,12 @@ set(gca,'box','on');
 xlabel("\Delta_{E}");
 ylabel("\Delta_{I}");
 axis([0 0.5 0 0.05]);
-title("I_{attn}=0.02")
+title("I_{attn}=0.04")
 % lgnd = legend([L1,L2,L3,L4]);
 % set(lgnd,'color','#FFFFFF');
 % plot(linspace(0,0.5,100),linspace(0,0.06,100));
 % plot([0.075 0.5], [0.0096 0.035],'k','LineWidth',2)
+% plot([0.125 0.47], [0.013 0.0275],'k','LineWidth',2)
 plot([0.1 0.5], [0.011 0.035],'k','LineWidth',2)
 
 % figure();

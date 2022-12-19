@@ -6,7 +6,7 @@ axlabels = {'1L2/3e','1L2/3i','1L4e','1L4i','1L5e','1L5i','1L6e','1L6i', ...
 pop = 5;
 sz = 10;
 
-load data/0.1_0.5_0.011_0.035.mat;
+load data/0.1_0.5_0.011_0.035_Iattn_0.04.mat;
 
 startXbottom = 0.1; endXbottom = 0.5;
 % lowY = 0; highY = 9;

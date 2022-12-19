@@ -4,10 +4,10 @@ initime = clock;
 addpath('funcs');
 
 % get the change of PET in parameter space
-Delta_e_start = 0.3; % cannot equal to 0
-Delta_e_end = 0.3; % can equal to 0.5
-Delta_i_start = 0.015; % cannot equal to 0
-Delta_i_end = 0.045; % can equal to 0.5
+Delta_e_start = 0.105; % cannot equal to 0
+Delta_e_end = 0.5; % can equal to 0.5
+Delta_i_start = 0.012; % cannot equal to 0
+Delta_i_end = 0.0355; % can equal to 0.5
 Delta_steps = 101;
 
 Iattn = 0.02;
@@ -43,6 +43,7 @@ for n = 1:Delta_steps
     disp(etime(clock, startTime));
 end
 
-filename = append(num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',num2str(Delta_i_start),'_',num2str(Delta_i_end),'.mat');
+filename = append(num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
+    num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
 save(filename,'PET'); 
 disp(etime(clock, initime)/60);

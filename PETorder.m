@@ -6,10 +6,10 @@ pop = 5;
 sz = 10;
 
 %% Delta_i
-load data/0.3_0.3_0.015_0.045.mat;
+load data/0.3_0.3_0.015_0.045_mod.mat;
 startX = 0.015; endX = 0.045;
 lowY = 0; highY = 80; % 80
-x = linspace(startX,endX,size(PET,2));
+x = linspace(startX,endX,size(PET,1));
 figure();
 hold on;
 recX = [0.027 0.03475 0.03475 0.027];
@@ -24,7 +24,7 @@ alpha(r2,0.1);
 
 s = zeros(8,1);
 for i = 1:8
-    y = PET(1,:,pop,i,1);
+    y = PET(:,pop,i,1);
     s(i) = scatter(x,y,sz,'filled','LineWidth',2);
     hold on;
 end
@@ -35,10 +35,10 @@ title("Energy transmitted in pathway (\Delta_{I})");
 axis([startX endX lowY highY]);
 
 % sum all excitatory or inhibitory effect
-exc = squeeze(PET(1,:,pop,1,:)) + squeeze(PET(1,:,pop,3,:)) + ...
-    squeeze(PET(1,:,pop,5,:)) + squeeze(PET(1,:,pop,7,:));
-inh = squeeze(PET(1,:,pop,2,:)) + squeeze(PET(1,:,pop,4,:)) + ...
-    squeeze(PET(1,:,pop,6,:)) + squeeze(PET(1,:,pop,8,:));
+exc = squeeze(PET(:,pop,1,:)) + squeeze(PET(:,pop,3,:)) + ...
+    squeeze(PET(:,pop,5,:)) + squeeze(PET(:,pop,7,:));
+inh = squeeze(PET(:,pop,2,:)) + squeeze(PET(:,pop,4,:)) + ...
+    squeeze(PET(:,pop,6,:)) + squeeze(PET(:,pop,8,:));
 lowY = 70; highY = 100;
 figure();
 hold on
@@ -119,7 +119,7 @@ axis([startX endX lowY highY]);
 % axis([startX endX lowY highY]);
 
 %% Delta_i and Delta_e
-load data/0.1_0.5_0.011_0.035.mat;
+load data/0.1_0.5_0.011_0.035_Iattn_0.04.mat;
 startXbottom = 0.1; endXbottom = 0.5;
 % lowY = 0; highY = 9;
 x = linspace(startXbottom,endXbottom,size(PET,1));
@@ -188,7 +188,7 @@ hold on
 s2 = scatter(x, inh(:,1), sz, 'filled','b');
 
 ax1.XLim = [startXbottom endXbottom];
-ax1.YLim = [40 110];
+ax1.YLim = [40 130];
 legend([s1 s2],["Excitatory","Inhibitory"],'Location','northwest');
 
 % handle second X-axis
