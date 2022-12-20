@@ -6,18 +6,18 @@ pop = 5;
 sz = 10;
 
 %% Delta_i
-load data/0.3_0.3_0.015_0.045_mod.mat;
-startX = 0.015; endX = 0.045;
+load data/0.28_0.28_0.013_0.05_Iattn_0.02.mat;
+startX = 0.013; endX = 0.05;
 lowY = 0; highY = 80; % 80
 x = linspace(startX,endX,size(PET,1));
 figure();
 hold on;
-recX = [0.027 0.03475 0.03475 0.027];
+recX = [0.0315 0.0325 0.0325 0.0315];
 recY = [lowY lowY highY highY];
 r1 = fill(recX, recY, [245 189 31]/256,'LineStyle','none');
 alpha(r1,0.1);
 
-recX = [0.03725 0.045 0.045 0.03725];
+recX = [0.036 0.05 0.05 0.036];
 recY = [lowY lowY highY highY];
 r2 = fill(recX, recY, [245 189 31]/256,'LineStyle','none');
 alpha(r2,0.1);
@@ -39,15 +39,15 @@ exc = squeeze(PET(:,pop,1,:)) + squeeze(PET(:,pop,3,:)) + ...
     squeeze(PET(:,pop,5,:)) + squeeze(PET(:,pop,7,:));
 inh = squeeze(PET(:,pop,2,:)) + squeeze(PET(:,pop,4,:)) + ...
     squeeze(PET(:,pop,6,:)) + squeeze(PET(:,pop,8,:));
-lowY = 70; highY = 100;
+lowY = 65; highY = 95;
 figure();
 hold on
-recX = [0.027 0.03475 0.03475 0.027];
+recX = [0.0315 0.0325 0.0325 0.0315];
 recY = [lowY lowY highY highY];
 r1 = fill(recX, recY, [245 189 31]/256,'LineStyle','none');
 alpha(r1,0.1);
 
-recX = [0.03725 0.045 0.045 0.03725];
+recX = [0.036 0.05 0.05 0.036];
 recY = [lowY lowY highY highY];
 r2 = fill(recX, recY, [245 189 31]/256,'LineStyle','none');
 alpha(r2,0.1);

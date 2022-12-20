@@ -1,7 +1,7 @@
 % this script create a 3-D scatter plot showing different pattern of the
 % dynamics, including ON-ON, OFF-ON, OFF-OFF and ON-OFF
 % 3 dimensions are: DeltaE (x), DeltaI (y), and Isens(z)
-rootFolder = "figure_Iattn_0.04_2d_4000/";
+rootFolder = "figure_Iattn_0.02_2d_4000/";
 % ON-ON
 data = readFilename(rootFolder+"agree/*_*_*_*_*_*.png",'%f_%f_%f_%f_%f_%f');
 data( all(~data,2), : ) = [];
@@ -11,7 +11,7 @@ noosc = readFilename(rootFolder+"noOsc/*_*_*_*_*_*.png",'%f_%f_%f_%f_%f_%f');
 noosc( all(~noosc,2), : ) = [];
 
 
-diff = 100;
+diff = 2;
 idx = data(:,4) < diff & data(:,4) > 1/diff;
 roi = data(idx,:);
 idx = ~idx;
@@ -45,7 +45,7 @@ for i = 1:length(roi)
     coordColor(i,:) = colors(idx,:);
 end
 
-sz = 18;
+sz = 50;
 figure();
 
 scatter(roi(:,1),roi(:,2),sz,coordColor,'filled','Marker','square'); L1 = "ROI";
@@ -71,13 +71,13 @@ set(gca,'box','on');
 xlabel("\Delta_{E}");
 ylabel("\Delta_{I}");
 axis([0 0.5 0 0.05]);
-title("I_{attn}=0.04")
+title("I_{attn}=0.02")
 % lgnd = legend([L1,L2,L3,L4]);
 % set(lgnd,'color','#FFFFFF');
-% plot(linspace(0,0.5,100),linspace(0,0.06,100));
-% plot([0.075 0.5], [0.0096 0.035],'k','LineWidth',2)
-% plot([0.125 0.47], [0.013 0.0275],'k','LineWidth',2)
-plot([0.1 0.5], [0.011 0.035],'k','LineWidth',2)
+% plot([0.1 0.5], [0.011 0.035],'k','LineWidth',2)
+yline(0.035, 'm', 'LineWidth', 2);
+xline(0.28, 'k', 'LineWidth', 2);
+
 
 % figure();
 % histogram(data(:,4));
