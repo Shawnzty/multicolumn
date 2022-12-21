@@ -1,3 +1,148 @@
+%% show ratio slope
+
+clear;
+close all;
+axlabels = {'1L2/3e','1L2/3i','1L4e','1L4i','1L5e','1L5i','1L6e','1L6i', ...
+    '2L2/3e','2L2/3i','2L4e','2L4i','2L5e','2L5i','2L6e','2L6i'};
+pop = 5;
+popEI = 3;
+sz = 20;
+
+%% show ratio slope
+load data/0.1_0.5_0.011_0.035_Iattn_0.02.mat;
+startXbottom = 0.1; endXbottom = 0.5;
+% lowY = 0; highY = 9;
+x = linspace(startXbottom,endXbottom,size(PET,1));
+figure();
+
+% recX = [startX 0.12 0.12 startX];
+% recY = [lowY lowY highY highY];
+% r1 = fill(recX, recY, [245 189 31]/256,'LineStyle','none');
+% alpha(r1,0.1);
+% 
+% recX = [0.2275 endX endX 0.2275];
+% recY = [lowY lowY highY highY];
+% r2 = fill(recX, recY, [245 189 31]/256,'LineStyle','none');
+% alpha(r2,0.1);
+
+s = zeros(8,1);
+ax1 = axes();
+for i = 1:8
+    y = PET(:,pop,i,1);
+    s(i) = scatter(x,y,sz,'filled','LineWidth',2);
+    hold on;
+end
+ax1.XLim = [startXbottom endXbottom];
+ax1.YLim = [0 70];
+legend(s,axlabels(1:8), 'Location','northwest');
+
+% handle second X-axis
+ax2 = axes('Position', get(ax1,'Position'), ...
+    'XAxisLocation','top', ...
+    'Color','none', ...
+    'XColor','k');
+ax2.YAxis.Visible = 'off';
+% ax2.XLim = ax1.XLim;
+ax2.XLim = [0.011 0.035];
+
+xlabel(ax1, '\Delta_{E}');
+xlabel(ax2, '\Delta_{I}');
+ylabel(ax1, "Energy (\muJ)");
+pos = [0.15 0.12 0.74 0.76];
+set(ax1,'Position',pos);
+set(ax2,'Position',pos);
+% title("Energy transmitted in pathway");
+
+%% on slope
+load data/0.1_0.5_0.011_0.035_Iattn_0.02.mat;
+startXbottom = 0.1; endXbottom = 0.5;
+% lowY = 0; highY = 9;
+x = linspace(startXbottom,endXbottom,size(PET,1));
+figure();
+
+% recX = [startX 0.12 0.12 startX];
+% recY = [lowY lowY highY highY];
+% r1 = fill(recX, recY, [245 189 31]/256,'LineStyle','none');
+% alpha(r1,0.1);
+% 
+% recX = [0.2275 endX endX 0.2275];
+% recY = [lowY lowY highY highY];
+% r2 = fill(recX, recY, [245 189 31]/256,'LineStyle','none');
+% alpha(r2,0.1);
+
+s = zeros(8,1);
+ax1 = axes();
+for i = 1:8
+    y = PET(:,pop,i,1);
+    s(i) = scatter(x,y,sz,'filled','LineWidth',2);
+    hold on;
+end
+ax1.XLim = [startXbottom endXbottom];
+ax1.YLim = [0 70];
+legend(s,axlabels(1:8), 'Location','northwest');
+
+% handle second X-axis
+ax2 = axes('Position', get(ax1,'Position'), ...
+    'XAxisLocation','top', ...
+    'Color','none', ...
+    'XColor','k');
+ax2.YAxis.Visible = 'off';
+% ax2.XLim = ax1.XLim;
+ax2.XLim = [0.011 0.035];
+
+xlabel(ax1, '\Delta_{E}');
+xlabel(ax2, '\Delta_{I}');
+ylabel(ax1, "Energy (\muJ)");
+pos = [0.15 0.12 0.74 0.76];
+set(ax1,'Position',pos);
+set(ax2,'Position',pos);
+% title("Energy transmitted in pathway");
+
+
+%% On slope: sum all excitatory or inhibitory effect
+exc = squeeze(PET(:,pop,1,:)) + squeeze(PET(:,pop,3,:)) + ...
+    squeeze(PET(:,pop,5,:)) + squeeze(PET(:,pop,7,:));
+inh = squeeze(PET(:,pop,2,:)) + squeeze(PET(:,pop,4,:)) + ...
+    squeeze(PET(:,pop,6,:)) + squeeze(PET(:,pop,8,:));
+lowY = 6; highY = 14;
+
+figure();
+ax1 = axes();
+% recX = [startX 0.12 0.12 startX];
+% recY = [lowY lowY highY highY];
+% r1 = fill(recX, recY, [245 189 31]/256,'LineStyle','none');
+% alpha(r1,0.1);
+% 
+% recX = [0.2275 endX endX 0.2275];
+% recY = [lowY lowY highY highY];
+% r2 = fill(recX, recY, [245 189 31]/256,'LineStyle','none');
+% alpha(r2,0.1);
+
+s1 = scatter(x, exc(:,1), sz, 'filled','r');
+hold on
+s2 = scatter(x, inh(:,1), sz, 'filled','b');
+
+ax1.XLim = [startXbottom endXbottom];
+ax1.YLim = [40 130];
+legend([s1 s2],["Excitatory","Inhibitory"],'Location','northwest');
+
+% handle second X-axis
+ax2 = axes('Position', get(ax1,'Position'), ...
+    'XAxisLocation','top', ...
+    'Color','none', ...
+    'XColor','k');
+ax2.YAxis.Visible = 'off';
+% ax2.XLim = ax1.XLim;
+ax2.XLim = [0.011 0.035];
+
+xlabel(ax1, '\Delta_{E}');
+xlabel(ax2, '\Delta_{I}');
+ylabel(ax1, "Energy (\muJ)");
+pos = [0.15 0.12 0.74 0.76];
+set(ax1,'Position',pos);
+set(ax2,'Position',pos);
+% title("Energy transmitted in pathway");
+
 %% cond1-cond3 EI, cond4-cond3 EI
 clear;
 close all;

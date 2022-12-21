@@ -74,9 +74,7 @@ axis([0 0.5 0 0.05]);
 title("I_{attn}=0.02")
 % lgnd = legend([L1,L2,L3,L4]);
 % set(lgnd,'color','#FFFFFF');
-% plot([0.1 0.5], [0.011 0.035],'k','LineWidth',2)
-yline(0.035, 'm', 'LineWidth', 2);
-xline(0.28, 'k', 'LineWidth', 2);
+plot([0.1 0.5], [0.011 0.035],'k','LineWidth',2)
 
 
 % figure();

@@ -6,8 +6,8 @@ addpath('funcs');
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.1;
-Delta_i = 0.011; % none % changable
+Delta_e = 0.28;
+Delta_i = 0.032; % none % changable
 Iattn = 0.02;
 
 time = 10000;
@@ -88,26 +88,6 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     location = append('tryOneFigure/',filename);
     saveas(gcf, location);
 
-    %% plot raw one by one
-    figure('visible','on');
-    tiledlayout(5,1)
-    ax1 = nexttile;
-    plot(timeax,r_cond1,'Color','#0072BD');
-    ax2 = nexttile;
-    plot(timeax,r_cond2,'Color','#D95319');
-    ax3 = nexttile;
-    plot(timeax,r_cond3,'Color','#EDB120');
-    ax4 = nexttile;
-    plot(timeax,r_cond4,'Color','#7E2F8E');
-    ax5 = nexttile;
-    plot(timeax,r_cond5,'Color','#77AC30');
-
-    linkaxes([ax1 ax2 ax3 ax4 ax5],'xy');
-    ax1.YLim = [low maxDurStim*1.1];
-    filename = append('Each_',num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
-    location = append('tryOneFigure/',filename);
-    saveas(gcf, location);
-
     %% envelop only during stimulus
     cond1Up = cat(1, r_cond1(1:step_stimIn), cond1Up_tmp); %, r_cond1(step_stimIn+step_stim+comp+1:length(r_cond1)));
     cond2Up = cat(1, r_cond2(1:step_stimIn), cond2Up_tmp); % , r_cond2(step_stimIn+step_stim+comp+1:length(r_cond1)));
@@ -136,5 +116,34 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     location = append('tryOneFigure/',filename);
     saveas(gcf, location);
     
+    %% plot raw one by one
+    figure('visible','on');
+    tiledlayout(5,1)
+    ax1 = nexttile;
+    plot(timeax,r_cond1,'Color','#0072BD');
+    hold on
+    plot(timeax,cond1Up,'k');
+    ax2 = nexttile;
+    plot(timeax,r_cond2,'Color','#D95319');
+    hold on
+    plot(timeax,cond2Up,'k');
+    ax3 = nexttile;
+    plot(timeax,r_cond3,'Color','#EDB120');
+    hold on
+    plot(timeax,cond3Up,'k');
+    ax4 = nexttile;
+    plot(timeax,r_cond4,'Color','#7E2F8E');
+    hold on
+    plot(timeax,cond4Up,'k');
+    ax5 = nexttile;
+    plot(timeax,r_cond5,'Color','#77AC30');
+    hold on
+    plot(timeax,cond5Up,'k');
+
+    linkaxes([ax1 ax2 ax3 ax4 ax5],'xy');
+    ax1.YLim = [low maxDurStim*1.1];
+    filename = append('Each_',num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
+    location = append('tryOneFigure/',filename);
+    saveas(gcf, location);
 end
 disp(etime(clock, initime));
