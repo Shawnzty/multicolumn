@@ -6,8 +6,8 @@ addpath('funcs');
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.28;
-Delta_i = 0.032; % none % changable
+Delta_e = 0.189625;
+Delta_i = 0.0164; % none % changable
 Iattn = 0.02;
 
 time = 10000;

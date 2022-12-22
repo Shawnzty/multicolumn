@@ -4,11 +4,11 @@ initime = clock;
 addpath('funcs');
 
 % get the change of PET in parameter space
-Delta_e_start = 0.28; % cannot equal to 0
-Delta_e_end = 0.28; % can equal to 0.5
-Delta_i_start = 0.013; % cannot equal to 0
-Delta_i_end = 0.05; % can equal to 0.5
-Delta_steps = 101;
+Delta_e_start = 0.125; % cannot equal to 0
+Delta_e_end = 0.4; % can equal to 0.5
+Delta_i_start = 0.0125; % cannot equal to 0
+Delta_i_end = 0.029; % can equal to 0.5
+Delta_steps = 201;
 
 Iattn = 0.02;
 time = 10000;

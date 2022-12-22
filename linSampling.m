@@ -4,15 +4,15 @@ close all;
 clc;
 initime = clock;
 
-mkdir("figure_linReg");
-mkdir("figure_linReg/agree");
-mkdir("figure_linReg/disagree");
-mkdir("figure_linReg/noOsc")
+mkdir("figure");
+mkdir("figure/agree");
+mkdir("figure/disagree");
+mkdir("figure/noOsc")
 addpath('funcs');
 
-x1 = 0.125; y1 = 0.013;
-x2 = 0.405; y2 = 0.0295;
-N = 101;
+x1 = 0.125; y1 = 0.0125;
+x2 = 0.4; y2 = 0.029;
+N = 201;
 Iattn = 0.02;
 alltime = 4000;
 
@@ -23,7 +23,7 @@ alltime = 4000;
 m = (y2 - y1) / (x2 - x1);
 % Calculate the y-intercept of the line
 b = y1 - m*x1;
-Delta_E = linspace(0,0.5,N);
+Delta_E = linspace(x1,x2,N);
 Delta_I = Delta_E*m + b;
 
 %% main: get eta

@@ -58,7 +58,7 @@ c.FontSize = 10;
 c.Ticks = [0 0.25 0.5 0.75 1];
 c.TickLabels = {'0.5', '0.67', '1', '1.5', '2'};
 % c.Ticks = [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 5.0 10.0 15.0 20.0 25.0]
-ylabel(c,'Recovery ratio','FontSize',12,'Rotation',270);
+ylabel(c,'Recovery ratio \eta ','FontSize',12,'Rotation',270);
 c.Label.Position(1) = 3;
 
 hold on
@@ -74,8 +74,8 @@ axis([0 0.5 0 0.05]);
 title("I_{attn}=0.02")
 % lgnd = legend([L1,L2,L3,L4]);
 % set(lgnd,'color','#FFFFFF');
-plot([0.1 0.5], [0.011 0.035],'k','LineWidth',2)
-
+% plot([0.125 0.4], [0.0125 0.029],'g','LineWidth',2)
+plot([0.125 0.4], [0.0125 0.029],'g','LineWidth',2)
 
 % figure();
 % histogram(data(:,4));
