@@ -8,11 +8,11 @@ Delta_e_start = 0.125; % cannot equal to 0
 Delta_e_end = 0.4; % can equal to 0.5
 Delta_i_start = 0.0125; % cannot equal to 0
 Delta_i_end = 0.029; % can equal to 0.5
-Delta_steps = 201;
+Delta_steps = 101;
 
-Iattn = 0.02;
+Iattn = 0.04;
 time = 10000;
-strt_prd = 300001;
+strt_prd = 400001;
 end_prd = 1000000;
 
 % container
