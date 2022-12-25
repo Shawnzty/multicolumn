@@ -75,7 +75,7 @@ title("I_{attn}=0.02")
 % lgnd = legend([L1,L2,L3,L4]);
 % set(lgnd,'color','#FFFFFF');
 % plot([0.125 0.4], [0.0125 0.029],'g','LineWidth',2)
-plot([0.125 0.4], [0.0125 0.029],'g','LineWidth',2)
+plot([0.125 0.4], [0.013 0.029],'g','LineWidth',2)
 
 % figure();
 % histogram(data(:,4));
