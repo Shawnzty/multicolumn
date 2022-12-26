@@ -38,7 +38,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     [cond4Up_tmp, ] = envelope(r_cond4(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [cond5Up_tmp, ] = envelope(r_cond5(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [location, location_env] = asCriteria(cond1Up_tmp, cond2Up_tmp, cond3Up_tmp, cond4Up_tmp, cond5Up_tmp,...
-        r_cond4(end-20000:end,1), maxDurStim, Delta_e, Delta_i, Iattn);
+        r_cond4(end-40000:end,1), maxDurStim, Delta_e, Delta_i, Iattn);
 
     if rawORenv ~= 1
     figure('visible','off');

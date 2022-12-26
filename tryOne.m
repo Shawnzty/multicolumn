@@ -6,11 +6,11 @@ addpath('funcs');
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.189625;
-Delta_i = 0.0164; % none % changable
-Iattn = 0.02;
+Delta_e = 0.005;
+Delta_i = 0.0015; % none % changable
+Iattn = 0.015;
 
-time = 10000;
+time = 4000;
 
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
@@ -63,7 +63,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     [cond3Up_tmp, ] = envelope(r_cond3(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [cond4Up_tmp, ] = envelope(r_cond4(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
     [cond5Up_tmp, ] = envelope(r_cond5(step_stimIn+1:step_stimIn+step_stim+1),envWdo,envMthd);
-    [criteria,] = asCriteria(cond1Up_tmp, cond2Up_tmp, cond3Up_tmp, cond4Up_tmp, cond5Up_tmp,r_cond4(180000:200000,1),...
+    [criteria,] = asCriteria(cond1Up_tmp, cond2Up_tmp, cond3Up_tmp, cond4Up_tmp, cond5Up_tmp,r_cond4(end-40000:end,1),...
         maxDurStim, Delta_e, Delta_i, time);
     disp(criteria);
 %%
