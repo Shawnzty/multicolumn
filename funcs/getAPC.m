@@ -22,8 +22,8 @@ end
 
 pd = v_y - v_x; % pathway potential difference between Y and X
 pc = pd.*g; % pathway current from Y to X
-sumpc = squeeze(sum(pc(:,:,strt_prd:end_prd,:),3))*0.001*0.01;
-dur = (end_prd-strt_prd)*0.001*0.01;
-apc = sumpc/dur;
+sumpc = squeeze(sum(pc(:,:,strt_prd:end_prd,:),3));
+dur = (end_prd-strt_prd);
+apc = sumpc/dur; % average current for one step
 end
 

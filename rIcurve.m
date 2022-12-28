@@ -1,0 +1,76 @@
+clear;
+close all;
+clc;
+
+Delta_e = 0.2;
+Delta_i = 0.015;
+Iattn = 0.02;
+allTime = 5000;
+cond = 3;
+
+% intracolumn connection probability % [Wagatsuma 2011]
+p_base = [0.1184, 0.1552, 0.0846, 0.0629, 0.0323, 0.0000, 0.0076, 0.0000;
+          0.1008, 0.1371, 0.0363, 0.0515, 0.0755, 0.0000, 0.0042, 0.0000;
+          0.0077, 0.0059, 0.0519, 0.1453, 0.0067, 0.0003, 0.0453, 0.0000;
+          0.0691, 0.0029, 0.1093, 0.1597, 0.0033, 0.0000, 0.1057, 0.0000;
+          0.1017, 0.0622, 0.0411, 0.0057, 0.0758, 0.3765, 0.0204, 0.0000;
+          0.0436, 0.0269, 0.0209, 0.0022, 0.0566, 0.3158, 0.0086, 0.0000;
+          0.0156, 0.0066, 0.0211, 0.0166, 0.0572, 0.0197, 0.0401, 0.2252;
+          0.0364, 0.0010, 0.0034, 0.0005, 0.0277, 0.0080, 0.0658, 0.1443];
+p = [p_base, zeros(8,8); zeros(8,8), p_base];
+p(2,9) = 0.1;
+p(10,1) = 0.1;
+p = repmat(p,[1,1,5]);
+
+[r,v,g] = once(Delta_e, Delta_i, Iattn, allTime);
+[strt_prd, end_prd] = getOnePrd(squeeze(r(5,end-50000:end,cond)));
+strt_prd = strt_prd + size(r,2) - 50000;
+end_prd = end_prd + size(r,2) - 50000;
+PC = getPC(v(:,strt_prd:end_prd,:),g(:,:,strt_prd:end_prd,:));
+
+% PC * connectivity
+for i = 1:size(PC,3)
+    PC(:,:,i,:) = squeeze(PC(:,:,i,:)) .* p;
+end
+sumPC = squeeze(sum(PC,2));
+
+%% plot
+scatter(sumPC(5,:,1), r(5,strt_prd:end_prd,1));
+hold on
+scatter(sumPC(5,:,2), r(5,strt_prd:end_prd,2));
+scatter(sumPC(5,:,3), r(5,strt_prd:end_prd,3));
+scatter(sumPC(5,:,4), r(5,strt_prd:end_prd,4));
+scatter(sumPC(5,:,5), r(5,strt_prd:end_prd,5));
+
+% for i = 1:size(PC,3)
+%     scatter(sumPC(5,i,1), r(5,i+strt_prd-1,1));
+%     axis([-14 2 0 0.14]);    
+%     drawnow
+% end
+%% function
+function pc = getPC(v,g)
+    v_x = zeros(16,16,size(v,2),5);
+    v_y = zeros(16,16,size(v,2),5); % mean membrane potential
+    
+    for i = 1:16 % iterate by column, copy same value of all populations
+        v_x(:,i,:,:) = v;
+    end
+    
+    for i = 1:16 % iterate by column, give potential to each population
+        if mod(i,2) == 0 % even columns are inhibitory
+            v_y(:,i,:,:) = -70;
+        else
+            v_y(:,i,:,:) = 0; % odd columns are excitatory
+        end
+    end
+    
+    pd = v_y - v_x; % pathway potential difference between Y and X
+    pc = pd.*g; % pathway current from Y to X
+
+end
+
+function [strt_prd, end_prd] = getOnePrd(signal)
+    [pks, locs] = findpeaks(signal);
+    strt_prd = locs(end-3);
+    end_prd = locs(end-2);
+end
