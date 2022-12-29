@@ -1,8 +1,8 @@
-function apc = getAPC(v,g)
+function peTrans = getPET(v,g,p)
 %PATHWAYCURRENT Summary of this function goes here
 %   Detailed explanation goes here
 
-% get the pathway currents
+% get the pathway powers
 % from Y to X
 v_x = zeros(size(g));
 v_y = zeros(size(g)); % mean membrane potential
@@ -20,9 +20,7 @@ for i = 1:16 % iterate by column, give potential to each population
 end
 
 pd = v_y - v_x; % pathway potential difference between Y and X
-pc = pd.*g; % pathway current from Y to X
-sumpc = squeeze(sum(pc(:,:,strt_prd:end_prd,:),3));
-dur = end_prd-strt_prd;
-apc = sumpc/dur; % average current for one step
-end
+pp = pd.*pd.*g; % pathway power from Y to X
 
+peTrans = squeeze(sum(pp,3)).*p*0.001*0.01;
+end

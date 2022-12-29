@@ -6,11 +6,11 @@ addpath('funcs');
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.005;
-Delta_i = 0.0015; % none % changable
-Iattn = 0.015;
+Delta_e = 0.105;
+Delta_i = 0.035; % none % changable
+Iattn = 0.02;
 
-time = 4000;
+time = 10000;
 
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 

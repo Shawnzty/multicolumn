@@ -37,7 +37,7 @@ for n = 1:Delta_steps
     Delta_e = Delta_e_start + (n-1)*(Delta_e_end-Delta_e_start)/(Delta_steps-1);
     Delta_i = Delta_i_start + (n-1)*(Delta_i_end-Delta_i_start)/(Delta_steps-1);
     [r,v,g] = once(Delta_e, Delta_i, Iattn, time);
-    apc = getAPC(v,g,strt_prd,end_prd); % current in unit of micro A (\mu A?), size: 16*16*time*5
+    apc = getAPC(v(:,strt_prd:end_prd,:),g(:,:,strt_prd:end_prd,:)); % current in unit of micro A (\mu A?), size: 16*16*time*5
     APC(n,:,:,:) = apc;
     disp(etime(clock, startTime));
 end

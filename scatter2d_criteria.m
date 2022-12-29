@@ -25,8 +25,10 @@ hold on
 scatter(disagree(:,1), disagree(:,2), sz,'filled',"MarkerFaceColor",[245 189 31]/256,'Marker','square'); L2 = "Disagree";
 scatter(noosc(:,1), noosc(:,2), sz,'filled',"MarkerFaceColor","#011936",'Marker','square'); L3 = "No osc";
 scatter(0.2,0.005, sz,'filled',"MarkerFaceColor",[197 201 204]/256,'Marker','square'); L4 = "Inf";
-yline(0.035, 'g', 'LineWidth', 1);
-xline(0.28, 'k', 'LineWidth', 1);
+% yline(0.035, 'g', 'LineWidth', 1);
+% xline(0.28, 'k', 'LineWidth', 1);
+% plot([0.125 0.4], [0.013 0.029],'g','LineWidth',2)
+scatter(0.105, 0.035,200,'filled',"pentagram","MarkerFaceColor","#00FFFF");
 
 set(gca,'box','on');
 set(gca,'Color',[197 201 204]/256);

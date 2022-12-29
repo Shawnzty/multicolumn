@@ -4,16 +4,16 @@ initime = clock;
 addpath('funcs');
 
 % get the change of PET in parameter space
-Delta_e_start = 0.125; % cannot equal to 0
-Delta_e_end = 0.4; % can equal to 0.5
-Delta_i_start = 0.0125; % cannot equal to 0
-Delta_i_end = 0.029; % can equal to 0.5
+Delta_e_start = 0.28; % cannot equal to 0
+Delta_e_end = 0.28; % can equal to 0.5
+Delta_i_start = 0.013; % cannot equal to 0
+Delta_i_end = 0.05; % can equal to 0.5
 Delta_steps = 101;
 
-Iattn = 0.04;
-time = 10000;
-strt_prd = 400001;
-end_prd = 1000000;
+Iattn = 0.02;
+time = 5000;
+strt_prd = 300001;
+end_prd = 500000;
 
 % container
 PET = zeros(Delta_steps, 16, 16, 5);
@@ -37,9 +37,7 @@ for n = 1:Delta_steps
     Delta_e = Delta_e_start + (n-1)*(Delta_e_end-Delta_e_start)/(Delta_steps-1);
     Delta_i = Delta_i_start + (n-1)*(Delta_i_end-Delta_i_start)/(Delta_steps-1);
     [r,v,g] = once(Delta_e, Delta_i, Iattn, time);
-    pp = getPP(v,g); % power in unit of micro watt (\mu W), size: 16*16*time*5
-    peTrans = squeeze(sum(pp(:,:,strt_prd:end_prd,:),3)).*p*0.001*0.01; % 16*16*5
-    PET(n,:,:,:) = peTrans;
+    PET(n,:,:,:) = getPET(v(:,strt_prd:end_prd,:),g(:,:,strt_prd:end_prd,:),p); % power in unit of micro watt (\mu W), size: 16*16*time*5
     disp(etime(clock, startTime));
 end
 
