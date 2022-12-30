@@ -9,23 +9,6 @@ mkdir("figure/disagree");
 mkdir("figure/noOsc")
 addpath('funcs');
 
-% mkdir("figure/ON_ON");
-% mkdir("figure/ON_ON/asCriteria1");
-% mkdir("figure/ON_ON/asCriteria2");
-% mkdir("figure/ON_ON/asAllCriteria");
-% mkdir("figure/OFF_OFF");
-% mkdir("figure/OFF_OFF/asCriteria1");
-% mkdir("figure/OFF_OFF/asCriteria2");
-% mkdir("figure/OFF_OFF/asAllCriteria");
-% mkdir("figure/OFF_ON");
-% mkdir("figure/OFF_ON/asCriteria1");
-% mkdir("figure/OFF_ON/asCriteria2");
-% mkdir("figure/OFF_ON/asAllCriteria");
-% mkdir("figure/ON_OFF");
-% mkdir("figure/ON_OFF/asCriteria1");
-% mkdir("figure/ON_OFF/asCriteria2");
-% mkdir("figure/ON_OFF/asAllCriteria");
-
 %% changeable parameter settings
 % for parfor
 delta_e_start = 0; % cannot equal to 0

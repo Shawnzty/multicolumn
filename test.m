@@ -1,5 +1,5 @@
-strt_prd = 400000;
-end_prd = 1000000;
+strt_prd = 300000;
+end_prd = 400000;
 p_base = [0.1184, 0.1552, 0.0846, 0.0629, 0.0323, 0.0000, 0.0076, 0.0000;
           0.1008, 0.1371, 0.0363, 0.0515, 0.0755, 0.0000, 0.0042, 0.0000;
           0.0077, 0.0059, 0.0519, 0.1453, 0.0067, 0.0003, 0.0453, 0.0000;
@@ -23,7 +23,7 @@ for i = 1:5
 end
 figure();
 bar(y);
-ylim([19 20]);
+ylim([3 3.5]);
 xticklabels(["Cond1", "Cond2", "Cond3", "Cond4", "Cond5"]);
 ylabel("Energy Transmission in lateral pathway");
 legend("C2 to C1","C1 to C2")

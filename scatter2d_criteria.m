@@ -1,7 +1,7 @@
 % this script create a 3-D scatter plot showing different pattern of the
 % dynamics, including ON-ON, OFF-ON, OFF-OFF and ON-OFF
 % 3 dimensions are: DeltaE (x), DeltaI (y), and Isens(z)
-rootFolder = "figure_Iattn_0.02_2d_4000/";
+rootFolder = "figure_Iattn_0.04_2d_4000/";
 % ON-ON
 agree = readFilename(rootFolder+"agree/*_*_*_*_*_*.png",'%f_%f_%f_%f_%f_%f');
 agree( all(~agree,2), : ) = [];
