@@ -19,11 +19,11 @@ Iattn = 0.02;
 alltime = 4000;
 
 % container
-lateralSheet = zeros(delta_e_steps, delta_i_steps,5); % 0-NaN, 1-disagree, 2-agree
-orderSheet= zeros(delta_e_steps, delta_i_steps); % 0-INF, 2-disagree, 3-agree
+lateralSheet = zeros(delta_e_steps, delta_i_steps,5); % -1-NaN, 0-disagree, 1-agree
+orderSheet= zeros(delta_e_steps, delta_i_steps); % -1-NaN, 0-disagree, 1-agree
 gammaSheet = zeros(delta_e_steps, delta_i_steps,5); % -1-NaN, 0-noGamma, XX-frequency
 betaSheet = zeros(delta_e_steps, delta_i_steps,5); % -1-NaN, 0-noBeta, XX-frequency
-ratioSheet = zeros(delta_e_steps, delta_i_steps,5); % 0-NaN, X-ratio
+ratioSheet = zeros(delta_e_steps, delta_i_steps,5); % -1-NaN, X-ratio
 osciSheet = zeros(delta_e_steps, delta_i_steps,5,2); % -1-NaN, 0-noOsci, 1-hasOsci; before and after
 
 
