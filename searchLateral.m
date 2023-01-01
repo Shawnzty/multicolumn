@@ -27,7 +27,7 @@ ratioSheet = zeros(delta_e_steps, delta_i_steps,5); % -1-NaN, X-ratio
 osciSheet = zeros(delta_e_steps, delta_i_steps,5,2); % -1-NaN, 0-noOsci, 1-hasOsci; before and after
 
 
-parfor Delta_e_n = 1:delta_e_steps % linspace(0.001,0.5,10) % 0.28 % changable
+for Delta_e_n = 1:delta_e_steps % linspace(0.001,0.5,10) % 0.28 % changable
     Delta_e = delta_e_start+ Delta_e_n*(delta_e_end/delta_e_steps);
 
 for Delta_i_n = 1:delta_i_steps % none % changable
@@ -38,12 +38,12 @@ startTime = clock;
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
 [r,v,g] = once(Delta_e, Delta_i, Iattn, alltime);
-[lateral, order, gamma, beta, ratio] = judge(r, v, g, Delta_e, Delta_i, Iattn, alltime);
+[lateral, order, gamma, beta, ratio, osci] = judge(r, v, g, alltime);
 lateralSheet(Delta_e_n, Delta_i_n,:) = lateral;
 orderSheet(Delta_e_n, Delta_i_n) = order;
 gammaSheet(Delta_e_n, Delta_i_n,:) = gamma;
 betaSheet(Delta_e_n, Delta_i_n,:) = beta;
-ratioSheet(Delta_e_n, Delta_i_n) = ratio;
+ratioSheet(Delta_e_n, Delta_i_n,:) = ratio;
 osciSheet(Delta_e_n, Delta_i_n,:,:) = osci;
 
 disp(etime(clock, startTime));
