@@ -41,7 +41,8 @@ maxDurStim = max(max(r(5,(stimIn/dt):(allTime/dt),1)));
 
 if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     % lateral pathway % [12>21 12<21 12=po21 12>21 12<21] "12>21" = 1
-    PET = getPET(v(:,strt_prd:end_prd,:),g(:,:,strt_prd:end_prd,:),p); 
+    prd = 100000;
+    PET = getPET(v(:,end-prd:end,:),g(:,:,end-prd:end,:),p); 
     oneTwo = squeeze(PET(10,1,:));
     twoOne = squeeze(PET(2,9,:));
     lateral = [oneTwo(1)>twoOne(1) oneTwo(2)<twoOne(2)...
@@ -85,11 +86,11 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
 
     % order
     criteria1 = sum(r_cond1<r_cond3)==0 && sum(r_cond1<r_cond5)==0 && sum(r_cond4<r_cond3)==0 && sum(r_cond4<r_cond5)==0;
-    criteria2 = sum(r_cond1<cond2)==0 && sum(r_cond3<r_cond2)==0 && sum(r_cond4<r_cond2)==0 && sum(r_cond5<r_cond2)==0;
+    criteria2 = sum(r_cond1<r_cond2)==0 && sum(r_cond3<r_cond2)==0 && sum(r_cond4<r_cond2)==0 && sum(r_cond5<r_cond2)==0;
     if criteria1 && criteria2
-        order = 3;
+        order = 1;
     else
-        order = 2;
+        order = 0;
     end
 
 end
