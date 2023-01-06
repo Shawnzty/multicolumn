@@ -14,7 +14,7 @@ Delta_i_start = 0; % cannot equal to 0
 Delta_i_end = 0.05; % can equal to 0.05
 Delta_i_steps = 100;
 
-Iattn = 0.04;
+Iattn = 0.02;
 
 alltime = 4000;
 
@@ -58,5 +58,5 @@ ratioSheet = flip(ratioSheet); osciSheet = flip(osciSheet);
 % end
 filename = append('lateral_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
-save(filename,'lateralSheet','orderSheet','gammaSheet','betaSheet','ratioSheet'); 
+save(filename,'lateralSheet','orderSheet','gammaSheet','betaSheet','ratioSheet','osciSheet'); 
 disp(etime(clock, initime)/60);
