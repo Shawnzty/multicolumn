@@ -23,8 +23,8 @@ lateralSheet = zeros(Delta_e_steps, Delta_i_steps,5); % -1-NaN, 0-disagree, 1-ag
 orderSheet= zeros(Delta_e_steps, Delta_i_steps); % -1-NaN, 0-disagree, 1-agree
 gammaSheet = zeros(Delta_e_steps, Delta_i_steps,5); % -1-NaN, 0-noGamma, XX-frequency
 betaSheet = zeros(Delta_e_steps, Delta_i_steps,5); % -1-NaN, 0-noBeta, XX-frequency
-ratioSheet = zeros(Delta_e_steps, Delta_i_steps,5); % -1-NaN, X-ratio
-osciSheet = zeros(Delta_e_steps, Delta_i_steps,5,2); % -1-NaN, 0-noOsci, 1-hasOsci; before and after
+ratioSheet = zeros(Delta_e_steps, Delta_i_steps); % -1-NaN, X-ratio
+osciSheet = zeros(Delta_e_steps, Delta_i_steps,2,5); % before and after; -1-NaN, 0-noOsci, 1-hasOsci
 
 
 parfor Delta_e_n = 1:Delta_e_steps % linspace(0.001,0.5,10) % 0.28 % changable
@@ -46,7 +46,7 @@ lateralSheet(Delta_i_n, Delta_e_n,:) = lateral;
 orderSheet(Delta_i_n, Delta_e_n) = order;
 gammaSheet(Delta_i_n, Delta_e_n,:) = gamma;
 betaSheet(Delta_i_n, Delta_e_n,:) = beta;
-ratioSheet(Delta_i_n, Delta_e_n,:) = ratio;
+ratioSheet(Delta_i_n, Delta_e_n) = ratio;
 osciSheet(Delta_i_n, Delta_e_n,:,:) = osci;
 
 disp(etime(clock, startTime));

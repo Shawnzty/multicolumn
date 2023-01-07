@@ -5,12 +5,12 @@ function [lateral, order, gamma, beta, ratio, osci] = judge(r, v, g, allTime)
 % orderSheet= zeros(delta_e_steps, delta_i_steps); % -1-NaN, 0-disagree, 1-agree
 % gammaSheet = zeros(delta_e_steps, delta_i_steps,5); % -1-NaN, 0-noGamma, XX-frequency
 % betaSheet = zeros(delta_e_steps, delta_i_steps,5); % -1-NaN, 0-noBeta, XX-frequency
-% ratioSheet = zeros(delta_e_steps, delta_i_steps,5); % -1-NaN, X-ratio
-% osciSheet = zeros(delta_e_steps, delta_i_steps,5,2); % -1-NaN, 0-noOsci, 1-hasOsci; before and after
+% ratioSheet = zeros(delta_e_steps, delta_i_steps); % -1-NaN, X-ratio
+% osciSheet = zeros(delta_e_steps, delta_i_steps,2,5); % before and after; -1-NaN, 0-noOsci, 1-hasOsci
 
 % default value for output
 lateral = -1*ones(5,1); order = -1; gamma = -1*ones(5,1);
-beta = -1*ones(5,1); ratio = -1*ones(5,1); osci = -1*ones(5,2);
+beta = -1*ones(5,1); ratio = -1*ones(5,1); osci = -1*ones(2,5);
 
 dt = 0.01;
 stimIn = 1000;
@@ -56,7 +56,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     afterOsci = [r_cond1(end-10) == r_cond1(end-8) r_cond2(end-10) == r_cond2(end-8) ...
         r_cond3(end-10) == r_cond3(end-8) r_cond4(end-10) == r_cond4(end-8) ...
         r_cond5(end-10) == r_cond5(end-8)];
-    osci(:,1) = beforeOsci; osci(:,2) = afterOsci;
+    osci(1,:) = ~beforeOsci; osci(2,:) = ~afterOsci;
 
     % gamma and beta
     [gamma1, beta1] = getCenterFreq(r_cond1(end-50001:end-1));
