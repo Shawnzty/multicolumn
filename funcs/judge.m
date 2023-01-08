@@ -10,24 +10,11 @@ function [lateral, order, gamma, beta, ratio, osci] = judge(r, v, g, allTime)
 
 % default value for output
 lateral = -1*ones(5,1); order = -1; gamma = -1*ones(5,1);
-beta = -1*ones(5,1); ratio = -1*ones(5,1); osci = -1*ones(2,5);
+beta = -1*ones(5,1); ratio = -1; osci = -1*ones(2,5);
 
 dt = 0.01;
 stimIn = 1000;
 step_stimIn = stimIn/dt;
-
-% Connectivity
-p_base = [0.1184, 0.1552, 0.0846, 0.0629, 0.0323, 0.0000, 0.0076, 0.0000;
-          0.1008, 0.1371, 0.0363, 0.0515, 0.0755, 0.0000, 0.0042, 0.0000;
-          0.0077, 0.0059, 0.0519, 0.1453, 0.0067, 0.0003, 0.0453, 0.0000;
-          0.0691, 0.0029, 0.1093, 0.1597, 0.0033, 0.0000, 0.1057, 0.0000;
-          0.1017, 0.0622, 0.0411, 0.0057, 0.0758, 0.3765, 0.0204, 0.0000;
-          0.0436, 0.0269, 0.0209, 0.0022, 0.0566, 0.3158, 0.0086, 0.0000;
-          0.0156, 0.0066, 0.0211, 0.0166, 0.0572, 0.0197, 0.0401, 0.2252;
-          0.0364, 0.0010, 0.0034, 0.0005, 0.0277, 0.0080, 0.0658, 0.1443]; % intracolumn connection probability % [Wagatsuma 2011]
-p = [p_base, zeros(8,8); zeros(8,8), p_base];
-p(2,9) = 0.1;
-p(10,1) = 0.1;
 
 r_cond1 = r(5,end-100000:end,1)';
 r_cond2 = r(5,end-100000:end,2)';
@@ -42,7 +29,7 @@ maxDurStim = max(max(r(5,(stimIn/dt):(allTime/dt),1)));
 if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     % lateral pathway % [12>21 12<21 12=po21 12>21 12<21] "12>21" = 1
     prd = 100000;
-    PET = getPET(v(:,end-prd:end,:),g(:,:,end-prd:end,:),p); 
+    PET = getPET(v(:,end-prd:end,:),g(:,:,end-prd:end,:)); 
     oneTwo = squeeze(PET(10,1,:));
     twoOne = squeeze(PET(2,9,:));
     lateral = [oneTwo(1)>twoOne(1) oneTwo(2)<twoOne(2)...
