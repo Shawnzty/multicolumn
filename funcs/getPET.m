@@ -14,6 +14,7 @@ p_base = [0.1184, 0.1552, 0.0846, 0.0629, 0.0323, 0.0000, 0.0076, 0.0000;
 p = [p_base, zeros(8,8); zeros(8,8), p_base];
 p(2,9) = 0.1;
 p(10,1) = 0.1;
+% p = ones(16,16,5);
 
 % get the pathway powers
 % from Y to X

@@ -6,8 +6,8 @@ addpath('funcs');
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.1;
-Delta_i = 0.01; % none % changable
+Delta_e = 0.11;
+Delta_i = 0.013; % none % changable
 Iattn = 0.02;
 
 time = 10000;
@@ -19,7 +19,7 @@ disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", I
 %% plot
 popName = {'1L23e','1L23i','1L4e','1L4i','1L5e','1L5i','1L6e','1L6i', ...
     '2L23e','2L23i','2L4e','2L4i','2L5e','2L5i','2L6e','2L6i'};
-pop = 5;
+pop = 13;
 
 dt = 0.01;
 timeax = 0:dt:time;
@@ -123,18 +123,22 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     plot(timeax,r_cond1,'Color','#0072BD');
     hold on
     plot(timeax,cond1Up,'k');
+
     ax2 = nexttile;
     plot(timeax,r_cond2,'Color','#D95319');
     hold on
     plot(timeax,cond2Up,'k');
+
     ax3 = nexttile;
     plot(timeax,r_cond3,'Color','#EDB120');
     hold on
     plot(timeax,cond3Up,'k');
+
     ax4 = nexttile;
     plot(timeax,r_cond4,'Color','#7E2F8E');
     hold on
     plot(timeax,cond4Up,'k');
+    
     ax5 = nexttile;
     plot(timeax,r_cond5,'Color','#77AC30');
     hold on
@@ -159,7 +163,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     p = [p_base, zeros(8,8); zeros(8,8), p_base];
     p(2,9) = 0.1;
     p(10,1) = 0.1;
-    PET = getPET(v(:,strt_prd:end_prd,:),g(:,:,strt_prd:end_prd,:),p);
+    PET = getPET(v(:,strt_prd:end_prd,:),g(:,:,strt_prd:end_prd,:));
     %% plot lateral pathway
     y = [];
     for i = 1:5
