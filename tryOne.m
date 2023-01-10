@@ -6,8 +6,8 @@ addpath('funcs');
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.11;
-Delta_i = 0.013; % none % changable
+Delta_e = 0.255;
+Delta_i = 0.049; % none % changable
 Iattn = 0.02;
 
 time = 10000;
@@ -19,7 +19,7 @@ disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", I
 %% plot
 popName = {'1L23e','1L23i','1L4e','1L4i','1L5e','1L5i','1L6e','1L6i', ...
     '2L23e','2L23i','2L4e','2L4i','2L5e','2L5i','2L6e','2L6i'};
-pop = 13;
+pop = 5;
 
 dt = 0.01;
 timeax = 0:dt:time;

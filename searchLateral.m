@@ -14,7 +14,7 @@ Delta_i_start = 0; % cannot equal to 0
 Delta_i_end = 0.05; % can equal to 0.05
 Delta_i_steps = 100;
 
-Iattn = 0.04;
+Iattn = 0.06;
 
 alltime = 4000;
 
