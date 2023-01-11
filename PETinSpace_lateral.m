@@ -5,16 +5,16 @@ initime = clock;
 addpath('funcs');
 
 % get the change of PET in parameter space
-Delta_e_start = 0.3; % cannot equal to 0
-Delta_e_end = 0.3; % can equal to 0.5
-Delta_i_start = 0.014; % cannot equal to 0
-Delta_i_end = 0.0325; % can equal to 0.5
+Delta_e_start = 0.2; % cannot equal to 0
+Delta_e_end = 0.2; % can equal to 0.5
+Delta_i_start = 0.0105; % cannot equal to 0
+Delta_i_end = 0.026; % can equal to 0.5
 Delta_steps = 101;
 
 Iattn = 0.02;
-time = 8000;
-strt_prd = 300001;
-end_prd = 800000;
+time = 10000;
+strt_prd = 400001;
+end_prd = 1000000;
 
 % container
 PETA = zeros(Delta_steps, 16, 16, 5);
@@ -40,9 +40,4 @@ end
 filename = append('lateral_PET_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
 save(filename,'PETA','PETO','finalR'); 
-disp(etime(clock, initime)/60);
-
-filename = append(num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
-    num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
-save(filename,'PET'); 
 disp(etime(clock, initime)/60);
