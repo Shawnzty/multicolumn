@@ -8,9 +8,8 @@ else
     idx = 1;
 end
 for i = 1:5
-    [pks,locs] = findpeaks(r(1,:,i));
-    head(i) = locs(end-idx)-floor((locs(end)-locs(end-1))/2);
-    tail(i) = locs(end)-ceil((locs(end)-locs(end-1))/2);
+    [pks,locs] = findpeaks(r(5,:,i));
+    head(i) = locs(end-idx);
+    tail(i) = locs(end);
 end
 end
-
