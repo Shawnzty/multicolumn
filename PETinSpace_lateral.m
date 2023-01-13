@@ -12,9 +12,9 @@ Delta_i_end = 0.035; % can equal to 0.5
 Delta_steps = 201;
 
 Iattn = 0.02;
-time = 6000;
-strt_prd = 300001;
-end_prd = 600000;
+time = 10000;
+strt_prd = 400001;
+end_prd = 1000000;
 
 % container
 PETA = zeros(Delta_steps, 16, 16, 5);
