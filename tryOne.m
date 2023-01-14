@@ -6,11 +6,11 @@ addpath('funcs');
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.255;
-Delta_i = 0.049; % none % changable
+Delta_e = 0.3;
+Delta_i = 0.026; % none % changable
 Iattn = 0.02;
 
-time = 10000;
+time = 5000;
 
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
@@ -151,7 +151,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     saveas(gcf, location);
     
     %% get lateral pathway
-    strt_prd = 300000; end_prd = 1000000;
+    strt_prd = 300000; end_prd = time/dt;
     p_base = [0.1184, 0.1552, 0.0846, 0.0629, 0.0323, 0.0000, 0.0076, 0.0000;
           0.1008, 0.1371, 0.0363, 0.0515, 0.0755, 0.0000, 0.0042, 0.0000;
           0.0077, 0.0059, 0.0519, 0.1453, 0.0067, 0.0003, 0.0453, 0.0000;
