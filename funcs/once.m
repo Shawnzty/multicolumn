@@ -64,8 +64,8 @@ p_base = [0.1184, 0.1552, 0.0846, 0.0629, 0.0323, 0.0000, 0.0076, 0.0000;
           0.0156, 0.0066, 0.0211, 0.0166, 0.0572, 0.0197, 0.0401, 0.2252;
           0.0364, 0.0010, 0.0034, 0.0005, 0.0277, 0.0080, 0.0658, 0.1443]; % intracolumn connection probability % [Wagatsuma 2011]
 p = [p_base, zeros(8,8); zeros(8,8), p_base];
-p(2,9) = 0.1;
-p(10,1) = 0.1;
+p(2,9) = 0.08;
+p(10,1) = 0.08;
 p = repmat(p,[1,1,5]);
 tau_max = max(max(max(tau)));
 r = zeros(length(N),step_all+1,5); % Population, Step % variation

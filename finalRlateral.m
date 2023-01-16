@@ -5,7 +5,7 @@ initime = clock;
 
 addpath('funcs');
 
-Delta_E = 0.3; Delta_I = 0.03; Iattn = 0.02;
+Delta_E = 0.3; Delta_I = 0.026; Iattn = 0.02;
 allTime = 5000;
 
 steps = 101;
