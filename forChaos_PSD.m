@@ -10,29 +10,47 @@ Delta_i = 0.04; % 0.04
 Iattn = 0.02;
 
 time = 4000;
-maxFreq = 50;
+maxFreq = 60;
 
 [r,v,~] = once(Delta_e, Delta_i, Iattn, time);
-sig = r(5,300001:end,3);
-sig = sig';
 
 %% fft
-Fs = 100000;            % Sampling frequency                    
-T = 1/Fs;             % Sampling period       
-L = length(sig);             % Length of signal
-t = (0:L-1)*T;        % Time vector
+sigC = squeeze(r(5,300000:end,:));
+sig0 = squeeze(r(5,50000:100000,1)); 
+% sig = sig';
 
-Y = fft(sig);
+Fs = 100000;            % Sampling frequency                    
+L = length(sigC);             % Length of signal
+
+Y = fft(sigC);
 P2 = abs(Y/L);
-P1 = P2(1:L/2+1);
+P1 = P2(1:ceil(L/2+1),:);
 P1(2:end-1) = 2*P1(2:end-1);
 f = Fs*(0:(L/2))/L;
+[~,idx]  = min(abs(f-maxFreq)); idx = idx+1;
+f = f(2:idx); P1 = P1(2:idx,:);
 
 %% pks
-[~,idx]  = min(abs(f-maxFreq)); idx = idx+1;
-f = f(1:idx); P1 = P1(1:idx);
-[pks,locs] = findpeaks(P1);
+pksNum = zeros(6,1);
+for i = 1:5
+[pks,~] = findpeaks(P1(:,i));
+pksNum(i+1) = length(pks);
+end
 
+% pks for original
+Fs = 100000;            % Sampling frequency                    
+L = length(sig0);             % Length of signal
+
+Y = fft(sig0);
+P2 = abs(Y/L);
+P1 = P2(1:ceil(L/2+1));
+P1(2:end-1) = 2*P1(2:end-1);
+f = Fs*(0:(L/2))/L;
+[~,idx]  = min(abs(f-maxFreq)); idx = idx+1;
+f = f(2:idx); P1 = P1(2:idx);
+
+[pks,locs] = findpeaks(P1);
+pksNum(1) = length(pks);
 
 %% plot
 plot(f,P1);

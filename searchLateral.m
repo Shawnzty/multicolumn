@@ -26,6 +26,7 @@ betaSheet = zeros(Delta_e_steps, Delta_i_steps,5); % -1-NaN, 0-noBeta, XX-freque
 ratioSheet = zeros(Delta_e_steps, Delta_i_steps); % -1-NaN, X-ratio
 osciSheet = zeros(Delta_e_steps, Delta_i_steps,2,5); % before and after; -1-NaN, 0-noOsci, 1-hasOsci
 levelSheet = zeros(Delta_e_steps, Delta_i_steps, 6); % before, after1 2 3 4 5
+psdSheet = zeros(Delta_e_steps, Delta_i_steps,6); % before, after 12345
 
 parfor Delta_e_n = 1:Delta_e_steps % linspace(0.001,0.5,10) % 0.28 % changable
     Delta_e = Delta_e_start+ Delta_e_n*(Delta_e_end/Delta_e_steps);
@@ -39,8 +40,8 @@ close all;
 startTime = clock;
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
-[r,v,g] = once(Delta_e, Delta_i, Iattn, alltime);
-[lateral, order, gamma, beta, ratio, osci, level] = judge(r, v, g, alltime);
+[r,~,~] = once(Delta_e, Delta_i, Iattn, alltime);
+[lateral, order, gamma, beta, ratio, osci, level, psd] = judge(r, alltime);
 
 lateralSheet(Delta_i_n, Delta_e_n,:) = lateral;
 orderSheet(Delta_i_n, Delta_e_n) = order;
@@ -48,7 +49,8 @@ gammaSheet(Delta_i_n, Delta_e_n,:) = gamma;
 betaSheet(Delta_i_n, Delta_e_n,:) = beta;
 ratioSheet(Delta_i_n, Delta_e_n) = ratio;
 osciSheet(Delta_i_n, Delta_e_n,:,:) = osci;
-levelSheet(Delta_i_n, Delta_e_n,:,:) = level;
+levelSheet(Delta_i_n, Delta_e_n,:) = level;
+psdSheet(Delta_i_n, Delta_e_n,:) = psd;
 disp(etime(clock, startTime));
 end
 end
@@ -59,5 +61,5 @@ levelSheet = flip(levelSheet);
 % end
 filename = append('lateral_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
-save(filename,'lateralSheet','orderSheet','gammaSheet','betaSheet','ratioSheet','osciSheet','levelSheet'); 
+save(filename,'lateralSheet','orderSheet','gammaSheet','betaSheet','ratioSheet','osciSheet','levelSheet','psdSheet'); 
 disp(etime(clock, initime)/60);
