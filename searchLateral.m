@@ -57,9 +57,9 @@ end
 lateralSheet = flip(lateralSheet); orderSheet = flip(orderSheet);
 gammaSheet = flip(gammaSheet); betaSheet = flip(betaSheet);
 ratioSheet = flip(ratioSheet); osciSheet = flip(osciSheet);
-levelSheet = flip(levelSheet);
+levelSheet = flip(levelSheet); psdSheet = flip(psdSheet);
 % end
-filename = append('lateral_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
+filename = append('all_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
 save(filename,'lateralSheet','orderSheet','gammaSheet','betaSheet','ratioSheet','osciSheet','levelSheet','psdSheet'); 
 disp(etime(clock, initime)/60);

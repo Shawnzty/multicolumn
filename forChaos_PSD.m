@@ -5,11 +5,11 @@ initime = clock;
 addpath('funcs');
 
 
-Delta_e = 0.15; % 0.3
-Delta_i = 0.04; % 0.04
+Delta_e = 0.015; % 0.3
+Delta_i = 0.048; % 0.04
 Iattn = 0.02;
 
-time = 4000;
+time = 10000;
 maxFreq = 60;
 
 [r,v,~] = once(Delta_e, Delta_i, Iattn, time);
@@ -30,6 +30,13 @@ f = Fs*(0:(L/2))/L;
 [~,idx]  = min(abs(f-maxFreq)); idx = idx+1;
 f = f(2:idx); P1 = P1(2:idx,:);
 
+plot(f,P1);
+% findpeaks(P1);
+xlim([0 maxFreq]);
+title("Amplitude Spectrum: \Delta_{E}=" + num2str(Delta_e) +...
+    ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn) + ", pks=" + num2str(length(locs)));
+xlabel("f (Hz)");
+ylabel("|P1(f)|");
 %% pks
 pksNum = zeros(6,1);
 for i = 1:5
@@ -53,13 +60,6 @@ f = f(2:idx); P1 = P1(2:idx);
 pksNum(1) = length(pks);
 
 %% plot
-plot(f,P1);
-% findpeaks(P1);
-xlim([0 maxFreq]);
-title("Amplitude Spectrum: \Delta_{E}=" + num2str(Delta_e) +...
-    ", \Delta_{I}=" + num2str(Delta_i) + ", I_{attn}=" + num2str(Iattn) + ", pks=" + num2str(length(locs)));
-xlabel("f (Hz)");
-ylabel("|P1(f)|");
 
 filename = append('PSD_',num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
 location = append('tryOneFigure/',filename);
