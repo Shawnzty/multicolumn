@@ -2,7 +2,7 @@ function [f,P1] = getPSD(sig,maxFreq)
 %GETPSD get power spectrum density
 %   Detailed explanation goes here
 Fs = 100000;            % Sampling frequency                    
-L = length(sig);             % Length of signal
+L = size(sig,1);             % Length of signal
 
 Y = fft(sig);
 
