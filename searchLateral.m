@@ -14,7 +14,7 @@ Delta_i_start = 0; % cannot equal to 0
 Delta_i_end = 0.05; % can equal to 0.05
 Delta_i_steps = 200;
 
-Iattn = 0.02;
+Iattn = 0.03;
 
 alltime = 4000;
 
@@ -28,6 +28,7 @@ osciSheet = zeros(Delta_e_steps, Delta_i_steps,2,5); % before and after; -1-NaN,
 levelSheet = zeros(Delta_e_steps, Delta_i_steps, 6); % before, after1 2 3 4 5
 psdSheet = zeros(Delta_e_steps, Delta_i_steps,6); % before, after 12345
 
+% par-9 ok
 parfor Delta_e_n = 1:Delta_e_steps % linspace(0.001,0.5,10) % 0.28 % changable
     Delta_e = Delta_e_start+ Delta_e_n*(Delta_e_end/Delta_e_steps);
 
@@ -40,8 +41,8 @@ close all;
 startTime = clock;
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
-[r,~,~] = once(Delta_e, Delta_i, Iattn, alltime);
-[lateral, order, gamma, beta, ratio, osci, level, psd] = judge(r, alltime);
+[r,v,g] = once(Delta_e, Delta_i, Iattn, alltime);
+[lateral, order, gamma, beta, ratio, osci, level, psd] = judge(r, v, g, alltime);
 
 lateralSheet(Delta_i_n, Delta_e_n,:) = lateral;
 orderSheet(Delta_i_n, Delta_e_n) = order;
