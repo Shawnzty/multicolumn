@@ -15,6 +15,9 @@ p = [p_base, zeros(8,8); zeros(8,8), p_base];
 p(2,9) = 0.1;
 p(10,1) = 0.1;
 % p = ones(16,16,5);
+% number of neuron
+N = repmat([10341 2917 10957 2739 2425 532 7197 1474], [16, 2, 5]);
+
 
 % get the pathway powers
 % from Y to X
@@ -36,5 +39,5 @@ end
 pd = v_y - v_x; % pathway potential difference between Y and X
 pp = pd.*pd.*g; % pathway power from Y to X
 
-peTrans = squeeze(sum(pp,3)).*p*0.001*0.01;
+peTrans = squeeze(sum(pp,3)).*p*0.001*0.01.*N;
 end

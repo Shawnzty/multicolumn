@@ -33,12 +33,18 @@ parfor n = 1:steps
     end
     % ratio
     r_cond1 = r(5,end-100000:end,1)';
+    r_cond2 = r(5,end-100000:end,2)';
     r_cond3 = r(5,end-100000:end,3)';
     r_cond4 = r(5,end-100000:end,4)';
+    r_cond5 = r(5,end-100000:end,5)';
+
     envMthd = 'peak'; envWdo = 4000;
     [r_cond1, ] = envelope(r_cond1,envWdo,envMthd);
+    [r_cond2, ] = envelope(r_cond2,envWdo,envMthd);
     [r_cond3, ] = envelope(r_cond3,envWdo,envMthd);
     [r_cond4, ] = envelope(r_cond4,envWdo,envMthd);
+    [r_cond5, ] = envelope(r_cond5,envWdo,envMthd);
+
     diff13 = r_cond1(end-1) - r_cond3(end-1); diff43 = r_cond4(end-1) - r_cond3(end-1);
     ratiosheet(n,1) = diff43/diff13;
     disp(etime(clock, startTime));
