@@ -54,61 +54,61 @@
     ><rect x="0" width="297" height="297" y="0" style="stroke:none;"
       /><path style="stroke:none;" d="M69 232 L270 232 L270 22 L69 22 Z"
     /></g
-    ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:1.1667;"
+    ><g style="text-rendering:geometricPrecision; stroke-width:1.1667; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke-linejoin:round;"
     ><line y2="232" style="fill:none;" x1="69" x2="270" y1="232"
       /><line y2="229.91" style="fill:none;" x1="69" x2="69" y1="232"
       /><line y2="229.91" style="fill:none;" x1="136" x2="136" y1="232"
       /><line y2="229.91" style="fill:none;" x1="203" x2="203" y1="232"
       /><line y2="229.91" style="fill:none;" x1="270" x2="270" y1="232"
     /></g
-    ><g transform="translate(69,237.1333)" style="font-size:19.8333px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(69,237.1333)" style="text-rendering:geometricPrecision; font-size:19.8333px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="-19.5" xml:space="preserve" y="20" style="stroke:none;"
       >0.09</text
     ></g
-    ><g transform="translate(136,237.1333)" style="font-size:19.8333px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(136,237.1333)" style="text-rendering:geometricPrecision; font-size:19.8333px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="-19.5" xml:space="preserve" y="20" style="stroke:none;"
       >0.12</text
     ></g
-    ><g transform="translate(203,237.1333)" style="font-size:19.8333px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(203,237.1333)" style="text-rendering:geometricPrecision; font-size:19.8333px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="-19.5" xml:space="preserve" y="20" style="stroke:none;"
       >0.15</text
     ></g
-    ><g transform="translate(270,237.1333)" style="font-size:19.8333px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(270,237.1333)" style="text-rendering:geometricPrecision; font-size:19.8333px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="-19.5" xml:space="preserve" y="20" style="stroke:none;"
       >0.18</text
     ></g
-    ><g transform="translate(135,284)" style="font-size:21.8167px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(135,284)" style="text-rendering:geometricPrecision; font-size:21.8167px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="0" xml:space="preserve" y="0" style="stroke:none;"
       >P</text
     ></g
-    ><g transform="translate(150,294)" style="font-size:17.4533px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(150,294)" style="text-rendering:geometricPrecision; font-size:17.4533px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="0" xml:space="preserve" y="0" style="stroke:none;"
       >Lateral</text
     ></g
-    ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:1.1667;"
+    ><g style="text-rendering:geometricPrecision; stroke-width:1.1667; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke-linejoin:round;"
     ><line y2="22" style="fill:none;" x1="69" x2="69" y1="232"
       /><line y2="223.6" style="fill:none;" x1="69" x2="71.09" y1="223.6"
       /><line y2="156.4" style="fill:none;" x1="69" x2="71.09" y1="156.4"
       /><line y2="89.2" style="fill:none;" x1="69" x2="71.09" y1="89.2"
       /><line y2="22" style="fill:none;" x1="69" x2="71.09" y1="22"
     /></g
-    ><g transform="translate(63.8667,223.6)" style="font-size:19.8333px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(63.8667,223.6)" style="text-rendering:geometricPrecision; font-size:19.8333px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="-23" xml:space="preserve" y="7.5" style="stroke:none;"
       >40</text
     ></g
-    ><g transform="translate(63.8667,156.4)" style="font-size:19.8333px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(63.8667,156.4)" style="text-rendering:geometricPrecision; font-size:19.8333px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="-23" xml:space="preserve" y="7.5" style="stroke:none;"
       >80</text
     ></g
-    ><g transform="translate(63.8667,89.2)" style="font-size:19.8333px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(63.8667,89.2)" style="text-rendering:geometricPrecision; font-size:19.8333px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="-34" xml:space="preserve" y="7.5" style="stroke:none;"
       >120</text
     ></g
-    ><g transform="translate(63.8667,22)" style="font-size:19.8333px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(63.8667,22)" style="text-rendering:geometricPrecision; font-size:19.8333px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="-34" xml:space="preserve" y="7.5" style="stroke:none;"
       >160</text
     ></g
-    ><g transform="translate(27.3667,126.9999) rotate(-90)" style="font-size:21.8167px; fill:rgb(38,38,38); text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(27.3667,126.9999) rotate(-90)" style="text-rendering:geometricPrecision; font-size:21.8167px; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality;"
     ><text x="-38.5" xml:space="preserve" y="-5" style="stroke:none;"
       >FR (Hz)</text
     ></g
@@ -1120,32 +1120,35 @@
     ><g style="text-rendering:geometricPrecision; stroke-width:1.1667; color-interpolation:linearRGB; color-rendering:optimizeQuality; stroke-linecap:butt; image-rendering:optimizeQuality;"
     ><path d="M247.6667 226.96 L270 226.96 L270 208.48 L247.6667 208.48 Z" style="fill:none; fill-rule:evenodd;"
     /></g
+    ><g style="fill-opacity:0.702; color-rendering:optimizeQuality; color-interpolation:linearRGB; text-rendering:geometricPrecision; stroke:rgb(38,38,38); stroke-linecap:butt; stroke-miterlimit:1; stroke-opacity:0.702; fill:rgb(38,38,38); stroke-dasharray:8,8; stroke-width:2.3333; stroke-linejoin:bevel; image-rendering:optimizeQuality;"
+    ><line y2="22" style="fill:none;" x1="91.3333" x2="91.3333" y1="232"
+    /></g
     ><g style="fill:white; text-rendering:optimizeSpeed; color-rendering:optimizeSpeed; image-rendering:optimizeSpeed; shape-rendering:crispEdges; stroke:white; color-interpolation:sRGB;"
     ><path style="stroke:none;" d="M164 134 L268 134 L268 30 L164 30 Z"
     /></g
-    ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:1.1667;"
+    ><g style="text-rendering:geometricPrecision; stroke-width:1.1667; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke-linejoin:round;"
     ><line y2="134" style="fill:none;" x1="164" x2="268.0001" y1="134"
       /><line y2="132.96" style="fill:none;" x1="212.9735" x2="212.9735" y1="134"
       /><line y2="132.96" style="fill:none;" x1="268.0001" x2="268.0001" y1="134"
     /></g
-    ><g transform="translate(212.9735,137.7334)" style="font-size:18.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(212.9735,137.7334)" style="font-size:18.6667px; text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; font-family:'Arial'; color-interpolation:linearRGB;"
     ><text x="-23.5" xml:space="preserve" y="18" style="stroke:none;"
       >0.175</text
     ></g
-    ><g transform="translate(268.0001,137.7334)" style="font-size:18.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(268.0001,137.7334)" style="font-size:18.6667px; text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; font-family:'Arial'; color-interpolation:linearRGB;"
     ><text x="-18.5" xml:space="preserve" y="18" style="stroke:none;"
       >0.18</text
     ></g
-    ><g style="fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(38,38,38); color-interpolation:linearRGB; stroke-width:1.1667;"
+    ><g style="text-rendering:geometricPrecision; stroke-width:1.1667; color-interpolation:linearRGB; color-rendering:optimizeQuality; image-rendering:optimizeQuality; stroke-linejoin:round;"
     ><line y2="30" style="fill:none;" x1="164" x2="164" y1="134"
       /><line y2="133.7298" style="fill:none;" x1="164" x2="165.0401" y1="133.7298"
       /><line y2="36.5096" style="fill:none;" x1="164" x2="165.0401" y1="36.5096"
     /></g
-    ><g transform="translate(160.2668,133.7298)" style="font-size:18.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(160.2668,133.7298)" style="font-size:18.6667px; text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; font-family:'Arial'; color-interpolation:linearRGB;"
     ><text x="-21" xml:space="preserve" y="7" style="stroke:none;"
       >40</text
     ></g
-    ><g transform="translate(160.2668,36.5096)" style="font-size:18.6667px; fill:rgb(38,38,38); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; font-family:'Arial'; stroke:rgb(38,38,38); color-interpolation:linearRGB;"
+    ><g transform="translate(160.2668,36.5096)" style="font-size:18.6667px; text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; font-family:'Arial'; color-interpolation:linearRGB;"
     ><text x="-21" xml:space="preserve" y="7" style="stroke:none;"
       >45</text
     ></g
