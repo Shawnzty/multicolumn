@@ -212,20 +212,20 @@ Kiyoshi Kotani\textsuperscript{3},
 \end{flushleft}
 % Please keep the abstract below 300 words
 \section*{Abstract}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut 
 
 
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLOS ONE authors please skip this step. 
 % Author Summary not valid for PLOS ONE submissions.   
 \section*{Author summary}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id. Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut
 
 \linenumbers
 
 % Use "Eq" instead of "Equation" for equation citations.
 \section*{Introduction}
-Lorem ipsum dolor sit~\cite{bib1} amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam Eq~(\ref{eq:schemeP}) sapien tellus, commodo id velit id, eleifend volutpat quam. Phasellus mauris velit, dapibus finibus elementum vel, pulvinar non tellus. Nunc pellentesque pretium diam, quis maximus dolor faucibus id.~\cite{bib2} Nunc convallis sodales ante, ut ullamcorper est egestas vitae. Nam sit amet enim ultrices, ultrices elit pulvinar, volutpat risus.
+Lorem ipsum dolor sit~\cite{bib1} amet, consectetur adipiscing elit. Curabitur eget porta erat. Morbi consectetur est vel gravida pretium. Suspendisse ut dui eu ante cursus gravida non sed sem. Nullam Eq~(\ref{eq:schemeP}) sapien tellus, commodo id velit id,
 
 \begin{eqnarray}
 \label{eq:schemeP}
@@ -233,59 +233,60 @@ Lorem ipsum dolor sit~\cite{bib1} amet, consectetur adipiscing elit. Curabitur e
 \end{eqnarray}
 
 \section*{Multicolumnar model with mean-field approximation}
-We study a multicolumnar model of two columns in the visual cortex, as Fig~\ref{fig1}A showed. Each layer contains 
+We study a multicolumnar model of two columns in the visual cortex, as \hyperlink{fig:fig1}{Fig 1A} showed. The structure and initial parameter settings are based on previous studies~\cite{bib1}. Each layer contains two neuronal populations which are an excitatory population and an inhibitory population. Numbers of neurons in each population are listed in Table~\ref{table1}. Arrows in \hyperlink{fig:fig1}{Fig 1A} represents major neuronal connections between populations. Only connections with probability >0.04 are shown, but other sparse connections are not shown. The detailed probabilities $P_{Y}^{X}$ of intra-column connections are listed in Table~\ref{table2}. There are also inter-column connections, projecting from the excitatory population of layer 2/3 to the inhibitory population of the same layer in the other column. The connection probability $P_{inter}$ is initially set to 0.1~\cite{bib1}.
 % For figure citations, please use "Fig" instead of "Figure".
-Nulla mi mi, Fig~\ref{fig1} venenatis sed ipsum varius, volutpat euismod diam. Proin rutrum vel massa non gravida. Quisque tempor sem et dignissim rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at justo vitae nulla elementum commodo eu id massa. In vitae diam ac augue semper tincidunt eu ut eros. Fusce fringilla erat porttitor lectus cursus, \nameref{S1_Video} vel sagittis arcu lobortis. Aliquam in enim semper, aliquam massa id, cursus neque. Praesent faucibus semper libero.
-
 
 
 % Results and Discussion can be combined.
 \section*{Results}
 
-Nulla mi mi, Fig~\ref{fig1} venenatis sed ipsum varius, volutpat euismod diam. Proin rutrum vel massa non gravida. Quisque tempor sem et dignissim rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at justo vitae nulla elementum commodo eu id massa. In vitae diam ac augue semper tincidunt eu ut eros. Fusce fringilla erat porttitor lectus cursus, \nameref{S1_Video} vel sagittis arcu lobortis. Aliquam in enim semper, aliquam massa id, cursus neque. Praesent faucibus semper libero.
+Nulla mi mi,enenatis sed ipsum varius, volutpat euismod diam. Proin rutrum vel massa non gravida. Quisque tempor sem et dignissim rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at justo vitae nulla elementum 
 
 % Place figure captions after the first paragraph in which they are cited.
 
 % FIGURE 1
 \begin{figure}[!h]
-\begin{adjustwidth}{-2.25in}{0in} % Comment out/remove adjustwidth environment if table fits in text column.
+\begin{adjustwidth}{-2in}{0.3in} % Comment out/remove adjustwidth environment if table fits in text column.
 \centering
 % \hspace*{-1.836in}
 \includegraphics{Figure1.eps}
 \begin{flushleft} {\bf Fig 1. Bold the figure title.Bold the figure title.Bold the figure title.Bold the figure title.Bold the figure title.Bold the figure title.}
 Table notes Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis, nec pellentesque metus tortor nec nisl. Ut ornare mauris tellus, vel dapibus arcu suscipit sed.
 \end{flushleft}
-\label{fig1}
+% \label{fig1}
+\hypertarget{fig:fig1}{}
 \end{adjustwidth}
 \end{figure}
 
 % FIGURE 2
 \begin{figure}[!h]
-\begin{adjustwidth}{-2.25in}{0in} % Comment out/remove adjustwidth environment if table fits in text column.
+\begin{adjustwidth}{-2in}{0.3in} % Comment out/remove adjustwidth environment if table fits in text column.
 \centering
 % \hspace*{-1.836in}
 \includegraphics{Figure2.eps}
 \begin{flushleft} {\bf Fig 2. Bold the figure title.Bold the figure title.Bold the figure title.Bold the figure title.Bold the figure title.}
 Table notes Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis, nec pellentesque metus tortor nec nisl. Ut ornare mauris tellus, vel dapibus arcu suscipit sed.
 \end{flushleft}
-\label{fig1}
+% \label{fig2}
+\hypertarget{fig:fig2}{}
 \end{adjustwidth}
 \end{figure}
 
 % FIGURE 3
 \begin{figure}[!h]
-\begin{adjustwidth}{-2.25in}{0in} % Comment out/remove adjustwidth environment if table fits in text column.
+\begin{adjustwidth}{-2in}{0.3in} % Comment out/remove adjustwidth environment if table fits in text column.
 \centering
 % \hspace*{-1.836in}
 \includegraphics{Figure3.eps}
 \begin{flushleft} {\bf Fig 3. Bold the figure title.Bold the figure title.Bold the figure title.Bold the figure title.Bold the figure title.}
 Table notes Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis, nec pellentesque metus tortor nec nisl. Ut ornare mauris tellus, vel dapibus arcu suscipit sed.
 \end{flushleft}
-\label{fig1}
+% \label{fig3}
+\hypertarget{fig:fig3}{}
 \end{adjustwidth}
 \end{figure}
 
-Nulla mi mi, venenatis sed ipsum varius, Table~\ref{table1} volutpat euismod diam. Proin rutrum vel massa non gravida. Quisque tempor sem et dignissim rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at justo vitae nulla elementum commodo eu id massa. In vitae diam ac augue semper tincidunt eu ut eros. Fusce fringilla erat porttitor lectus cursus, vel sagittis arcu lobortis. Aliquam in enim semper, aliquam massa id, cursus neque. Praesent faucibus semper libero.
+Nulla mi mi, venenatis sed ipsum varius, Table~\ref{table1} volutpat euismod diam. Proin rutrum vel massa non gravida. Quisque tempor sem et dignissim rutrum. 
 
 % Place tables after the first paragraph in which they are cited.
 % TABLE 1
@@ -303,7 +304,7 @@ L5E & 2425 & L5I & 532 \\
 L6E & 7197 & L6I & 1474 \\
 \bottomrule
 \end{tabular}
-\begin{flushleft} Table notes Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis, nec pellentesque metus tortor nec nisl. Ut ornare mauris tellus, vel dapibus arcu suscipit sed.
+\begin{flushleft} Table notes Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis, nec pellentesque metus tortor nec nisl. 
 \end{flushleft}
 \label{table1}
 \end{table}
@@ -331,8 +332,34 @@ L6E & 7197 & L6I & 1474 \\
 \end{tabular}
 \begin{flushleft} Table notes Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis, nec pellentesque metus tortor nec nisl. Ut ornare mauris tellus, vel dapibus arcu suscipit sed.
 \end{flushleft}
-\label{table1}
+\label{table2}
 \end{table}
+
+% TABLE 3
+\begin{table}[!ht]
+\centering
+\caption{
+{\bf Projection probability of sensory and attention inputs}}
+\begin{tabular}[t]{cccc}
+\toprule
+&&\multicolumn{2}{c}{From} \\
+&& Sensory & Attention \\
+\midrule
+\multirow{8}{*}{To} & \multicolumn{1}{c|}{L2/3E} & 0.0 & 0.1 \\ % to L2/3E
+&\multicolumn{1}{c|}{L2/3I} & 0.0 & 0.085 \\ % to L2/3I
+&\multicolumn{1}{c|}{L4E} & 0.0983 & 0.0 \\ % to L4E
+&\multicolumn{1}{c|}{L4I} & 0.0619 & 0.0 \\ % to L4I
+&\multicolumn{1}{c|}{L5E} &  0.0 & 0.1 \\ % to L5E
+&\multicolumn{1}{c|}{L5I} &  0.0 & 0.085 \\ % to L5I
+&\multicolumn{1}{c|}{L6E} &  0.0 & 0.0 \\ % to L6E
+&\multicolumn{1}{c|}{L6I} &  0.0 & 0.0 \\ % to L6I
+\bottomrule
+\end{tabular}
+\begin{flushleft} Table notes Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis, nec pellentesque metus tortor nec nisl. Ut ornare mauris tellus, vel dapibus arcu suscipit sed.
+\end{flushleft}
+\label{table3}
+\end{table}
+
 
 
 %PLOS does not support heading levels beyond the 3rd (no 4th level headings).
@@ -362,9 +389,7 @@ Nulla mi mi, venenatis sed ipsum varius, Table~\ref{table1} volutpat euismod dia
 
 \section*{Conclusion}
 
-CO\textsubscript{2} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque. Quisque augue sem, tincidunt sit amet feugiat eget, ullamcorper sed velit. 
-
-Sed non aliquet felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo justo ac dui pretium imperdiet. Sed suscipit iaculis mi at feugiat. Ut neque ipsum, luctus id lacus ut, laoreet scelerisque urna. Phasellus venenatis, tortor nec vestibulum mattis, massa tortor interdum felis, nec pellentesque metus tortor nec nisl. Ut ornare mauris tellus, vel dapibus arcu suscipit sed. Nam condimentum sem eget mollis euismod. Nullam dui urna, gravida venenatis dui et, tincidunt sodales ex. Nunc est dui, sodales sed mauris nec, auctor sagittis leo. Aliquam tincidunt, ex in facilisis elementum, libero lectus luctus est, non vulputate nisl augue at dolor. For more information, see \nameref{S1_Appendix}.
+CO\textsubscript{2} Maecenas convallis mauris sit amet sem ultrices gravida. Etiam eget sapien nibh. Sed ac ipsum eget enim egestas ullamcorper nec euismod ligula. Curabitur fringilla pulvinar lectus consectetur pellentesque. Quisque augue sem, tincidunt sit amet feu
 
 \section*{Supporting information}
 
@@ -414,10 +439,9 @@ Cras egestas velit mauris, eu mollis turpis pellentesque sit amet. Interdum et m
 \begin{thebibliography}{10}
 
 \bibitem{bib1}
-Conant GC, Wolfe KH.
-\newblock {{T}urning a hobby into a job: how duplicated genes find new
-  functions}.
-\newblock Nat Rev Genet. 2008 Dec;9(12):938--950.
+Wagatsuma N, Potjans TC, Diesmann M, Fukai T.
+\newblock {Layer-dependent attentional processing by top-down signals in a visual cortical microcircuit model}.
+\newblock Front. Comput. Neurosci. 2011;5. doi: 10.3389/fncom.2011.00031 PMID: 21779240
 
 \bibitem{bib2}
 Ohno S.
