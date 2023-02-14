@@ -89,8 +89,8 @@
       >10</text
     ></g
     ><g transform="translate(24.9333,46.5) rotate(-90)" style="font-size:20.5333px; text-rendering:geometricPrecision; color-rendering:optimizeQuality; image-rendering:optimizeQuality; font-family:'Arial'; color-interpolation:linearRGB;"
-    ><text x="-28" xml:space="preserve" y="-5" style="stroke:none;"
-      >|P1(f)|</text
+    ><text x="-22" xml:space="preserve" y="-5" style="stroke:none;"
+      >|P(f)|</text
     ></g
     ><g style="stroke-linecap:butt; fill:rgb(126,47,142); text-rendering:geometricPrecision; image-rendering:optimizeQuality; color-rendering:optimizeQuality; stroke-linejoin:round; stroke:rgb(126,47,142); color-interpolation:linearRGB; stroke-width:2.3333;"
     ><path d="M57.1166 82.0436 L62.2332 82.0412 L67.3498 82.0371 L72.4665 82.0314 L77.5831 82.0242 L82.6997 82.0154 L87.8163 82.0051 L92.9329 81.9934 L98.0495 81.9804 L103.1662 81.9664 L108.2828 81.9512 L113.3994 81.9333 L118.516 81.9044 L123.6326 81.8155 L128.7492 81.2925 L133.8658 68.5578 L138.9825 79.1795 L144.0991 80.4305 L149.2157 80.6859 L154.3323 80.7217 L159.4489 80.6618 L164.5656 80.5375 L169.6822 80.3544 L174.7988 80.1046 L179.9154 79.7693 L185.032 79.313 L190.1486 78.6716 L195.2652 77.7194 L200.3819 76.1768 L205.4985 73.2788 L210.6151 65.9112 L215.7317 10 L220.8483 51.1879 L225.9649 69.9726 L231.0815 74.8169 L236.1982 77.0384 L241.3148 78.3146 L246.4314 79.1458 L251.548 79.734 L256.6646 80.1774 L261.7812 80.5303 L266.8979 80.8261 L272.0145 81.0868 L277.1311 81.3234 L282.2477 81.5141 L287.3643 81.4739 L292.4809 80.3347 L297.5975 71.5143 L302.7142 69.9179 L307.8308 77.024 L312.9474 78.4713 L318.064 79.0431 L323.1806 79.3034 L328.2972 79.4037 L333.4138 79.3963 L338.5305 79.2977 L343.6471 79.105 L348.7637 78.7978 L353.8803 78.3316 L358.9969 77.617 L359.0366 77.608" style="fill:none; fill-rule:evenodd;"
