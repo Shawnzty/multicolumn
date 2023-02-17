@@ -454,33 +454,41 @@ Nulla mi mi, venenatis sed ipsum varius, Table~\ref{table1} volutpat euismod dia
 {\bf Derivation of the mean-field approximation model} This appendix details the derivation from the QIF model Eq.~(\ref{eq:1}) to the mean-field apprximation model Eq.~(\ref{eq:4}).
 
 \begin{eqnarray}
-\label{eq:6}
+\label{eq:7}
     \frac{\partial}{\partial t}\rho_{X}(V_{X}|I_{X},t)=-\frac{\rho}{\rho V_{X}}\left[ \left( a_{X}V_{X}^{2} + b_{X}(t)V_{X} + c_{X}(t) + I_{X}\right) \rho_{X}(V_{X}|I_{X},t) \right],
 \end{eqnarray}
 
 \begin{eqnarray}
-\label{eq:7}
+\label{eq:8}
     \rho_{X}(V_{X}|I_{X},t) = \frac{f(I_{X})}{\pi}\frac{x_{X}(I_{X},t)}{\left[ V_{X}-y_{X}(I_{X},t)\right]^{2} + x_{X}(I_{X},t)^{2}},
 \end{eqnarray}
 
-\begin{eqnarray}
-\label{eq:8}
-    \frac{d}{dt}x_{X}(I_{X},t) = 2a_{X}x_{X}(I_{X},t)y(I_{X},t) + b_{X}(t)x_{X}(I_{X},t),
-\end{eqnarray}
-
-\begin{eqnarray}
+\begin{subequations}
 \label{eq:9}
-    \frac{d}{dt}y_{X}(I_{X},t) = -a_{X}(x_{X}(I_{X},t)^{2} + a_{X}y_{X}(I_{X},t)^{2} + b_{X}(t)y_{X}(I_{X},t) + c_{X}(t) + I_{X},
-\end{eqnarray}
-
-\begin{eqnarray}
-\label{eq:10}
-    \frac{d}{dt}\omega_{X}(I_{X},t) = ia_{X}\omega_{X}(I_{X},t)^{2} + b_{X}(t)w_{X}(I_{X},t) + c_{X}(t) + I_{X},
-\end{eqnarray}
+\begin{align}
+    \frac{d}{dt}x_{X}(I_{X},t) &= 2a_{X}x_{X}(I_{X},t)y(I_{X},t) + b_{X}(t)x_{X}(I_{X},t), \label{eq:9a} \\
+    \frac{d}{dt}y_{X}(I_{X},t) &= -a_{X}(x_{X}(I_{X},t)^{2} + a_{X}y_{X}(I_{X},t)^{2} + b_{X}(t)y_{X}(I_{X},t) + c_{X}(t) + I_{X}, \label{eq:9b}
+\end{align}
+\end{subequations}
 
 \begin{eqnarray}
 \label{eq:11}
     \frac{d}{dt}\omega_{X}(I_{X},t) = ia_{X}\omega_{X}(I_{X},t)^{2} + b_{X}(t)w_{X}(I_{X},t) + c_{X}(t) + I_{X},
+\end{eqnarray}
+
+\begin{eqnarray}
+\label{eq:12}
+    r_{X}(t)= \int_{-\infty}^{\infty} \lim_{V_{X}\to\infty} \left[ a_{X}V_{X}^{2}+b_{X}(t)V_{X}+c_{X}(t)+I_{X}\right]\rho_{X}(V_{X},I_{X},t)dI_{X}.
+\end{eqnarray}
+
+\begin{eqnarray}
+\label{eq:13}
+    r_{X}(t)= \frac{a_{X}}{\pi}\int_{-\infty}^{\infty}x_{X}(I_{X},t)f_{X}(I_{X})dI_{X}.
+\end{eqnarray}
+
+\begin{eqnarray}
+\label{eq:14}
+    r_{X}(t)= \frac{a_{X}}{\pi}\int_{-\infty}^{\infty}x_{X}(I_{X},t)f_{X}(I_{X})dI_{X}.
 \end{eqnarray}
 
 \paragraph*{S2 Appendix.}
