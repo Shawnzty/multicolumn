@@ -102,7 +102,7 @@
 % array package and thick rules for tables
 \usepackage{array}
 
-% add by Z
+% add by TZ
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{tabularx}
@@ -148,8 +148,6 @@
 \renewcommand{\@biblabel}[1]{\quad#1.}
 \makeatother
 
-
-
 % Header and Footer with logo
 \usepackage{lastpage,fancyhdr,graphicx}
 \usepackage{epstopdf}
@@ -184,8 +182,8 @@
 \newline
 % Insert author names, affiliations and corresponding author email (do not include titles, positions, or degrees).
 \\
-Tianyi Zheng\textsuperscript{1\Yinyang},
-Masato Sugino\textsuperscript{1\Yinyang},
+Tianyi Zheng\textsuperscript{1*},
+Masato Sugino\textsuperscript{1},
 Yasuhiko Jimbo\textsuperscript{1},
 G. Bard Ermentrout\textsuperscript{2},
 Kiyoshi Kotani\textsuperscript{3},
@@ -200,27 +198,21 @@ Kiyoshi Kotani\textsuperscript{3},
 \bigskip
 
 % Insert additional author notes using the symbols described below. Insert symbol callouts after author names as necessary.
-% 
-% Remove or comment out the author notes below if they aren't used.
-%
-% Primary Equal Contribution Note
-\Yinyang These authors contributed equally to this work.
 
 % Use the asterisk to denote corresponding authorship and provide email address in note below.
-* kotani@neuron.t.u-tokyo.ac.jp
+* zheng@neuron.t.u-tokyo.ac.jp
 
 \end{flushleft}
 % Please keep the abstract below 300 words
 \section*{Abstract}
-Cortical column in visual cortex exhibits strong response to preferred stimulus and competes the excitability with each other under modulation of attention. Although a winner-take-all theory has been proposed to explain the competition among columns, the problem of large-scale simulation and the probability of exception makes the question under debate. We build a multicolumnar model where all populations are described by mean-field approximation of quadratic integrate-and-fire (QIF) model. We first confirmed the neuronal response of visual selection and attentional enhancement in our proposed model. The ordered pattern of firing rate we obtained is consistent with previous empirical and computational studies. Then we investigated the emergence of different activity patterns related to properties of neuronal network. We classify typical activities into groups and indicate them on the parameter plane. Finally, we find the winner-take-all theory is shown to have limitations. The strength of inter-column connection is crucial for the competition of cortical columns induced by visual attention.Overall, the study provides an investigation of the cortical microcircuits in visual attention processing, including attentional modulation, gamma oscillations, and competition among cortical columns, and identifies the key factors that shape the neuronal activity patterns in the cortical columns, which have important implications for understanding the underlying mechanisms of attentional processing in the brain.
+Voluntary attention is a fundamental cognitive process that allows individuals to selectively attend to interested stimuli in the environment. In the visual cortex, different neuronal populations encode features such as location, orientation, and object. The competition between these populations is modulated by top-down signals from cortical areas in higher hierarchy. Recent empirical findings revealed gamma oscillations participate in the modulation of visual attention. However, computational studies face challenges when analyzing the attentional process in context of gamma oscillation due to the unstable nature of gamma oscillations and finite-size effects of large-scale simulation.
+In this study, we propose a multi-scale network-on-network approach to analyze voluntary attention with gamma oscillations. We use a multi-columnar model with quadratic integrate-and-fire neurons and employ the Ott-Antonsen ansatz to derive a mean-field approximation model for each neuronal population. Our proposed model reproduces empirical findings of orientation selection and attentional enhancement of neuronal response. We perform parameter plane analysis to group gamma oscillations into several patterns and find that the ordered pattern which agrees with previous experimental and computational studies appears only in a specific region. We also investigate the winner-take-all theory of visual attention and find that the connection probability of the inter-column pathway is crucial to hold the winner-take-all behavior. Our study provides a novel approach to study voluntary attention in the context of gamma oscillations and reveals the importance of interneuron diversity and lateral connection in shaping the activity patterns of neuronal response.
 
 % Please keep the Author Summary between 150 and 200 words
 % Use first person. PLOS ONE authors please skip this step. 
 % Author Summary not valid for PLOS ONE submissions.   
 \section*{Author summary}
-Cortical column as the basic unit of neocortex shows competition of excitability under modulation of attention. 
-In this study, we investigated the microcircuits of the visual cortex, particularly in relation to attentional processing, gamma oscillations, and competition among cortical columns. 
- We built a multicolumnar model using mean-field approximation of quadratic integrate-and-fire (QIF) neurons to reproduce the empirical findings of visual attention and orientation selection. We also classified typical activities related to neuronal network properties into groups and identified the key factors that shape the neuronal activity patterns in the cortical columns. Our findings suggest that the winner-take-all theory, which explains the competition among cortical columns, has certain restrictions, particularly regarding the strength of inter-column connections. 
+Voluntary attention is a fundamental cognitive process and gamma oscillations are found to mediate such function. Our study investigates the neuronal dynamics supporting voluntary attention in the context of gamma oscillations in the visual cortex. We propose a multi-scale network-on-network approach to model the dynamic competition among neuronal populations in the columnar structure of the visual cortex. We derive mean-field approximation models using Ott-Antonsen Ansatz, which enables us to investigate both the populational dynamics and interation among populations in a steady firing state of gamma oscillations. Our results show that our model can reproduce the empirical finding of orientation selection and attentional enhancement of neuronal response. We also identify the crucial role of the connection probability of the inter-column pathway in the winner-take-all behavior of visual attention. Our findings provide a novel approach to studying voluntary attention in the context of gamma oscillations, and offer insights into how the properties of neuronal populations shape neuronal response.
 
 
 \linenumbers
@@ -229,14 +221,14 @@ In this study, we investigated the microcircuits of the visual cortex, particula
 
 Voluntary attention is the ability that an individual can deliberately filter sensory information from the environment and focus on one feature out of others. In the scope of visual attention, features like location, orientation and object are encoded by anatomically distributed neuronal populations~\cite{serences2006}.The dynamic competition of neuronal populations in the visual cortex is modulated by top-down signals from cortical areas in higher hierarchy ~\cite{katsuki2014}~\cite{paneri2017}. Our study focuses on the selective attention of bar orientation in the receptive field, but the approach we proposed can be employed for other types of attention showing selectivity to a certain feature.
 
-The microcircuits in neocortex are organized in a columnar structure~\cite{Mountcastle1957}, which is typically a six-layered architecture for each column. In the visual cortex, the cortical column is found to strongly respond to bar stimulus presented in the receptive field if its orientation is the preferred orientation of this column~\cite{hubel1959}~\cite{reynolds1999}. Moreover, if a second bar is aligned with a non-preferred orientation, the neuronal response would be largely suppressed. Interestingly, if visual attention is prompted to the bar with the preferred orientation, the neuronal response will recover to the original level ~\cite{reynolds1999}~\cite{luck1997}. However, the mathematical analysis of the neuronal dynamics in columns is inherently challenging due to its network-on-network feature, even though the physiological information of connectivity between columns is available. Large-scale simulation of the finite-size neuronal population is often used to study the dynamical properties of visual attention~\cite{corchs2002}~\cite{wagatsuma2011}~\cite{potjans2012}, but due to the finite-size effect~\cite{pikovsky1999} and random connection in the neuronal network~\cite{landau2018}, the fluctuations around fixed points cannot be ignored. Since the size of large-scale simulation of the neuronal population is limited by the computational cost, a multi-scale method that can intrinsically bridge single neuronal dynamics and populational dynamics is required.
+The microcircuits in the neocortex are organized in a columnar structure~\cite{Mountcastle1957}, which is typically a six-layered architecture for each column. In the visual cortex, the cortical column is found to strongly respond to bar stimulus presented in the receptive field if its orientation is the preferred orientation of this column~\cite{hubel1959}~\cite{reynolds1999}. Moreover, if a second bar is aligned with a non-preferred orientation, the neuronal response would be largely suppressed. Interestingly, if visual attention is prompted to the bar with the preferred orientation, the neuronal response will recover to the original level ~\cite{reynolds1999}~\cite{luck1997}. However, the mathematical analysis of the neuronal dynamics in columns is inherently challenging due to its network-on-network feature, even though the physiological information of connectivity between columns is available. Large-scale simulation of the finite-size neuronal population is often used to study the dynamical properties of visual attention~\cite{corchs2002}~\cite{wagatsuma2011}~\cite{potjans2012}, but due to the finite-size effect~\cite{pikovsky1999} and random connection in the neuronal network~\cite{landau2018}, the fluctuations around fixed points cannot be ignored. Since the size of large-scale simulation of the neuronal population is limited by the computational cost, a multi-scale method that can intrinsically bridge single neuronal dynamics and populational dynamics is required.
 
-Recent advances in neuroscience have shed light on the role of gamma oscillations in mediating attentional processes in the visual cortex ~\cite{fries2009}~\cite{tiesinga2009}~\cite{ardid2010}~\cite{goddard2012}~\cite{bosman2012}~\cite{magazzini2018}. Gamma oscillation is a type of neural activity that can occur in response to sustained input and are thought to reflect the coordinated firing of large populations of neurons. For the computational study, when gamma oscillation is generated via a Hopf bifurcation, the firing rate of the neuronal population is not at a stable fixed point, thus it is difficult to get analytical solution of the system~\cite{kotani2014}. To investigate both the populational dynamics and gamma oscillation,a model able to reproduce steady firing state is necessary. Methods like mean-field approximation analytically derive populational model from single neuron model which enables to study the overall activity of single neuronal population or the interaction among populations. Ott-Antonsen Ansatz provided a mathematical framework to study the low-dimensional and long-time behavior of globally coupled oscillators~\cite{ott2008}~\cite{ott2009}~\cite{montbrio2015}. Applying such mathematical tools by modeling neurons in the population as coupled oscillators, the phase transition, delay, noise and other properties of neuronal population can be studied. 
+Recent advances in neuroscience have shed light on the role of gamma oscillations in mediating attentional processes in the visual cortex ~\cite{fries2009}~\cite{tiesinga2009}~\cite{ardid2010}~\cite{goddard2012}~\cite{bosman2012}~\cite{magazzini2018}. Gamma oscillation is a type of neural activity that can occur in response to tonic constant current~\cite{whittington1995}~\cite{bartos2007}~\cite{akao2018} and are thought to reflect the coordinated firing of large populations of neurons~\cite{wang2012}~\cite{kumar2012}. For the computational study, when gamma oscillation is generated via a Hopf bifurcation, the firing rate of the neuronal population is not at a stable fixed point, thus it is difficult to get analytical solution of the system~\cite{kotani2014}. To investigate both the populational dynamics and gamma oscillation,a model able to reproduce steady firing state is necessary. Methods like mean-field approximation analytically derive populational model based on single neuron model which enables to study the overall activity of single neuronal population or the interaction among populations. Ott-Antonsen Ansatz provided a mathematical framework to study the low-dimensional and long-time behavior of globally coupled oscillators~\cite{ott2008}~\cite{ott2009}~\cite{montbrio2015}. Applying such mathematical tools by modeling neurons in the population as coupled oscillators, the phase transition, delay, noise and other properties of neuronal population can be studied. 
 
 In this paper, we initially build on the multicolumnar architecture proposed by Wagatsuma et al.~\cite{wagatsuma2011} in the case of quadratic integrate-and-fire (QIF) neurons. The model for neuronal population is derived based on Ott-Antenson Ansatz to represent the neuronal response of each population in the multicolumnar model. We reproduce the empirical finding of orientation selection and attentional enhancement of neuronal response to validate our computational model. Then we perform parameter plane analysis to investigate the gamma oscillations exhibited in the multicolumnar model and group them into several patterns. Finally, we focus on winner-take-all theory of visual attention and find the restriction settings to keep it valid. The connection probability of the inter-column pathway is found to be crucial to hold the winner-take-all behavior.
 
 \section*{Multicolumnar model with mean-field approximation}
-We study a multicolumnar model of two columns in the visual cortex, as \hyperlink{fig:fig1}{Fig 1A} showed. The structure and initial parameter settings are based on previous studies~\cite{wagatsuma2011}. Each layer contains two neuronal populations which are an excitatory population and an inhibitory population. Numbers of neurons in each population ($N_{Y}$) are listed in Table~\ref{table1}. Arrows in \hyperlink{fig:fig1}{Fig 1A} represent major neuronal connections between populations. Only connections with probability larger than 0.04 are shown, but other sparse connections are not shown. The detailed probabilities $P_{Y}^{X}$ of intra-column connections are listed in Table~\ref{table2}. There are also inter-column connections, projecting from the excitatory population of layer 2/3 to the inhibitory population of the same layer in the other column. The connection probability $P_{inter}$ is initially set to 0.1~\cite{wagatsuma2011}. Neuronal populations in Layer 4 of the columnar model receive bottom-up sensory input, while layer 2/3 and layer 5 receive top-down attention input. The projection probability of sensory and attention inputs are listed in Table~\ref{table3}. We mimic visual stimulus and attention prompt of horizontal and vertical bars in the experiment as \hyperlink{fig:fig1}{Fig 1B}. Each column has its own preferential selection of the orientation of bar stimuli. Populations in the column should be more activated if the preferred stimulus is presented and less activated with unpreferred stimulus. The sensory input to the preferred column is ten times larger than to the unpreferred column and the sensory input of two bar stimuli are independent~\cite{wagatsuma2011}. Here the column 1 (Col1) on the left is preferential to the horizontal bar and the column 2 (Col2) on the right is preferential to the vertical bar. As \hyperlink{fig:fig1}{Fig 1B} showed, five conditions are investigated in this paper, which are: S1 (only bar stimulus preferred by column 1 presented), S2 (only bar stimulus preferred by column 2 presented), S1S2 (both bar stimuli presented), S1S2+A1 (both bar stimuli presented while the attention goes to the bar preferred by column 1), S1S2+A2 (both bar stimuli presented while the attention goes to the bar preferred by column 2).
+We study a multicolumnar model of two columns in the visual cortex, as \hyperlink{fig:fig1}{Fig 1A} showed. The structure and initial parameter settings are based on previous studies~\cite{wagatsuma2011}. Each layer contains two neuronal populations which are an excitatory population and an inhibitory population. Numbers of neurons in each population ($N_{Y}$) are listed in Table~\ref{table1}. Arrows in \hyperlink{fig:fig1}{Fig 1A} represent major neuronal connections between populations. Only connections with probability larger than 0.04 are shown, but other sparse connections are not shown. The detailed probabilities $P_{Y}^{X}$ of intra-column connections are listed in Table~\ref{table2}. There are also inter-column connections, projecting from the excitatory population of layer 2/3 to the inhibitory population of the same layer in the other column. The connection probability $P_{inter}$ is initially set to 0.1~\cite{wagatsuma2011}. Neuronal populations in Layer 4 of the columnar model receive bottom-up sensory input, while layer 2/3 and layer 5 receive top-down attention input. The projection probability of sensory and attention inputs are listed in Table~\ref{table3}. We mimic visual stimulus and attention prompt of horizontal and vertical bars in the experiment as \hyperlink{fig:fig1}{Fig 1B}. Each column has its own preferential selection of the orientation of bar stimuli. Populations in the column should be more activated if the preferred stimulus is presented and less activated with the unpreferred stimulus. The sensory input to the preferred column is ten times larger than to the unpreferred column and the sensory input of two bar stimuli are independent~\cite{wagatsuma2011}. Here the column 1 (Col1) on the left is preferential to the horizontal bar and the column 2 (Col2) on the right is preferential to the vertical bar. As \hyperlink{fig:fig1}{Fig 1B} showed, five conditions are investigated in this paper, which are: S1 (only bar stimulus preferred by column 1 presented), S2 (only bar stimulus preferred by column 2 presented), S1S2 (both bar stimuli presented), S1S2+A1 (both bar stimuli presented while the attention goes to the bar preferred by column 1), S1S2+A2 (both bar stimuli presented while the attention goes to the bar preferred by column 2).
 
 The neuronal populations in the multicolumnar model are composed of Quadratic-Integrate-and-Fire (QIF) neurons~\cite{kotani2014}. The $i$th neuron in population $X$ has membrane potential $V_{i}^{X}$, and is subject to the internal dynamics, synaptic current and external input current $I_{i}^{X}$, leading to 
 
@@ -256,7 +248,7 @@ where $\Bar{I}_{back}^{X}$ and $\Delta_{back}^{X}$ are the center and width of t
 \label{eq:3}
     \frac{dg_{Y}^{X}}{dt} = -\frac{1}{\tau_{d}^{Y}}g_{Y}^{X}+\Bar{g}_{Y}^{X}\cdot P_{Y}^{X}\cdot\sum_{k=1}^{N_{Y}}\delta(t-t^{Y(k)}),
 \end{eqnarray}
-where $\tau_{d}^{Y}$ is the decay time of population Y, set to be 2 (ms) for excitatory populations and 5 (ms) for inhibitory populations. $\Bar{g}_{Y}^{X}$ is the peak conductance of the pathway from population Y to population X, and the values are listed in Table\ref{table4}. $\delta(\cdot)$ is the delta function representing spikes transmitted from other neurons, and $t^{Y(k)}$ is the spike time of the $k$-th neuron in the population Y. Therefore, the Eqs.~(\ref{eq:1})(\ref{eq:2})(\ref{eq:3}) describe the microscopic dynamics of each neuron in the multicolumnar model. Ott-Antonsen Ansatz is a useful tool to analytically study the low-dimensional and long time behavior of globally coupled Kuramoto type oscillators ~\cite{ott2008}~\cite{ott2009}. The study of gamma oscillations in neuronal population also introduced Ott-Antonsan Ansatz~\cite{akao2019}~\cite{zheng2021}. To investigate the interactions between each population and eliminate the stochastic firing of single neuron, we derives a mean-field approximation model for each population based on Ott-antonsen Ansatz~\cite{ott2008}~\cite{montbrio2015}. For details of derivation, see \nameref{S1_Appendix}.
+where $\tau_{d}^{Y}$ is the decay time of population Y, set to be 2 (ms) for excitatory populations and 5 (ms) for inhibitory populations. $\Bar{g}_{Y}^{X}$ is the peak conductance of the pathway from population Y to population X, and the values are listed in Table\ref{table4}. $\delta(\cdot)$ is the delta function representing spikes transmitted from other neurons, and $t^{Y(k)}$ is the spike time of the $k$-th neuron in the population Y. Therefore, the Eqs.~(\ref{eq:1})(\ref{eq:2})(\ref{eq:3}) describe the microscopic dynamics of each neuron in the multicolumnar model. Ott-Antonsen Ansatz is a useful tool to analytically study the low-dimensional and long time behavior of globally coupled Kuramoto type oscillators ~\cite{ott2008}~\cite{ott2009}. The study of gamma oscillations in neuronal population also introduced Ott-Antonsan Ansatz~\cite{akao2019}~\cite{zheng2021}. To investigate the interactions between each population and eliminate the stochastic firing of single neuron, we derive a mean-field approximation model for each population based on Ott-antonsen Ansatz~\cite{ott2008}~\cite{montbrio2015}. For details of derivation, see \nameref{S1_Appendix}.
 
 \begin{subequations}
 \label{eq:4}
@@ -382,18 +374,20 @@ L6E & 7197 & L6I & 1474 \\
 \section*{Results}
 %PLOS does not support heading levels beyond the 3rd (no 4th level headings).
 To confirm the validity of our multicolumnar model composed of the neuronal population with mean-field approximation, we first try to reproduce the empirical findings about orientation selection and the enhancement of neuronal response due to visual attention.
+In order to validate our multicolumnar model, which consists of a neuronal population with mean-field approximation, we first seek to replicate the observed phenomena of orientation selection and the amplification of neuronal response resulting from visual attention. These findings are important in their contribution to the understanding of neuronal responses and their implications for mechanisms.
+
 \subsection*{The firing rate of the excitatory population in layer 5 shows an ordered pattern}
-We focus on the firing rate of the excitatory population in layer 5 of the Col1 (simply referred to as 1L5E) as \hyperlink{fig:fig1}{Fig 1C} showed. For all conditions, both with and without sensory and attention input, the population 1L5E shows gamma oscillation, whose center frequency is 30 (Hz). In \hyperlink{fig:fig1}{Fig 1D}, we align all the time courses in the same axes and find that the center frequency doesn't change with the condition of sensory and attention input. Only the amplitudes of oscillation are changed due to sensory and attention input. For condition S1, since the sensory input is preferential to Col1, 1L5E will be activated and the amplitude of oscillation reaches higher level than steady state. For condition S2, the sensory input is preferential to Col2, so the sensory input is ten times less than condition S1, plus the inhibition from Col2 to Col1, the amplitude of oscillation decrease to a lower level than steady state. When both sensory inputs are presented (condition S1S2), due to the inhibition from Col2 to Col1, the amplitude of oscillation goes to a medium level, suppressed from condition S1. However, if the attention input comes to the condition and prompts the preferred stimulus (condition S1S2+A1), the amplitude of oscillation would recover to a higher level than the condition S1S2. Finally, the attention prompted to Col2 would increase the inhibition from Col2 to Col1 resulting in lower level than the condition S1S2. To compare the amplitude of oscillations, we align the envelope of firing rate under five conditions in the same axes and find an ordered pattern of firing rate: conditions S1 and S1S2+A1 are on the top, then condition S1S2, condition S1S2+A2 and condition S2 are down. This ordered pattern of the amplitude of firing rate agrees with empirical findings and computational studies~\cite{luck1997}~\cite{reynolds1999}~\cite{wagatsuma2011}.
+We focus on the firing rate of the excitatory population in layer 5 of the Col1 (simply referred to as 1L5E) as \hyperlink{fig:fig1}{Fig 1C} showed. For all conditions, both with and without sensory and attention input, the population 1L5E shows gamma oscillation, whose center frequency is 30 (Hz). In \hyperlink{fig:fig1}{Fig 1D}, we align all the time courses in the same axes and find that the center frequency doesn't change with the condition of sensory and attention input. Only the amplitudes of oscillation are changed due to sensory and attention input. For condition S1, since the sensory input is preferential to Col1, 1L5E will be activated and the amplitude of oscillation reaches a higher level than the steady state. For condition S2, the sensory input is preferential to Col2, so the sensory input is ten times less than condition S1, plus the inhibition from Col2 to Col1, the amplitude of oscillation decrease to a lower level than the steady state. When both sensory inputs are presented (condition S1S2), due to the inhibition from Col2 to Col1, the amplitude of oscillation goes to a medium level, suppressed from condition S1. However, if the attention input comes to the condition and prompts the preferred stimulus (condition S1S2+A1), the amplitude of oscillation would recover to a higher level than condition S1S2. Finally, the attention prompted to Col2 would increase the inhibition from Col2 to Col1 resulting in lower level than the condition S1S2. To compare the amplitude of oscillations, we align the envelope of firing rate under five conditions in the same axes and find an ordered pattern of firing rate: conditions S1 and S1S2+A1 are on the top, then condition S1S2, condition S1S2+A2 and condition S2 are down. This ordered pattern of the amplitude of firing rate agrees with empirical findings and computational studies~\cite{luck1997}~\cite{reynolds1999}~\cite{wagatsuma2011}.
 
 \subsection*{The ordered pattern only appears in a restricted region of $\Delta_{back}^{E}$ and $\Delta_{back}^{I}$}
 In this study, there are two free parameters can be changed which are the heterogeneity of background input current ($\Delta_{back}^{E}$ and $\Delta_{back}^{I}$). In light of the observed ordered pattern, we seek to investigate the potential relationship between its appearance and the heterogeneity of background input current. \hyperlink{fig:fig2}{Fig 2A} is the parameter plane of ($\Delta_{back}^{E}$, $\Delta_{back}^{I}$) divided by five colored region. 
 
-In the blue region, the heterogeneity of background current towards inhibitory populations is relatively large while the one towards excitatory populations is relatively small on the parameter plane, resulting in that the inhibition being strong and no oscillations are observed, as \hyperlink{fig:fig2}{Fig 2B}. 
+In the blue region, the heterogeneity of background current towards inhibitory populations is relatively large while the one towards excitatory populations is relatively small on the parameter plane, resulting in the inhibition being strong and no oscillations are observed, as \hyperlink{fig:fig2}{Fig 2B}. 
 
-While oscillations in neuronal response are observed in green region, the envelope of firing rate in \hyperlink{fig:fig2}{Fig 2C}, \hyperlink{fig:fig2}{Fig 2D}, \hyperlink{fig:fig2}{Fig 2E} and \hyperlink{fig:fig2}{Fig 2H} show four patterns of the amplitudes are possible with sensitive parameter selection and none of them are in same ordered pattern as \hyperlink{fig:fig1}{Fig 1E}.
-The amplitude spectrum of \hyperlink{fig:fig1}{Fig 2C} is obtained by performing a fast Fourier transform on the firing rate data under condition S1S2+A1 in the last one second, same as all the amplitude spectrum later. One observed the only peak of the frequency amplitude is in gamma band and the amplitude in slower frequency band is always zero. Parameter setting of letter D on the plane shows a nontrivial as the raw firing rate in \hyperlink{fig:fig2}{Fig 2D} shows. For all conditions the population does not immediately has response to sensory and attention input. Conditions S1 and S2 are sooner to response to the sensory input, while condition S1S2 takes nearly 20 seconds to have a response. As to conditions with attention input, the neuronal responses take a long time in irregular activity and finally reach a stable oscillation state. Due to the selection of window width of the envelope algorithm, the envelope in \hyperlink{fig:fig2}{Fig 2D} are not all straight lines but shows slow oscillations. The power spectrum shows that there are two main frequency bands: beta and gamma bands. \hyperlink{fig: fig2}{Fig 2E} shows another amplitude pattern with beta and gamma frequency bands, but two peaks in the gamma band. Note that the parameter setting of letter H is in green region which is on the boundary of multiple regions. \hyperlink{fig:fig2}{Fig 2H} shows that the neuronal responses keep exhibiting fluctuations at the level of original steady state. The dominant frequency is in gamma band but the component in beta band is non-zero. 
+While oscillations in neuronal response are observed in the green region, the envelope of firing rate in \hyperlink{fig:fig2}{Fig 2C}, \hyperlink{fig:fig2}{Fig 2D}, \hyperlink{fig:fig2}{Fig 2E} and \hyperlink{fig:fig2}{Fig 2H} show four patterns of the amplitudes are possible with sensitive parameter selection and none of them are in same ordered pattern as \hyperlink{fig:fig1}{Fig 1E}.
+The amplitude spectrum of \hyperlink{fig:fig1}{Fig 2C} is obtained by performing a fast Fourier transform on the firing rate data under condition S1S2+A1 in the last one second, same as all the amplitude spectrum later. One observed the only peak of the frequency amplitude is in the gamma band and the amplitude in the slower frequency band is always zero. Parameter setting of letter D on the plane shows a nontrivial as the raw firing rate in \hyperlink{fig:fig2}{Fig 2D} shows. For all conditions, the population does not immediately respond to sensory and attention input. Conditions S1 and S2 are sooner to respond to the sensory input, while condition S1S2 takes nearly 20 seconds to have a response. As to conditions with attention input, the neuronal responses take a long time in irregular activity and finally reach a stable oscillation state. Due to the selection of window width of the envelope algorithm, the envelope in \hyperlink{fig:fig2}{Fig 2D} are not all straight lines but show slow oscillations. The power spectrum shows that there are two main frequency bands: beta and gamma bands. \hyperlink{fig: fig2}{Fig 2E} shows another amplitude pattern with beta and gamma frequency bands, but two peaks in the gamma band. Note that the parameter setting of the letter H is in green region which is on the boundary of multiple regions. \hyperlink{fig:fig2}{Fig 2H} shows that the neuronal responses keep exhibiting fluctuations at the level of the original steady state. The dominant frequency is in the gamma band but the component in beta band is non-zero. 
 
-Parameter setting in red region can reproduce the ordered pattern same as the one in \hyperlink{fig:fig1}{Fig 1E}. The amplitude spectrum in \hyperlink{fig:fig2}{Fig 1G} shows two peak of frequency amplitude in gamma band and no amplitude in lower frequency bands.
+Parameter setting in the red region can reproduce the ordered pattern same as the one in \hyperlink{fig:fig1}{Fig 1E}. The amplitude spectrum in \hyperlink{fig:fig2}{Fig 1G} shows two peak of frequency amplitude in the gamma band and no amplitude in lower frequency bands.
 In the yellow region, as \hyperlink{fig:fig2}{Fig 2F} shows, the order of oscillation amplitude is consistent with the ordered pattern as \hyperlink{fig:fig1}{Fig 1E} or \hyperlink{fig:fig2}{Fig 2G}, the beta frequency exists in the firing rate.
 
 % FIGURE 2
@@ -430,7 +424,7 @@ Finally, we want to investigate whether it is possible to turn situation from di
 % \hspace*{-1.836in}
 \includegraphics{Figure3.eps}
 \begin{flushleft} {\bf Fig 3. Exception case of winner-take-all theory.}
-\textbf{A.} Parameter plane of $\Delta_{back}^{E}$ and $\Delta_{back}^{I}$. $\times$ and $+$ marks denote two parameter settings in the winner-take-all region and opposite region respectively. $\times$: $\Delta_{back}^{E}=0.3$, $\Delta_{back}^{I}=0.027$; $+$: $\Delta_{back}^{E}=0.3$, $\Delta_{back}^{I}=0.032$. \textbf{B.} Structure of multicolumnar model highlighting the circuit among layer 2/3. \textbf{C.} Current in inter-column pathways under five conditions. \textbf{D.} Difference of two inter-column pathways with the change of connection probability of inter-column pathway $P_{inter}$ under condition S1S2+A1 The horizontal dash line denotes zero difference of two inter-column pathways. The vertical dash lines denote initial setting of the connection probability $P_{inter}=0.1$. \textbf{E.} Firing rate under five conditions with the change of connection probability of inter-column pathway $P_{inter}$. The vertical dash lines denote initial setting of the connection probability $P_{inter}=0.1$.
+\textbf{A.} Parameter plane of $\Delta_{back}^{E}$ and $\Delta_{back}^{I}$. $\times$ and $+$ marks denote two parameter settings in the winner-take-all region and opposite region respectively. $\times$: $\Delta_{back}^{E}=0.3$, $\Delta_{back}^{I}=0.027$; $+$: $\Delta_{back}^{E}=0.3$, $\Delta_{back}^{I}=0.032$. \textbf{B.} Structure of multicolumnar model highlighting the circuit among layer 2/3. \textbf{C.} Current in inter-column pathways under five conditions. \textbf{D.} Difference of two inter-column pathways with the change of connection probability of inter-column pathway $P_{inter}$ under condition S1S2+A1 The horizontal dash line denotes zero difference of two inter-column pathways. The vertical dash lines denote the initial setting of the connection probability $P_{inter}=0.1$. \textbf{E.} Firing rate under five conditions with the change of connection probability of inter-column pathway $P_{inter}$. The vertical dash lines denote the initial setting of the connection probability $P_{inter}=0.1$.
 \end{flushleft}
 % \label{fig3}
 \hypertarget{fig:fig3}{}
@@ -438,10 +432,12 @@ Finally, we want to investigate whether it is possible to turn situation from di
 \end{figure}
 
 \section*{Discussion}
-The cortical columns in visual cortex show orientation selection when aligning a bar stimulus in the receptive field. Multiple bar stimulus would cause competition of excitability among cortical column. Although previous studies provide a winner-take-all theory to explain the enhancement effect of visual attention on neuronal responses ~\cite{fukai1997}~\cite{wagatsuma2011}, in this paper we find exceptions besides such theory. We use a multicolumnar model built from populations with mean-field approximation to reproduce the empirical findings of visual attention.
+The cortical columns in the visual cortex show orientation selection when aligning a bar stimulus in the receptive field. Multiple bar stimuli would cause competition of excitability among cortical columns. Due to the computational cost of large-scale simulation and the unstable nature of gamma oscillation, the computational study for visual attention in the context of gamma oscillation faces challenges, especially when one wants to investigate interactions among neuronal populations in different layers and columns. In this paper, we proposed a multi-scale network-to-network approach to analyze voluntary attention with gamma oscillations. We started from a multi-columnar model where neurons are described by quadratic integrate-and-fire model. By employing Ott-Antonsen ansatz, we derived mean-field approximation model for each neuronal population in the columns. The proposed model can reproduce the ordered pattern of gamma oscillations reported in previous experimental and computational studies. Later we find the ordered pattern only appears in a region on the paramter plane, while the multi-columnar mmodel can generate complex dynamics beyond the ordered pattern.
+Although previous studies provide a winner-take-all theory to explain the enhancement effect of visual attention on neuronal responses ~\cite{fukai1997}~\cite{wagatsuma2011}, in this paper, we finally find exception cases besides such theory. The connection probability of the inter-column pathway is found to be crucial to hold the winner-take-all behavior.
+
 The importance of interneuron diversity and circuit connectivity for the emergence of different activity patterns was revealed by using a full-scale spiking network model for single cortical column that relates the structure and activity of the cell-type specific cortical microcircuit~\cite{potjans2012}. We also find different firing patterns in neuronal response, but in a two-column scenario, which allows us to scrutinize the inter-column inhibition.
-Further we reveal that the winner-take-all has certain restriction in the picture of competition induced by visual attention, and the connection probability of inter-column pathway, which among layer 2/3, is crucial in such competition. 
-The existence of hot zones of inhibition in layers 2 and 5 of a cortical column was confirmed earlier~\cite{meyer2011}, which were created by the clustering of inhibitory interneurons and play a critical role in shaping the activity of excitatory neurons in these layers.
+Further, we reveal that the winner-take-all has certain restrictions in the picture of competition induced by visual attention, and the connection probability of the inter-column pathway, which among layer 2/3, is crucial in such competition. 
+Earlier studies have confirmed the existence of hot zones of inhibition in layers 2 and 5 of a cortical column, which are created by the clustering of inhibitory interneurons and play a crucial role in shaping the activity of excitatory neurons in these layers~\cite{meyer2011}. In summary, our paper presents a novel approach to investigating voluntary attention in the context of gamma oscillations and sheds light on the role of interneuron diversity and lateral connections in shaping the activity patterns of neuronal responses.
 
 \section*{Supporting information}
 
@@ -514,7 +510,7 @@ Finally, by applying Eq.~(\ref{eq:13}) and Eq.~(\ref{eq:16}) to Eq.~(\ref{eq:10}
 This paper was supported in part by Japan Society for the Promotion of Science through Grants-in-Aid for Scientific Research (KAKENHI), Grant No. 22K19785, Asahi Glass Foundation, Tateisi Science and Technology
 Foundation to KK, and a Grant-in-Aid for JSPS Fellows, Grant No. 22J22909, to TZ.
 
-\nolinenumbers
+% \nolinenumbers
 
 % Either type in your references using
 % \begin{thebibliography}{}
@@ -529,6 +525,7 @@ Foundation to KK, and a Grant-in-Aid for JSPS Fellows, Grant No. 22J22909, to TZ
 % here. See http://journals.plos.org/plosone/s/latex for 
 % step-by-step instructions.
 % 
+
 \begin{thebibliography}{10}
 
 \bibitem{katsuki2014}
@@ -636,24 +633,20 @@ Dieter KC, Brascamp J, Tadin Duje, Blake R.
 \newblock {Does visual attention drive the dynamics of bistable perception?}.
 \newblock Atten Percept Psychophys. 2016; 78, 1861–1873. https://doi.org/10.3758/s13414-016-1143-2. PMID: 27230785
 
-
 \bibitem{fries2009}
 Fries P.
 \newblock {Neuronal gamma-band synchronization as a fundamental process in cortical computation}
 \newblock Annu Rev Neurosci. 2009;32:209-24. doi: 10.1146/annurev.neuro.051508.135603. PMID: 19400723
-
 
 \bibitem{tiesinga2009}
 Tiesinga P, Sejnowski TJ.
 \newblock {Cortical enlightenment: are attentional gamma oscillations driven by ING or PING?}.
 \newblock Neuron. 2009; 24;63(6):727-32. doi: 10.1016/j.neuron.2009.09.009. PMID: 19778503
 
-
 \bibitem{ardid2010}
 Ardid S, Wang XJ, Gomez-Cabrero D, Compte A.
 \newblock {Reconciling Coherent Oscillation with Modulation of Irregular Spiking Activity in Selective Attention:Gamma-Range Synchronization between Sensory and Executive Cortical Areas}.
 \newblock J Neurosci. 2010; 30 (8) 2856-2870; DOI: https://doi.org/10.1523/JNEUROSCI.4222-09.2010. PMID: 20181583
-
 
 \bibitem{magazzini2018}
 Magazzini L, Singh KD.
@@ -685,6 +678,32 @@ Zheng T, Kotani K, Jimbo Y.
 \newblock {Distinct effects of heterogeneity and noise on gamma oscillation in a model of neuronal network with different reversal potential}
 \newblock Sci Rep. 2021;11(1):12960. doi: 10.1038/s41598-021-91389-8. PMID: 34155243
 
+\bibitem{wang2012}
+Buzsáki G, Wang XJ.
+\newblock {Mechanisms of gamma oscillations}
+\newblock Annu Rev Neurosci. 2012;35:203-25. doi: 10.1146/annurev-neuro-062111-150444. PMID: 22443509
+
+\bibitem{whittington1995}
+Whittington MA, Traub RD, Jefferys JG.
+\newblock {Synchronized oscillations in interneuron networks driven by metabotropic glutamate receptor activation}
+\newblock Nature. 1995;373(6515):612-5. doi: 10.1038/373612a0. PMID: 7854418
+
+\bibitem{bartos2007}
+Bartos M, Vida I, Jonas P.
+\newblock {Synaptic mechanisms of synchronized gamma oscillations in inhibitory interneuron networks}
+\newblock Nat Rev Neurosci. 2007;8(1):45-56. doi: 10.1038/nrn2044. PMID: 17180162
+
+\bibitem{kumar2012}
+Litwin-Kumar A, Doiron B.
+\newblock {Slow dynamics and high variability in balanced cortical networks with clustered connections}
+\newblock Nat Neurosci. 2012;15(11):1498-505. doi: 10.1038/nn.3220. PMID: 23001062
+
+\bibitem{akao2018}
+Akao A, Ogawa Y, Jimbo Y, Ermentrout GB, Kotani K.
+\newblock {Relationship between the mechanisms of gamma rhythm generation and the magnitude of the macroscopic phase response function in a population of excitatory and inhibitory modified quadratic integrate-and-fire neurons}
+\newblock Phys Rev E. 2018;97(1-1):012209. doi: 10.1103/PhysRevE.97.012209.
+
 \end{thebibliography}
+
 \end{document}
 
