@@ -1,2 +1,5 @@
 # multicolumn
-Multicolumn model in visual cortex for orientation selection and attention
+This repository contains codes for multicolumnar model paper.
+
+### Folders
+- `data`: contains the data used in the paper.
