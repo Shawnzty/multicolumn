@@ -1,5 +1,5 @@
 function peTrans = getPET(v,g)
-%PATHWAYCURRENT Summary of this function goes here
+%pathway energy transmission (over some duration)
 %   Detailed explanation goes here
 
 % Connectivity
