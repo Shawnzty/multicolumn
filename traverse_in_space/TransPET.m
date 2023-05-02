@@ -14,7 +14,7 @@ Delta_steps = 100;
 
 Iattn = 0.02;
 time = 4000;
-strt_prd = 300001;
+strt_prd = 350001;
 end_prd = 400000;
 
 % folder name
@@ -23,8 +23,8 @@ folder = append('../../data/tPET_',num2str(Delta_e_start),'_',num2str(Delta_e_en
 mkdir(folder);
 
 % container
-tPET = zeros(16, 16, end_prd-strt_prd+1,5);
-fr = zeros(16, end_prd-strt_prd+1,5);
+% tPET = zeros(16, 16, end_prd-strt_prd+1,5);
+% fr = zeros(16, end_prd-strt_prd+1,5);
 
 % Parallel computing
 % parpool('Processes',2)
@@ -42,8 +42,22 @@ for n = 1:Delta_steps
     save(filename, 'tPET','fr', '-v7.3');
     disp(etime(clock, startTime));
 end
-
-% filename = append('../../data/tPET_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
-%     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
-% save(filename, 'tPET','fr', '-v7.3');
+disp("Computation done");
 disp(etime(clock, initime)/60);
+clearvars tPET fr r v g;
+
+%% Combine tmp data
+tPET = zeros(100,16,16,end_prd-strt_prd+1,5);
+fr = zeros(16,end_prd-strt_prd+1,5);
+for i = 1:100
+    filename = append(folder,'\',num2str(i),".mat");
+    load_data = load(filename);
+    tPET(i,:,:,:,:) = load_data.tPET;
+    fr(i,:,:,:) = load_data.fr;
+    clearvars load_data;
+    delete filename;
+    disp(append(num2str(i), " done"));
+end
+disp("Saving...")
+save(append(folder,".mat"), 'tPET', 'fr', '-v7.3');
+save("Save done.")
