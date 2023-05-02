@@ -19,8 +19,8 @@ p(10,1) = 0.1;
 N = repmat([10341 2917 10957 2739 2425 532 7197 1474], [16, 2]);
 
 % reshape p and N to multiply with pp
-p_reshaped = repmat(p,[1,1,100000,5]);
-N_reshaped = repmat(N,[1,1,100000,5]);
+p_reshaped = repmat(p,[1,1,size(v,2),5]);
+N_reshaped = repmat(N,[1,1,size(v,2),5]);
 
 % get the pathway powers
 % from Y to X
@@ -41,8 +41,6 @@ end
 
 pd = v_y - v_x; % pathway potential difference between Y and X
 pp = pd.*pd.*g; % pathway power from Y to X
-
-p_reshaped = repmat(p,[1,1,100000,5]);
 
 TransPET = pp.*p_reshaped*0.001*0.01.*N_reshaped;
 
