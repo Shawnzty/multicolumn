@@ -9,6 +9,10 @@ This repository contains codes for multicolumnar model paper.
 - `study`: contains scripts to study the data of space traversing. 
     - `disruptOrder.mlx`: try to explain what factor disrupt the ordered pattern.
 
+### Why need multiple layers?
+- Things that cannot be done by only two or several populations.
+- Interaction among layers and populations
+
 ### To explain disrupt order:
 #### from unstable to stable
 - Short time period analysis: the dynamics of PET
