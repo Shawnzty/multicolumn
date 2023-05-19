@@ -1,5 +1,6 @@
 function TransPET = getTransPET(v,g)
 %GETTRANSPET transient pathway current transmission
+% will be very large memory
 %   Detailed explanation goes here
 
 % Connectivity
