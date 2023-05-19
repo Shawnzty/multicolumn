@@ -1,14 +1,14 @@
-clear;
-close all;
-clc;
+% clear;
+% close all;
+% clc;
 initime = clock;
-addpath('funcs');
+addpath('../funcs');
 
 %% changeable parameter settings
 % for parfor
-Delta_e = 0.3;
-Delta_i = 0.032; % none % changable
-Iattn = 0.001;
+Delta_e = 0.2;
+Delta_i = 0.02; % none % changable
+Iattn = 0.02;
 
 time = 4000;
 
@@ -86,7 +86,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','southeast');
     filename = append(num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
     location = append('tryOneFigure/',filename);
-    saveas(gcf, location);
+    % saveas(gcf, location);
 
     %% envelop only during stimulus
     cond1Up = cat(1, r_cond1(1:step_stimIn), cond1Up_tmp); %, r_cond1(step_stimIn+step_stim+comp+1:length(r_cond1)));
@@ -114,7 +114,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','southeast');
     filename = append('env_',num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
     location = append('tryOneFigure/',filename);
-    saveas(gcf, location);
+    % saveas(gcf, location);
     
     %% plot raw one by one
     figure('visible','on');
@@ -148,7 +148,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     ax1.YLim = [low maxDurStim*1.1];
     filename = append('Each_',num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
     location = append('tryOneFigure/',filename);
-    saveas(gcf, location);
+    % saveas(gcf, location);
     
     %% get lateral pathway
     strt_prd = 300000; end_prd = time/dt;
@@ -179,6 +179,22 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     legend("C1 to C2","C2 to C1",'Location','southeast');
     filename = append('Lateral_',num2str(Delta_e),'_',num2str(Delta_i),'_',num2str(Iattn),'.png');
     location = append('tryOneFigure/',filename);
-    saveas(gcf, location);
+    % saveas(gcf, location);
+
+    %% psd
+    maxFreq = 60;
+    [f,P1] = getPSD(squeeze(r(5,end-100000:end,:)),maxFreq);
+    figure();
+    plot(f,P1(:,4),'Color','#7E2F8E','LineWidth',1);
+    hold on;
+    xline(25,'--','LineWidth',1);
+    xlim([0 maxFreq]);
+    xlabel("f (Hz)");
+    ylabel("|P(f)|");
+    
+    [freqs, powers] = psdPeak(squeeze(r(5,end-100000:end,:)),maxFreq);
+
 end
+
+
 disp(etime(clock, initime));
