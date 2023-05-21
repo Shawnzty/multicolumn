@@ -6,7 +6,13 @@ env = zeros(16,size(signal,2),5);
 stimIn = 100000;
 for pop = 1:16
 for cond = 1:5
+    disp(pop);
     [pks,locs] = findpeaks(signal(pop,:,cond));
+    if std(pks(6:20))/mean(pks(6:20)) > 0.1
+        disp("ENTERED!")
+        [pks,locs1] = findpeaks(pks);
+        locs = locs(locs1);
+    end
     xq_beforeStim = 1:stimIn;
     xq_afterStim = (stimIn+1):size(signal,2);
 
