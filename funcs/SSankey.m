@@ -5,7 +5,7 @@ classdef SSankey < handle
         Layer;LayerPos;
         AdjMat;BoolMat;
         RenderingMethod='interp'  % 'left'/'right'/'interp'/'map'/'simple'
-        LabelLocation='left'      % 'left'/'right'/'top'/'center'/'bottom'
+        LabelLocation='left'            % 'left'/'right'/'top'/'center'/'bottom'/'outside'
         Align='center'            % 'up'/'down'/'center'
         BlockScale=0.05;          %  BlockScale>0 ! !
         Sep=0.05;                 %  Sep>=0 ! !
@@ -19,10 +19,10 @@ classdef SSankey < handle
         arginList={'RenderingMethod','LabelLocation','BlockScale',...
                    'Sep','Align','ColorList','Parent','NameList'}
     end
-% 构造函数 =================================================================
+% Constructor =================================================================
     methods
         function obj=SSankey(varargin)
-            % 获取基本数据 -------------------------------------------------
+            % get basic data -------------------------------------------------
             if isa(varargin{1},'matlab.graphics.axis.Axes')
                 obj.ax=varargin{1};varargin(1)=[];
             else  
@@ -31,7 +31,7 @@ classdef SSankey < handle
             obj.Target=varargin{2};
             obj.Value=varargin{3};
             varargin(1:3)=[];
-            % 获取其他信息 -------------------------------------------------
+            % get other info -------------------------------------------------
             for i=1:2:(length(varargin)-1)
                 tid=ismember(obj.arginList,varargin{i});
                 if any(tid)
@@ -41,7 +41,7 @@ classdef SSankey < handle
             if isempty(obj.ax)&&(~isempty(obj.Parent)),obj.ax=obj.Parent;end
             if isempty(obj.ax),obj.ax=gca;end
             obj.ax.NextPlot='add';
-            % 基本数据预处理 -----------------------------------------------
+            % preprocessing of data -----------------------------------------------
             if isempty(obj.NodeList)
                 obj.NodeList=[obj.Source;obj.Target];
                 obj.NodeList=unique(obj.NodeList,'stable');
@@ -51,14 +51,14 @@ classdef SSankey < handle
                 obj.ColorList=[obj.ColorList;rand(length(obj.NodeList),3).*.7];
             end
             obj.VN=length(obj.Value);
-            % 坐标区域基础设置 ---------------------------------------------
+            % basic settings of coordinate region ---------------------------------------------
             obj.ax.YDir='reverse';
             obj.ax.XColor='none';
             obj.ax.YColor='none';
         end
-% 绘图函数 =================================================================
+% Plot functions =================================================================
         function draw(obj)
-            % 生成整体邻接矩阵 ---------------------------------------------
+            % Generate overall adjacency matrix ---------------------------------------------
             obj.AdjMat=zeros(obj.BN,obj.BN);
             for i=1:length(obj.Source)
                 obj.SourceInd(i)=find(strcmp(obj.Source{i},obj.NodeList));
@@ -66,7 +66,7 @@ classdef SSankey < handle
                 obj.AdjMat(obj.SourceInd(i),obj.TargetInd(i))=obj.Value{i};
             end
             obj.BoolMat=abs(obj.AdjMat)>0;
-            % 计算每个对象位于的层、每层方块长度、每个方块位置 ----------------
+            % Calculate the layer of each object, length of the suqares on each layer and the position of squares ----------------
             obj.Layer=zeros(obj.BN,1);
             obj.Layer(sum(obj.BoolMat,1)==0)=1;
             startMat=diag(obj.Layer);
@@ -91,7 +91,7 @@ classdef SSankey < handle
             end
             obj.LayerPos(:,1)=obj.Layer;
             obj.LayerPos(:,2)=obj.Layer+obj.BlockScale;
-            % 根据对齐方式调整Y坐标 -----------------------------------------
+            % Adjust Y coordinate according to alignment method -----------------------------------------
             tMinY=min(obj.LayerPos(:,3));
             tMaxY=max(obj.LayerPos(:,4));
             for i=1:obj.LN
@@ -110,7 +110,7 @@ classdef SSankey < handle
                             min(tBlockPos3)/2-max(tBlockPos4)/2+tMinY/2-tMaxY/2;
                 end
             end
-            % 绘制连接 -----------------------------------------------------
+            % Plot connections -----------------------------------------------------
             for i=1:obj.VN
                 tSource=obj.SourceInd(i);
                 tTarget=obj.TargetInd(i);
@@ -148,12 +148,12 @@ classdef SSankey < handle
                 end
                 obj.LinkHdl(i)=surf(obj.ax,XX,YY,XX.*0,'EdgeColor','none','FaceAlpha',.3,'CData',MeshC);
             end
-            % 绘制方块 -----------------------------------------------------
+            % Plot squares -----------------------------------------------------
             for i=1:obj.BN
                 obj.BlockHdl(i)=fill(obj.ax,obj.LayerPos(i,[1,2,2,1]),...
                     obj.LayerPos(i,[3,3,4,4]),obj.ColorList(i,:),'EdgeColor','none');
             end
-            % 绘制文本 -----------------------------------------------------
+            % Plot labels -----------------------------------------------------
             for i=1:obj.BN
                 switch obj.LabelLocation
                     case 'right'
@@ -171,6 +171,14 @@ classdef SSankey < handle
                     case 'bottom'
                         obj.LabelHdl(i)=text(obj.ax,mean(obj.LayerPos(i,[1,2])),obj.LayerPos(i,4),...
                             obj.NodeList{i},'FontSize',15,'FontName','Times New Roman','HorizontalAlignment','center','VerticalAlignment','top');
+                    case 'outside'
+                        if mod(obj.Layer(i),2)~=0 % odd layer, label on the left
+                            obj.LabelHdl(i)=text(obj.ax,obj.LayerPos(i,1),mean(obj.LayerPos(i,[3,4])),...
+                                [obj.NodeList{i},' '],'FontSize',15,'FontName','Times New Roman','HorizontalAlignment','right');
+                        else % even layer, label on the right
+                            obj.LabelHdl(i)=text(obj.ax,obj.LayerPos(i,2),mean(obj.LayerPos(i,[3,4])),...
+                                [' ',obj.NodeList{i}],'FontSize',15,'FontName','Times New Roman','HorizontalAlignment','left');
+                        end
                 end
             end
             % -------------------------------------------------------------
