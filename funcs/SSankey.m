@@ -1,10 +1,4 @@
 classdef SSankey < handle
-% Copyright (c) 2023, Zhaoxu Liu / slandarer
-% =========================================================================
-% @author : slandarer
-% 公众号  : slandarer随笔
-% 知乎    : slandarer
-% -------------------------------------------------------------------------
     properties
         Source;Target;Value;
         SourceInd;TargetInd;
@@ -222,10 +216,4 @@ classdef SSankey < handle
             end
         end
     end
-% Copyright (c) 2023, Zhaoxu Liu / slandarer
-% =========================================================================
-% @author : slandarer
-% 公众号  : slandarer随笔
-% 知乎    : slandarer
-% -------------------------------------------------------------------------
 end
