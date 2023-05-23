@@ -1,4 +1,5 @@
-function outputArray = normTo1(inputArray)
+function outputArray = normTo1(inputArray)\
+% normalize and add up to 1
     % Ensure the input is a numeric array
     assert(isnumeric(inputArray), 'Input must be a numeric array');
     
