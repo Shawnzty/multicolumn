@@ -1,4 +1,5 @@
 function outMatrix = normBetween01(inMatrix, dim)
+% normalize values between 0 and 1
     % Check if there is a negative value in the matrix
     if any(inMatrix(:) < 0)
         error('Input matrix contains negative values.')
