@@ -18,7 +18,7 @@ for i = 1:6 % 1 is before Stim, 2 is cond 1, 3 is cond 2...
         cond = i-1;
         [pks,locs] = findpeaks(signal(pop,:,cond));
         if std(pks(6:20))/mean(pks(6:20)) > 0.1
-            disp("ENTERED!")
+            disp(append("Pop number: ",num2str(pop),", Condition number:", num2str(cond-1),", ENTERED second round findpeaks."))
             [pks,locs1] = findpeaks(pks);
             locs = locs(locs1);
         end
