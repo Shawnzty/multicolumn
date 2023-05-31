@@ -1,7 +1,10 @@
+addpath('../funcs');
+strt_prd = 350001; end_prd = 400000;
 
-tX = [0,0.050000000000000,0,0.050000000000000];
-tS1 = 0;
-tT1 = 0;
-qX = linspace(0, 0.05, 200);
+[r, v, g] = once(0.2, 0.02, 0.02, 4000);
 
-qY1=interp1(tX,[tS1,tS1,tT1,tT1],qX,'pchip');
+[powerR, centerfreqR, powerIntR] = getPowerFreq(r, strt_prd, end_prd, 20, 40);
+
+integralRC = squeeze(sum(r(:,strt_prd:end_prd,:),2));
+integralR0 = squeeze(sum(r(:,50001:100000,:),2));
+integralR = cat(2,integralR0(:,1), integralRC);

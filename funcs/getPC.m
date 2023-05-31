@@ -38,7 +38,7 @@ end
 pd = v_y - v_x; % pathway potential difference between Y and X
 pp = pd.*pd.*g; % pathway power from Y to X
 
-PC = squeeze(sum(pp,3))*0.001*0.01;
+PC = squeeze(sum(pp,3)).*p*0.001*0.01.*N;
 
 end
 
