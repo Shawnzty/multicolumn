@@ -1,6 +1,6 @@
-function PC = getPC(v,g)
-%GETPC replacement of PET, try to redefine the pathway current
-%   getPC(v(1:16,strt_prd:end_prd,1:5), g(1:16,1:16,strt_prd:end_prd,1:5));
+function pp = getPP(v,g)
+% pathway power or transient pathway current
+%   Detailed explanation goes here
 
 % Connectivity
 p_base = [0.1184, 0.1552, 0.0846, 0.0629, 0.0323, 0.0000, 0.0076, 0.0000;
@@ -17,6 +17,7 @@ p(10,1) = 0.1;
 % p = ones(16,16,5);
 % number of neuron
 N = repmat([10341 2917 10957 2739 2425 532 7197 1474], [16, 2, 5]);
+
 
 % get the pathway powers
 % from Y to X
@@ -38,7 +39,4 @@ end
 pd = v_y - v_x; % pathway potential difference between Y and X
 pp = pd.*pd.*g; % pathway power from Y to X
 
-PC = squeeze(sum(pp,3)).*N*0.001*0.01;
-
 end
-

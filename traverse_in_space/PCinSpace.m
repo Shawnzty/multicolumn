@@ -45,7 +45,7 @@ parfor (n = 1:Delta_steps,9)
     disp(etime(clock, startTime));
 end
 
-filename = append('../../data/','PC_power_integral_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
+filename = append('../../data/','PC_noN_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
 save(filename,'PC','finalR','powerR','centerfreqR','powerIntR','integralR'); 
 disp(etime(clock, initime)/60);
