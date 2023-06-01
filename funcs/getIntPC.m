@@ -1,4 +1,4 @@
-function PC = getPC(v,g)
+function IntPC = getIntPC(v,g)
 %GETPC replacement of PET, try to redefine the pathway current
 %   getPC(v(1:16,strt_prd:end_prd,1:5), g(1:16,1:16,strt_prd:end_prd,1:5));
 
@@ -36,9 +36,9 @@ for i = 1:16 % iterate by column, give potential to each population
 end
 
 pd = v_y - v_x; % pathway potential difference between Y and X
-pp = pd.*pd.*g; % pathway power from Y to X
+pc = pd.*g; % pathway power from Y to X
 
-PC = squeeze(sum(pp,3)).*p*0.001*0.01.*N;
+IntPC = squeeze(sum(pc,3)).*p*0.001*0.01.*N;
 
 end
 

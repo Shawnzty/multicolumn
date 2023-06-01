@@ -1,4 +1,4 @@
-function pp = getPP(v,g)
+function pc = getRealPC(v,g)
 % pathway power or transient pathway current
 %   Detailed explanation goes here
 
@@ -16,7 +16,7 @@ p(2,9) = 0.1;
 p(10,1) = 0.1;
 % p = ones(16,16,5);
 % number of neuron
-N = repmat([10341 2917 10957 2739 2425 532 7197 1474], [16, 2, 5]);
+N = repmat([10341 2917 10957 2739 2425 532 7197 1474], [16, 2]);
 
 
 % get the pathway powers
@@ -37,6 +37,6 @@ for i = 1:16 % iterate by column, give potential to each population
 end
 
 pd = v_y - v_x; % pathway potential difference between Y and X
-pp = pd.*pd.*g; % pathway power from Y to X
+pc = pd.*g.*p.*N; % pathway power from Y to X
 
 end

@@ -38,14 +38,14 @@ parfor (n = 1:Delta_steps,9)
     integralR0 = squeeze(sum(r(:,50001:100000,:),2));
     integralR(n,:,:) = cat(2,integralR0(:,1), integralRC);
 
-    PCC = getPC(v(:,strt_prd:end_prd,:), g(:,:,strt_prd:end_prd,:)); % power in unit of micro watt (\mu W), size: 16*16*time*5
-    PC0 = getPC(v(:,50001:100000,:),g(:,:,50001:100000,:));
+    PCC = getIntPC(v(:,strt_prd:end_prd,:), g(:,:,strt_prd:end_prd,:)); % power in unit of micro watt (\mu W), size: 16*16*time*5
+    PC0 = getIntPC(v(:,50001:100000,:),g(:,:,50001:100000,:));
     PC(n,:,:,:) = cat(3,PC0(:,:,1), PCC);
 
     disp(etime(clock, startTime));
 end
 
-filename = append('../../data/','PC_noN_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
+filename = append('../../data/','IntPC_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
 save(filename,'PC','finalR','powerR','centerfreqR','powerIntR','integralR'); 
 disp(etime(clock, initime)/60);
