@@ -20,11 +20,14 @@ end_prd = 400000;
 
 % container
 PC = zeros(Delta_steps, 16, 16, 6);
+IntCyclePC = zeros(Delta_steps, 16, 16, 6); % integral PC over one oscillation cycle
+
 finalR = zeros(Delta_steps, 16, 6); % level of firing rate
 powerR = zeros(Delta_steps, 16, 6); % power of gamma band frequency
 centerfreqR = zeros(Delta_steps,16, 6); % center frequency of gamma oscillation
 powerIntR = zeros(Delta_steps,16, 6); % integral of the power of gamma band frequency
 integralR = zeros(Delta_steps,16, 6); % integral of firing rate over time
+IntCycleR = zeros(Delta_steps, 16, 6); % integral firing rate over one oscillation cycle
 
 parfor (n = 1:Delta_steps,9)
     startTime = clock;
@@ -37,7 +40,7 @@ parfor (n = 1:Delta_steps,9)
     integralRC = squeeze(sum(r(:,strt_prd:end_prd,:),2));
     integralR0 = squeeze(sum(r(:,50001:100000,:),2));
     integralR(n,:,:) = cat(2,integralR0(:,1), integralRC);
-
+    
     PCC = getIntPC(v(:,strt_prd:end_prd,:), g(:,:,strt_prd:end_prd,:)); % power in unit of micro watt (\mu W), size: 16*16*time*5
     PC0 = getIntPC(v(:,50001:100000,:),g(:,:,50001:100000,:));
     PC(n,:,:,:) = cat(3,PC0(:,:,1), PCC);
