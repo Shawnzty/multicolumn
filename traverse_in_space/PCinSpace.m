@@ -18,6 +18,7 @@ time = 4000;
 strt_prd = 350001;
 end_prd = 400000;
 
+
 % container
 PC = zeros(Delta_steps, 16, 16, 6);
 IntCyclePC = zeros(Delta_steps, 16, 16, 6); % integral PC over one oscillation cycle
@@ -27,7 +28,9 @@ powerR = zeros(Delta_steps, 16, 6); % power of gamma band frequency
 centerfreqR = zeros(Delta_steps,16, 6); % center frequency of gamma oscillation
 powerIntR = zeros(Delta_steps,16, 6); % integral of the power of gamma band frequency
 integralR = zeros(Delta_steps,16, 6); % integral of firing rate over time
-IntCycleR = zeros(Delta_steps, 16, 6); % integral firing rate over one oscillation cycle
+intCycleR = zeros(Delta_steps, 16, 6); % integral firing rate over one oscillation cycle
+
+
 
 parfor (n = 1:Delta_steps,9)
     startTime = clock;
