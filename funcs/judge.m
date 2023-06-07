@@ -7,7 +7,7 @@ function [lateral, order, gamma, beta, ratio, osci, level, psd] = judge(r, v, g,
 % betaSheet = zeros(delta_e_steps, delta_i_steps,5); % -1-NaN, 0-noBeta, XX-frequency
 % ratioSheet = zeros(delta_e_steps, delta_i_steps); % -1-NaN, X-ratio
 % osciSheet = zeros(delta_e_steps, delta_i_steps,2,5); % before and after; -1-NaN, 0-noOsci, 1-hasOsci
-% levelSheet = zeros();
+% levelSheet = zeros(Delta_e_steps, Delta_i_steps, 6); % before, after1 2 3 4 5
 
 % default value for output
 lateral = -1*ones(5,1); order = -1; gamma = -1*ones(5,1);
