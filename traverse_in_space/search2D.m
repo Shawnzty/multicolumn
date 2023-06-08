@@ -1,10 +1,10 @@
-% not use
+% 20230608 parameter search in 2D space
 clear;
 close all;
 clc;
 initime = clock;
 
-addpath('funcs');
+addpath('..\funcs');
 
 %% changeable parameter settings
 Delta_e_start = 0; % cannot equal to 0
@@ -20,17 +20,15 @@ Iattn = 0.02;
 alltime = 4000;
 
 % container
-PETsheet = zeros(Delta_e_steps, Delta_i_steps, 16, 16, 6); % -1-NaN, 0-disagree, 1-agree
-orderSheet= zeros(Delta_e_steps, Delta_i_steps); % -1-NaN, 0-disagree, 1-agree
-gammaSheet = zeros(Delta_e_steps, Delta_i_steps,5); % -1-NaN, 0-noGamma, XX-frequency
-betaSheet = zeros(Delta_e_steps, Delta_i_steps,5); % -1-NaN, 0-noBeta, XX-frequency
-ratioSheet = zeros(Delta_e_steps, Delta_i_steps); % -1-NaN, X-ratio
-osciSheet = zeros(Delta_e_steps, Delta_i_steps,2,5); % before and after; -1-NaN, 0-noOsci, 1-hasOsci
-levelSheet = zeros(Delta_e_steps, Delta_i_steps, 6); % before, after1 2 3 4 5
-psdSheet = zeros(Delta_e_steps, Delta_i_steps,6); % before, after 12345
+psdPeaksSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % XX peaks in psd, e.g. -1-NaN, 5 peaks, 12 peaks
+intpsdSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % integral over [second f point, 60], -1-NaN, XX-all power
+gammaPSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); %  power in gamma band (25-40Hz), -1-NaN, XX-gamma power
+betaPSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); %  power in beta band (12-25Hz), -1-NaN, XX-beta power
+levelSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % before, after1 2 3 4 5
+osciSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % before and after; -1-NaN, 0-noOsci, 1-hasOsci
 
 % par-9 ok
-parfor Delta_e_n = 1:Delta_e_steps % linspace(0.001,0.5,10) % 0.28 % changable
+parfor (Delta_e_n = 1:Delta_e_steps,9) % linspace(0.001,0.5,10)
     Delta_e = Delta_e_start+ Delta_e_n*(Delta_e_end/Delta_e_steps);
 
 for Delta_i_n = 1:Delta_i_steps % none % changable
@@ -42,26 +40,26 @@ close all;
 startTime = clock;
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
-[r,v,g] = once(Delta_e, Delta_i, Iattn, alltime);
-[lateral, order, gamma, beta, ratio, osci, level, psd] = judge(r, v, g, alltime);
+[r,~,~] = once(Delta_e, Delta_i, Iattn, alltime);
+[psdPeaks, intpsd, gammaP, betaP, level, osci] = record(r, alltime);
 
-lateralSheet(Delta_i_n, Delta_e_n,:) = lateral;
-orderSheet(Delta_i_n, Delta_e_n) = order;
-gammaSheet(Delta_i_n, Delta_e_n,:) = gamma;
-betaSheet(Delta_i_n, Delta_e_n,:) = beta;
-ratioSheet(Delta_i_n, Delta_e_n) = ratio;
+psdPeaksSheet(Delta_i_n, Delta_e_n,:,:) = psdPeaks;
+intpsdSheet(Delta_i_n, Delta_e_n,:,:) = intpsd;
+gammaPSheet(Delta_i_n, Delta_e_n,:,:) = gammaP;
+betaPSheet(Delta_i_n, Delta_e_n,:,:) = betaP;
+levelSheet(Delta_i_n, Delta_e_n,:,:) = level;
 osciSheet(Delta_i_n, Delta_e_n,:,:) = osci;
-levelSheet(Delta_i_n, Delta_e_n,:) = level;
-psdSheet(Delta_i_n, Delta_e_n,:) = psd;
+
 disp(etime(clock, startTime));
+
 end
 end
-lateralSheet = flip(lateralSheet); orderSheet = flip(orderSheet);
-gammaSheet = flip(gammaSheet); betaSheet = flip(betaSheet);
-ratioSheet = flip(ratioSheet); osciSheet = flip(osciSheet);
-levelSheet = flip(levelSheet); psdSheet = flip(psdSheet);
+psdPeaksSheet = flip(psdPeaksSheet); intpsdSheet = flip(intpsdSheet);
+gammaPSheet = flip(gammaPSheet); betaPSheet = flip(betaPSheet);
+levelSheet = flip(levelSheet); osciSheet = flip(osciSheet);
+ 
 % end
-filename = append('all_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
+filename = append('../../data/','allpsd_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
-save(filename,'lateralSheet','orderSheet','gammaSheet','betaSheet','ratioSheet','osciSheet','levelSheet','psdSheet'); 
+save(filename,'psdPeaksSheet','intpsdSheet','gammaPSheet','betaPSheet','osciSheet','levelSheet'); 
 disp(etime(clock, initime)/60);

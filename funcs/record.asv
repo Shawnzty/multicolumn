@@ -62,14 +62,7 @@ r_cond5 = r(pop,end-50000:end,5)';
     level = [cond0Mean cond1Mean cond2Mean cond3Mean cond4Mean cond5Mean];
 
     % psd
-    r_forpsd = [r_cond0; r_cond1; r_cond2; r_cond3; r_cond4; r_cond5];
-    [f, P1] = getPSD(r_forpsd, 60);
-    
-    % psdPeaks
-
-    % intpsd
-    
-
+    [freqs, powers] 
 
 end
 end
