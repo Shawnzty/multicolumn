@@ -1,6 +1,20 @@
 addpath('../funcs');
-strt_prd = 350001; end_prd = 400000;
+alltime = 4000;
 
-[r, v, g] = once(0.2, 0.02, 0.02, 4000);
+% container
+psdPeaksSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % XX peaks in psd, e.g. -1-NaN, 5 peaks, 12 peaks
+intpsdSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % integral over [second f point, 60], -1-NaN, XX-all power
+gammaPSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); %  power in gamma band (25-40Hz), -1-NaN, XX-gamma power
+betaPSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); %  power in beta band (12-25Hz), -1-NaN, XX-beta power
+levelSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % before, after1 2 3 4 5
+osciSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % before and after; -1-NaN, 0-noOsci, 1-hasOsci
 
-[period_begin, period_finish] = getPeriod(r);
+[r,~,~] = once(0.2, 0.0095, 0.02, alltime);
+[psdPeaks, intpsd, gammaP, betaP, level, osci] = record(r, alltime);
+
+psdPeaksSheet(1, 1,:,:) = psdPeaks;
+intpsdSheet(1, 1,:,:) = intpsd;
+gammaPSheet(1, 1,:,:) = gammaP;
+betaPSheet(1, 1,:,:) = betaP;
+levelSheet(1, 1,:,:) = level;
+osciSheet(1, 1,:,:) = osci;

@@ -1,6 +1,7 @@
 function [f,P1] = getPSD(sig,maxFreq)
 %GETPSD get power spectrum density
-%   already remove the first freq value
+% already remove the first freq value
+% return f(n), P1(n,conds), n is the linear point of f axis.
 Fs = 100000;            % Sampling frequency                    
 L = size(sig,1);             % Length of signal
 
