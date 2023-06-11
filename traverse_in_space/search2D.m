@@ -17,7 +17,7 @@ Delta_i_steps = 200;
 
 Iattn = 0.02;
 
-alltime = 4000;
+alltime = 5000;
 
 % container
 psdPeaksSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % XX peaks in psd, e.g. -1-NaN, 5 peaks, 12 peaks
@@ -60,7 +60,7 @@ gammaPSheet = flip(gammaPSheet); betaPSheet = flip(betaPSheet);
 levelSheet = flip(levelSheet); osciSheet = flip(osciSheet);
  
 % end
-filename = append('../../data/','allpsd_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
+filename = append('../../data/','all5000_levelMethod2_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
 save(filename,'psdPeaksSheet','intpsdSheet','gammaPSheet','betaPSheet','osciSheet','levelSheet'); 
 disp(etime(clock, initime)/60);

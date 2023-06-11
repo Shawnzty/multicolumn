@@ -42,23 +42,30 @@ r_cond5 = r(pop,end-50000:end,5)';
     osci(pop, 1) = beforeOsci; osci(pop, 2:end) = afterOsci;
     
     % level
-    envMthd = 'peak'; envWdo = 4000;
-    [r_cond0_env, ] = envelope(r_cond0,envWdo,envMthd);
-    [r_cond1_env, ] = envelope(r_cond1,envWdo,envMthd);
-    [r_cond2_env, ] = envelope(r_cond2,envWdo,envMthd);
-    [r_cond3_env, ] = envelope(r_cond3,envWdo,envMthd);
-    [r_cond4_env, ] = envelope(r_cond4,envWdo,envMthd);
-    [r_cond5_env, ] = envelope(r_cond5,envWdo,envMthd);
-    r_cond0_env = r_cond0_env(end-30000:end-envWdo);
-    r_cond1_env = r_cond1_env(end-30000:end-envWdo);
-    r_cond2_env = r_cond2_env(end-30000:end-envWdo);
-    r_cond3_env = r_cond3_env(end-30000:end-envWdo);
-    r_cond4_env = r_cond4_env(end-30000:end-envWdo);
-    r_cond5_env = r_cond5_env(end-30000:end-envWdo);
-    
-    cond0Mean = mean(r_cond0_env); cond1Mean = mean(r_cond1_env);
-    cond2Mean = mean(r_cond2_env); cond3Mean = mean(r_cond3_env);
-    cond4Mean = mean(r_cond4_env); cond5Mean = mean(r_cond5_env);
+    % method 1
+    % envMthd = 'peak'; envWdo = 4000;
+    % [r_cond0_env, ] = envelope(r_cond0,envWdo,envMthd);
+    % [r_cond1_env, ] = envelope(r_cond1,envWdo,envMthd);
+    % [r_cond2_env, ] = envelope(r_cond2,envWdo,envMthd);
+    % [r_cond3_env, ] = envelope(r_cond3,envWdo,envMthd);
+    % [r_cond4_env, ] = envelope(r_cond4,envWdo,envMthd);
+    % [r_cond5_env, ] = envelope(r_cond5,envWdo,envMthd);
+    % r_cond0_env = r_cond0_env(end-30000:end-envWdo);
+    % r_cond1_env = r_cond1_env(end-30000:end-envWdo);
+    % r_cond2_env = r_cond2_env(end-30000:end-envWdo);
+    % r_cond3_env = r_cond3_env(end-30000:end-envWdo);
+    % r_cond4_env = r_cond4_env(end-30000:end-envWdo);
+    % r_cond5_env = r_cond5_env(end-30000:end-envWdo);
+    % 
+    % cond0Mean = mean(r_cond0_env); cond1Mean = mean(r_cond1_env);
+    % cond2Mean = mean(r_cond2_env); cond3Mean = mean(r_cond3_env);
+    % cond4Mean = mean(r_cond4_env); cond5Mean = mean(r_cond5_env);
+    % level(pop,:) = [cond0Mean cond1Mean cond2Mean cond3Mean cond4Mean cond5Mean];
+
+    % method 2
+    cond0Mean = mean(r_cond0); cond1Mean = mean(r_cond1);
+    cond2Mean = mean(r_cond2); cond3Mean = mean(r_cond3);
+    cond4Mean = mean(r_cond4); cond5Mean = mean(r_cond5);
     level(pop,:) = [cond0Mean cond1Mean cond2Mean cond3Mean cond4Mean cond5Mean];
 
     % psd
