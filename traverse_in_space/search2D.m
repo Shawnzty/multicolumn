@@ -28,7 +28,7 @@ levelSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % before, after1 2 3 4 
 osciSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % before and after; -1-NaN, 0-noOsci, 1-hasOsci
 
 % par-9 ok
-parfor (Delta_e_n = 1:Delta_e_steps,16) % linspace(0.001,0.5,10)
+parfor (Delta_e_n = 1:Delta_e_steps,14) % linspace(0.001,0.5,10)
     Delta_e = Delta_e_start+ Delta_e_n*(Delta_e_end/Delta_e_steps);
 
 for Delta_i_n = 1:Delta_i_steps % none % changable
