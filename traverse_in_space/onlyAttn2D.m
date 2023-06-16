@@ -64,5 +64,5 @@ meanSheet = flip(meanSheet); osciSheet = flip(osciSheet);
 % end
 filename = append('../../data/','all4000_onlyAttn_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
-save(filename,'psdPeaksSheet','intpsdSheet','gammaPSheet','betaPSheet','osciSheet','meanSheet'); 
+save(filename,'psdPeaksSheet','intpsdSheet','gammaPSheet','betaPSheet','osciSheet','meanSheet','envSheet'); 
 disp(etime(clock, initime)/60);
