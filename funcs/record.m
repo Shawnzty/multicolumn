@@ -1,4 +1,4 @@
-function [psdPeaks, intpsd, gammaP, betaP, level, osci] = record(r, allTime)
+function [psdPeaks, intpsd, gammaP, betaP, meanLevel, envLevel, osci] = record(r, allTime)
 % RECORD give property of the parameter setting
 
 % psdPeaksSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % XX peaks in psd, e.g. -1-NaN, 5 peaks, 12 peaks
@@ -12,7 +12,7 @@ function [psdPeaks, intpsd, gammaP, betaP, level, osci] = record(r, allTime)
 
 % default value for output
 psdPeaks = -1*ones(16,6); intpsd = -1*ones(16,6); gammaP = -1*ones(16,6);
-betaP = -1*ones(16,6); osci = -1*ones(16,6); level = -1*ones(16,6);
+betaP = -1*ones(16,6); osci = -1*ones(16,6); meanLevel = -1*ones(16,6); envLevel = -1*ones(16,6);
 
 dt = 0.01;
 stimIn = 1000;
@@ -43,30 +43,30 @@ r_cond5 = r(pop,end-50000:end,5)';
     
     % level
     % method 1
-    % envMthd = 'peak'; envWdo = 4000;
-    % [r_cond0_env, ] = envelope(r_cond0,envWdo,envMthd);
-    % [r_cond1_env, ] = envelope(r_cond1,envWdo,envMthd);
-    % [r_cond2_env, ] = envelope(r_cond2,envWdo,envMthd);
-    % [r_cond3_env, ] = envelope(r_cond3,envWdo,envMthd);
-    % [r_cond4_env, ] = envelope(r_cond4,envWdo,envMthd);
-    % [r_cond5_env, ] = envelope(r_cond5,envWdo,envMthd);
-    % r_cond0_env = r_cond0_env(end-30000:end-envWdo);
-    % r_cond1_env = r_cond1_env(end-30000:end-envWdo);
-    % r_cond2_env = r_cond2_env(end-30000:end-envWdo);
-    % r_cond3_env = r_cond3_env(end-30000:end-envWdo);
-    % r_cond4_env = r_cond4_env(end-30000:end-envWdo);
-    % r_cond5_env = r_cond5_env(end-30000:end-envWdo);
-    % 
-    % cond0Mean = mean(r_cond0_env); cond1Mean = mean(r_cond1_env);
-    % cond2Mean = mean(r_cond2_env); cond3Mean = mean(r_cond3_env);
-    % cond4Mean = mean(r_cond4_env); cond5Mean = mean(r_cond5_env);
-    % level(pop,:) = [cond0Mean cond1Mean cond2Mean cond3Mean cond4Mean cond5Mean];
+    envMthd = 'peak'; envWdo = 4000;
+    [r_cond0_env, ] = envelope(r_cond0,envWdo,envMthd);
+    [r_cond1_env, ] = envelope(r_cond1,envWdo,envMthd);
+    [r_cond2_env, ] = envelope(r_cond2,envWdo,envMthd);
+    [r_cond3_env, ] = envelope(r_cond3,envWdo,envMthd);
+    [r_cond4_env, ] = envelope(r_cond4,envWdo,envMthd);
+    [r_cond5_env, ] = envelope(r_cond5,envWdo,envMthd);
+    r_cond0_env = r_cond0_env(end-30000:end-envWdo);
+    r_cond1_env = r_cond1_env(end-30000:end-envWdo);
+    r_cond2_env = r_cond2_env(end-30000:end-envWdo);
+    r_cond3_env = r_cond3_env(end-30000:end-envWdo);
+    r_cond4_env = r_cond4_env(end-30000:end-envWdo);
+    r_cond5_env = r_cond5_env(end-30000:end-envWdo);
+
+    cond0Mean = mean(r_cond0_env); cond1Mean = mean(r_cond1_env);
+    cond2Mean = mean(r_cond2_env); cond3Mean = mean(r_cond3_env);
+    cond4Mean = mean(r_cond4_env); cond5Mean = mean(r_cond5_env);
+    envLevel(pop,:) = [cond0Mean cond1Mean cond2Mean cond3Mean cond4Mean cond5Mean];
 
     % method 2
     cond0Mean = mean(r_cond0); cond1Mean = mean(r_cond1);
     cond2Mean = mean(r_cond2); cond3Mean = mean(r_cond3);
     cond4Mean = mean(r_cond4); cond5Mean = mean(r_cond5);
-    level(pop,:) = [cond0Mean cond1Mean cond2Mean cond3Mean cond4Mean cond5Mean];
+    meanLevel(pop,:) = [cond0Mean cond1Mean cond2Mean cond3Mean cond4Mean cond5Mean];
 
     % psd
     r_forpsd = cat(2,r_cond0,r_cond1,r_cond2,r_cond3,r_cond4,r_cond5);

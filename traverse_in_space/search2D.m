@@ -17,14 +17,15 @@ Delta_i_steps = 200;
 
 Iattn = 0.02;
 
-alltime = 5000;
+alltime = 4000;
 
 % container
 psdPeaksSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % XX peaks in psd, e.g. -1-NaN, 5 peaks, 12 peaks
 intpsdSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % integral over [second f point, 60], -1-NaN, XX-all power
 gammaPSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); %  power in gamma band (25-40Hz), -1-NaN, XX-gamma power
 betaPSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); %  power in beta band (12-25Hz), -1-NaN, XX-beta power
-levelSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % before, after1 2 3 4 5
+meanSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % before, after1 2 3 4 5
+envSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6);
 osciSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % before and after; -1-NaN, 0-noOsci, 1-hasOsci
 
 % par-9 ok
@@ -41,13 +42,14 @@ startTime = clock;
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
 [r,~,~] = once(Delta_e, Delta_i, Iattn, alltime);
-[psdPeaks, intpsd, gammaP, betaP, level, osci] = record(r, alltime);
+[psdPeaks, intpsd, gammaP, betaP, meanLevel, envLevel, osci] = record(r, alltime);
 
 psdPeaksSheet(Delta_i_n, Delta_e_n,:,:) = psdPeaks;
 intpsdSheet(Delta_i_n, Delta_e_n,:,:) = intpsd;
 gammaPSheet(Delta_i_n, Delta_e_n,:,:) = gammaP;
 betaPSheet(Delta_i_n, Delta_e_n,:,:) = betaP;
-levelSheet(Delta_i_n, Delta_e_n,:,:) = level;
+meanSheet(Delta_i_n, Delta_e_n,:,:) = meanLevel;
+envSheet(Delta_i_n, Delta_e_n,:,:) = envLevel;
 osciSheet(Delta_i_n, Delta_e_n,:,:) = osci;
 
 disp(etime(clock, startTime));
@@ -60,7 +62,7 @@ gammaPSheet = flip(gammaPSheet); betaPSheet = flip(betaPSheet);
 levelSheet = flip(levelSheet); osciSheet = flip(osciSheet);
  
 % end
-filename = append('../../data/','all5000_levelMethod2_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
+filename = append('../../data/','all4000_withAttn_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
-save(filename,'psdPeaksSheet','intpsdSheet','gammaPSheet','betaPSheet','osciSheet','levelSheet'); 
+save(filename,'psdPeaksSheet','intpsdSheet','gammaPSheet','betaPSheet','osciSheet','meanSheet','envSheet'); 
 disp(etime(clock, initime)/60);
