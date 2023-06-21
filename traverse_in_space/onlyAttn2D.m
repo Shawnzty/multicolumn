@@ -60,7 +60,8 @@ end
 psdPeaksSheet = flip(psdPeaksSheet); intpsdSheet = flip(intpsdSheet);
 gammaPSheet = flip(gammaPSheet); betaPSheet = flip(betaPSheet);
 meanSheet = flip(meanSheet); osciSheet = flip(osciSheet);
- 
+envSheet = flip(envSheet);
+
 % end
 filename = append('../../data/','all4000_onlyAttn_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
     num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
