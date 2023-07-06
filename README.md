@@ -13,15 +13,6 @@ This repository contains codes for multicolumnar model paper.
 - Things that cannot be done by only two or several populations.
 - Interaction among layers and populations
 
-### To explain disrupt order:
-#### from unstable to stable
-- Short time period analysis: the dynamics of PET
-- Integrate time analysis: integration of PET
-
-#### From stable gamma+beta to stable gamma
-- Short time period analysis: Find different pattern of PET
-- Integrate time analysis: integration of PET
-
 ### Notes:
 - `data` is saved locally and can be found in parent folder.
 - `paper` is saved locally and can be found in parent folder.
