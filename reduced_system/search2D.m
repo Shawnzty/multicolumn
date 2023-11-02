@@ -1,4 +1,4 @@
-% 20230608 parameter search in 2D space
+% parameter search in 2D space
 clear;
 close all;
 clc;
@@ -9,14 +9,14 @@ addpath('..\funcs');
 %% changeable parameter settings
 Delta_e_start = 0; % cannot equal to 0
 Delta_e_end = 0.5; % can equal to 0.5
-Delta_e_steps = 200;
+Delta_e_steps = 60;
 
 Delta_i_start = 0; % cannot equal to 0
 Delta_i_end = 0.05; % can equal to 0.05
-Delta_i_steps = 200;
+Delta_i_steps = 60;
 
 Iattn = 0.02;
-
+% ratio_sens_attn = 0; % 3
 alltime = 4000;
 
 % container
@@ -29,7 +29,8 @@ envSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6);
 osciSheet = zeros(Delta_e_steps, Delta_i_steps, 16, 6); % before and after; -1-NaN, 0-noOsci, 1-hasOsci
 
 % par-9 ok
-parfor (Delta_e_n = 1:Delta_e_steps,14) % linspace(0.001,0.5,10)
+parfor (Delta_e_n = 1:Delta_e_steps,9) % linspace(0.001,0.5,10)
+% for Delta_e_n = 1:Delta_e_steps
     Delta_e = Delta_e_start+ Delta_e_n*(Delta_e_end/Delta_e_steps);
 
 for Delta_i_n = 1:Delta_i_steps % none % changable
@@ -41,7 +42,7 @@ close all;
 startTime = clock;
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
-[r,~,~] = once(Delta_e, Delta_i, Iattn, alltime);
+[r,~,~] = SandA_reduce_L46(Delta_e, Delta_i, Iattn, ratio_sens_attn, alltime);
 [psdPeaks, intpsd, gammaP, betaP, meanLevel, envLevel, osci] = record(r, alltime);
 
 psdPeaksSheet(Delta_i_n, Delta_e_n,:,:) = psdPeaks;
@@ -63,7 +64,7 @@ envSheet = flip(envSheet); meanSheet = flip(meanSheet);
 osciSheet = flip(osciSheet);
 
 % end
-filename = append('../../data/','all4000_withAttn_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
-    num2str(Delta_i_start),'_',num2str(Delta_i_end), '_Iattn_', num2str(Iattn), '.mat');
+filename = append('../../data/','reducedL46_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
+    num2str(Delta_i_start),'_',num2str(Delta_i_end), '_', num2str(Iattn), '_ratio_', num2str(ratio_sens_attn), '.mat');
 save(filename,'psdPeaksSheet','intpsdSheet','gammaPSheet','betaPSheet','osciSheet','meanSheet','envSheet'); 
 disp(etime(clock, initime)/60);

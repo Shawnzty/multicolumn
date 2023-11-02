@@ -41,7 +41,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
         r_cond4(end-40000:end,1), maxDurStim, Delta_e, Delta_i, Iattn);
 
     if rawORenv ~= 1
-    figure('visible','off');
+    figure('visible','on');
 %     rectangle('Position',[stimIn 0.00005+lower stimDur upper],'FaceColor','#F5F5F5', ...
 %         'EdgeColor','#F5F5F5','LineWidth',1);
 %     hold on
@@ -59,7 +59,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     ylabel("Firing rate (Hz)");
     legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','southeast');
     % disp(location);
-    saveas(gcf, location);
+    % saveas(gcf, location);
     end
 
     if rawORenv ~= 0
@@ -71,7 +71,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     cond4Up = cat(1, r_cond4(1:step_stimIn), cond4Up_tmp); % , r_cond4(step_stimIn+step_stim+comp+1:length(r_cond1)));
     cond5Up = cat(1, r_cond5(1:step_stimIn), cond5Up_tmp); % , r_cond5(step_stimIn+step_stim+comp+1:length(r_cond1)));
 
-    figure('visible','off');
+    figure('visible','on');
 %     rectangle('Position',[stimIn 0.00005+lower stimDur upper],'FaceColor','#F5F5F5', ...
 %         'EdgeColor','#F5F5F5','LineWidth',1);
 %     hold on
@@ -98,7 +98,7 @@ if maxVal<100 && sum(isnan(last))==0 && maxDurStim > 0
     ylabel("Firing rate (Hz)");
     legend('Cond1','Cond2','Cond3','Cond4','Cond5','Location','southeast');
     % disp(location);
-    saveas(gcf, location_env);
+    % saveas(gcf, location_env);
     end
     
 end
