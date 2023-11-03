@@ -1,10 +1,9 @@
-function [r,v,g] = SandA_reduce_L46(Delta_e, Delta_i, Iattn, ratio_sens_attn, allTime)
+function [r,v,g] = onlyA_reduce_L6(Delta_e, Delta_i, Iattn, allTime)
 %ONCE run the simulation once including five conditions
 %   INPUT arguments includes parameters of the column model
 %   OUTPUT arguments are the results of computation, including the time
 %   courses of firing rate, average membrane potential and synaptic
 %   conductance.
-%   BY SETTING "ratio_sens_attn = 0", IT IS FOR ONLY ATTENTION CASE!
 %   this function only execute computation but NOT SAVE.
 
 % time = allTime;
@@ -19,36 +18,18 @@ step_stimIn = stimIn/dt;
 step_stim = stimDur/dt;
 step_stimOut = stimOut/dt;
 
-% ratio_sens_attn = 3; % ZERO FOR ONLY ATTN
-Isens = Iattn*ratio_sens_attn;
+ratio_sens_attn = 0; % ONLY ATTN
+Isens =  Iattn*ratio_sens_attn;
 
 ratio_barE_attn = 16/3; % linspace(0.5,5,20) % fix at 16/3=5.33
 I_bare = Iattn*ratio_barE_attn; % 3
 ratioEi_Ibar = 1600/2000; % fix at 1600/2000 = 0.8
 I_bari = I_bare*ratioEi_Ibar;
 
-% fake sensory input
-sens_conn_mat = [0.0846, 0.0629;
-                 0.0363, 0.0515;
-                 0.0411, 0.0057;
-                 0.0209, 0.0022];
-N_L4E = 10957;
-N_L4I = 2739;
-ratioIE_Isens = 0.0619/0.0983;
-
-sens_conn_mat(:,1) = sens_conn_mat(:,1)*N_L4E;
-sens_conn_mat(:,2) = sens_conn_mat(:,2)*N_L4I;
-sens_conn_mat(:,2) = sens_conn_mat(:,2)*ratioIE_Isens;
-sens_to_pops = sens_conn_mat(:,1) - sens_conn_mat(:,2); % E-I
-sens_to_pops = sens_to_pops/max(sens_to_pops); % normalize
-Isens = Isens*sens_to_pops;
-
-I_sensPre_L23 = [Isens(1);Isens(2)];
-I_sensNot_L23 = 0.1*I_sensPre_L23;
-I_sensBoth_L23 = 1.1*I_sensPre_L23;
-I_sensPre_L5 = [Isens(3);Isens(4)];
-I_sensNot_L5 = 0.1*I_sensPre_L5;
-I_sensBoth_L5 = 1.1*I_sensPre_L5;
+ratioEi_Isens = 0.0619/0.0983; % 0.0619/0.0983
+I_sensPre = [Isens;Isens*ratioEi_Isens]; % [E;I][6;3]
+I_sensNot = 0.1*I_sensPre; % 0.01
+I_sensBoth = 1.1*I_sensPre; % 0.6
 
 ratioEi_Iattn = 0.085/0.1; % 0.085/0.1
 I_attn = [Iattn;Iattn*ratioEi_Iattn]; % renormalize to [0,1]
@@ -86,9 +67,10 @@ p = [p_base, zeros(8,8); zeros(8,8), p_base];
 p(2,9) = 0.1;
 p(10,1) = 0.1;
 p = repmat(p,[1,1,5]);
-% remove L4 and L6
-p(3:4,:,:) = 0; p(7:8,:,:) = 0; p(11:12,:,:) = 0; p(15:16,:,:) = 0;
-p(:,3:4,:) = 0; p(:,7:8,:) = 0; p(:,11:12,:) = 0; p(:,15:16,:) = 0;
+
+% remove L6
+p(7:8,:,:) = 0; p(15:16,:,:) = 0;
+p(:,7:8,:) = 0; p(:,15:16,:) = 0;
 
 tau_max = max(max(max(tau)));
 r = zeros(length(N),step_all+1,5); % Population, Step % variation
@@ -98,53 +80,37 @@ v(:,1:tau_max+1,:)=-70*ones(length(N),tau_max+1,5); % initial condition
 
 %% conditions
 % if condition == 1
-    I_bar_ext(:,:,1) = [zeros(2,step_stimIn),I_sensPre_L23*ones(1,step_stim),zeros(2,step_stimOut); % 1L2/3e 1L2/3i;
-                 zeros(2,step_all); % 1L4e 1L4i;
-                 zeros(2,step_stimIn),I_sensPre_L5*ones(1,step_stim),zeros(2,step_stimOut); % 1L5e 1L5i;
-                 zeros(2,step_all); % 1L6e 1L6i;
-                 zeros(2,step_stimIn),I_sensNot_L23*ones(1,step_stim),zeros(2,step_stimOut); % 2L2/3e 2L2/3i;
-                 zeros(2,step_all); % 2L4e 2L4i;
-                 zeros(2,step_stimIn),I_sensNot_L5*ones(1,step_stim),zeros(2,step_stimOut); % 2L5e 2L5i;
-                 zeros(2,step_all)]; % 2L6e 2L6i;
+    I_bar_ext(:,:,1) = [zeros(2,step_all); zeros(2,step_stimIn),I_sensPre*ones(1,step_stim),zeros(2,step_stimOut); % 1L2/3e 1L2/3i; 1L4e 1L4i;
+                 zeros(2,step_all); zeros(2,step_all); % 1L5e 1L5i; 1L6e 1L6i;
+                 zeros(2,step_all); zeros(2,step_stimIn),I_sensNot*ones(1,step_stim),zeros(2,step_stimOut); % 2L2/3e 2L2/3i; 2L4e 2L4i;
+                 zeros(2,step_all); zeros(2,step_all)]; % 2L5e 2L5i; 2L6e 2L6i;
 
 % elseif condition == 2
-    I_bar_ext(:,:,2) = [zeros(2,step_stimIn),I_sensNot_L23*ones(1,step_stim),zeros(2,step_stimOut); % 1L2/3e 1L2/3i;
-                 zeros(2,step_all); % 1L4e 1L4i;
-                 zeros(2,step_stimIn),I_sensNot_L5*ones(1,step_stim),zeros(2,step_stimOut); % 1L5e 1L5i;
-                 zeros(2,step_all); % 1L6e 1L6i;
-                 zeros(2,step_stimIn),I_sensPre_L23*ones(1,step_stim),zeros(2,step_stimOut); % 2L2/3e 2L2/3i;
-                 zeros(2,step_all); % 2L4e 2L4i;
-                 zeros(2,step_stimIn),I_sensPre_L5*ones(1,step_stim),zeros(2,step_stimOut); % 2L5e 2L5i;
-                 zeros(2,step_all)]; % 2L6e 2L6i;
+    I_bar_ext(:,:,2) = [zeros(2,step_all); zeros(2,step_stimIn),I_sensNot*ones(1,step_stim),zeros(2,step_stimOut); % 1L2/3e 1L2/3i; 1L4e 1L4i;
+                 zeros(2,step_all); zeros(2,step_all); % 1L5e 1L5i; 1L6e 1L6i;
+                 zeros(2,step_all); zeros(2,step_stimIn),I_sensPre*ones(1,step_stim),zeros(2,step_stimOut); % 2L2/3e 2L2/3i; 2L4e 2L4i;
+                 zeros(2,step_all); zeros(2,step_all)]; % 2L5e 2L5i; 2L6e 2L6i;
 
 % elseif condition == 3
-    I_bar_ext(:,:,3) = [zeros(2,step_stimIn),I_sensBoth_L23*ones(1,step_stim),zeros(2,step_stimOut); % 1L2/3e 1L2/3i;
-                 zeros(2,step_all); % 1L4e 1L4i;
-                 zeros(2,step_stimIn),I_sensBoth_L5*ones(1,step_stim),zeros(2,step_stimOut); % 1L5e 1L5i;
-                 zeros(2,step_all); % 1L6e 1L6i;
-                 zeros(2,step_stimIn),I_sensBoth_L23*ones(1,step_stim),zeros(2,step_stimOut); % 2L2/3e 2L2/3i;
-                 zeros(2,step_all); % 2L4e 2L4i;
-                 zeros(2,step_stimIn),I_sensBoth_L5*ones(1,step_stim),zeros(2,step_stimOut); % 2L5e 2L5i;
-                 zeros(2,step_all)]; % 2L6e 2L6i;
+    I_bar_ext(:,:,3) = [zeros(2,step_all); zeros(2,step_stimIn),I_sensBoth*ones(1,step_stim),zeros(2,step_stimOut); % 1L2/3e 1L2/3i; 1L4e 1L4i;
+                 zeros(2,step_all); zeros(2,step_all); % 1L5e 1L5i; 1L6e 1L6i;
+                 zeros(2,step_all); zeros(2,step_stimIn),I_sensBoth*ones(1,step_stim),zeros(2,step_stimOut); % 2L2/3e 2L2/3i; 2L4e 2L4i;
+                 zeros(2,step_all); zeros(2,step_all);]; % 2L5e 2L5i; 2L6e 2L6i;
 
 % elseif condition == 4
-    I_bar_ext(:,:,4) = [zeros(2,step_stimIn),I_sensBoth_L23*ones(1,step_stim),zeros(2,step_stimOut); % 1L2/3e 1L2/3i;
-                 zeros(2,step_all); % 1L4e 1L4i;
-                 zeros(2,step_stimIn),(I_sensBoth_L5+Iattn)*ones(1,step_stim),zeros(2,step_stimOut); % 1L5e 1L5i;
+    I_bar_ext(:,:,4) = [zeros(2,step_stimIn),I_attn*ones(1,step_stim),zeros(2,step_stimOut); % 1L2/3e 1L2/3i;
+                 zeros(2,step_stimIn),I_sensBoth*ones(1,step_stim),zeros(2,step_stimOut); % 1L4e 1L4i;
+                 zeros(2,step_stimIn),I_attn*ones(1,step_stim),zeros(2,step_stimOut); % 1L5e 1L5i;
                  zeros(2,step_all); % 1L6e 1L6i;
-                 zeros(2,step_stimIn),I_sensBoth_L23*ones(1,step_stim),zeros(2,step_stimOut); % 2L2/3e 2L2/3i;
-                 zeros(2,step_all); % 2L4e 2L4i;
-                 zeros(2,step_stimIn),I_sensBoth_L5*ones(1,step_stim),zeros(2,step_stimOut); % 2L5e 2L5i;
-                 zeros(2,step_all)]; % 2L6e 2L6i;
+                 zeros(2,step_all); zeros(2,step_stimIn),I_sensBoth*ones(1,step_stim),zeros(2,step_stimOut); % 2L2/3e 2L2/3i; 2L4e 2L4i;
+                 zeros(2,step_all); zeros(2,step_all)]; % 2L5e 2L5i; 2L6e 2L6i
 
 % elseif condition == 5
-    I_bar_ext(:,:,5) = [zeros(2,step_stimIn),I_sensBoth_L23*ones(1,step_stim),zeros(2,step_stimOut); % 1L2/3e 1L2/3i;
-                 zeros(2,step_all); % 1L4e 1L4i;
-                 zeros(2,step_stimIn),I_sensBoth_L5*ones(1,step_stim),zeros(2,step_stimOut); % 1L5e 1L5i;
-                 zeros(2,step_all); % 1L6e 1L6i;
-                 zeros(2,step_stimIn),I_sensBoth_L23*ones(1,step_stim),zeros(2,step_stimOut); % 2L2/3e 2L2/3i;
-                 zeros(2,step_all); % 2L4e 2L4i;
-                 zeros(2,step_stimIn),(I_sensBoth_L5+Iattn)*ones(1,step_stim),zeros(2,step_stimOut); % 2L5e 2L5i;
+    I_bar_ext(:,:,5) = [zeros(2,step_all); zeros(2,step_stimIn),I_sensBoth*ones(1,step_stim),zeros(2,step_stimOut); % 1L2/3e 1L2/3i; 1L4e 1L4i;
+                 zeros(2,step_all); zeros(2,step_all); % 1L5e 1L5i; 1L6e 1L6i;
+                 zeros(2,step_stimIn),I_attn*ones(1,step_stim),zeros(2,step_stimOut); % 2L2/3e 2L2/3i;
+                 zeros(2,step_stimIn),I_sensBoth*ones(1,step_stim),zeros(2,step_stimOut); % 2L4e 2L4i;
+                 zeros(2,step_stimIn),I_attn*ones(1,step_stim),zeros(2,step_stimOut); % 2L5e 2L5i;
                  zeros(2,step_all)]; % 2L6e 2L6i;
                  
 % end

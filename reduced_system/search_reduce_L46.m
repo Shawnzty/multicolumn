@@ -1,7 +1,7 @@
 % parameter search in 2D space
-clear;
-close all;
-clc;
+% clear;
+% close all;
+% clc;
 initime = clock;
 
 addpath('..\funcs');
@@ -42,7 +42,7 @@ close all;
 startTime = clock;
 disp("Computing -- Delta_e:"+num2str(Delta_e)+", Delta_i:"+num2str(Delta_i)+", Iattn:"+num2str(Iattn));
 
-[r,~,~] = SandA_reduce_L46(Delta_e, Delta_i, Iattn, ratio_sens_attn, alltime);
+[r,~,~] = reduce_L46(Delta_e, Delta_i, Iattn, ratio_sens_attn, alltime);
 [psdPeaks, intpsd, gammaP, betaP, meanLevel, envLevel, osci] = record(r, alltime);
 
 psdPeaksSheet(Delta_i_n, Delta_e_n,:,:) = psdPeaks;
