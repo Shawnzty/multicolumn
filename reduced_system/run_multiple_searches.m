@@ -7,7 +7,7 @@ clc;
 %     search_reduce_L46;
 % end
 
-candidate = [0, 0.5, 1, 3, 4];
+candidate = [0, 0.5, 1, 2, 3, 4, 8];
 for i = 1:length(candidate)
     ratio_sens_attn = candidate(i);
     search_reduce_L4;
