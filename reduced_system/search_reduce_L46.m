@@ -65,6 +65,6 @@ osciSheet = flip(osciSheet);
 
 % end
 filename = append('../../data/','reducedL46_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
-    num2str(Delta_i_start),'_',num2str(Delta_i_end), '_', num2str(Iattn), '_ratio_', num2str(ratio_sens_attn), '.mat');
+    num2str(Delta_i_start),'_',num2str(Delta_i_end), '_', num2str(Iattn), '_ratio_', num2str(ratio_sens_attn), '_steps_', num2str(Delta_e_steps), '.mat');
 save(filename,'psdPeaksSheet','intpsdSheet','gammaPSheet','betaPSheet','osciSheet','meanSheet','envSheet'); 
 disp(etime(clock, initime)/60);
