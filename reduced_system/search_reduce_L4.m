@@ -9,11 +9,11 @@ addpath('..\funcs');
 %% changeable parameter settings
 Delta_e_start = 0; % cannot equal to 0
 Delta_e_end = 0.5; % can equal to 0.5
-Delta_e_steps = 60;
+Delta_e_steps = 200;
 
 Delta_i_start = 0; % cannot equal to 0
 Delta_i_end = 0.05; % can equal to 0.05
-Delta_i_steps = 60;
+Delta_i_steps = 200;
 
 Iattn = 0.02;
 % ratio_sens_attn = 0; % 3

@@ -9,11 +9,11 @@ addpath('..\funcs');
 %% changeable parameter settings
 Delta_e_start = 0; % cannot equal to 0
 Delta_e_end = 0.5; % can equal to 0.5
-Delta_e_steps = 60;
+Delta_e_steps = 200;
 
 Delta_i_start = 0; % cannot equal to 0
 Delta_i_end = 0.05; % can equal to 0.05
-Delta_i_steps = 60;
+Delta_i_steps = 200;
 
 Iattn = 0.02;
 alltime = 4000;
@@ -64,6 +64,6 @@ osciSheet = flip(osciSheet);
 
 % end
 filename = append('../../data/','onlyA_reducedL6_',num2str(Delta_e_start),'_',num2str(Delta_e_end),'_',...
-    num2str(Delta_i_start),'_',num2str(Delta_i_end), '_', num2str(Iattn), '.mat');
+    num2str(Delta_i_start),'_',num2str(Delta_i_end), '_', num2str(Iattn), '_steps_', num2str(Delta_e_steps), '.mat');
 save(filename,'psdPeaksSheet','intpsdSheet','gammaPSheet','betaPSheet','osciSheet','meanSheet','envSheet'); 
 disp(etime(clock, initime)/60);
