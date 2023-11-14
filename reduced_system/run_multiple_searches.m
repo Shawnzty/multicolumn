@@ -14,7 +14,7 @@ clc;
 % end
 
 ratio_sens_attn = 0;
-search_reduce_L46;
+search_reduce_L4;
 
 ratio_sens_attn = 3;
-search_reduce_L46;
+search_reduce_L4;
