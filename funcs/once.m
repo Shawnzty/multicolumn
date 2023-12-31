@@ -1,17 +1,19 @@
-function [r,v,g] = once(Delta_e, Delta_i, Iattn, allTime)
+function [r,v,g] = once(Delta_e, Delta_i, Iattn, allTime, stimIn)
 %ONCE run the simulation once including five conditions
 %   INPUT arguments includes parameters of the column model
 %   OUTPUT arguments are the results of computation, including the time
 %   courses of firing rate, average membrane potential and synaptic
 %   conductance.
 %   this function only execute computation but NOT SAVE.
-
+if nargin < 5
+    stimIn = 1000;
+end
 % time = allTime;
 dt = 0.01;
 % timeax = 0:dt:time;
 % timeax = timeax';
 step_all = allTime/dt;
-stimIn = 1000;
+% stimIn = 1000;
 stimDur = allTime-stimIn;
 stimOut = 0;
 step_stimIn = stimIn/dt;
