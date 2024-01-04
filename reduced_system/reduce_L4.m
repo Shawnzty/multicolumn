@@ -6,7 +6,7 @@ function [r,v,g] = reduce_L4(Delta_e, Delta_i, Iattn, ratio_sens_attn, allTime, 
 %   conductance.
 %   BY SETTING "ratio_sens_attn = 0", IT IS FOR ONLY ATTENTION CASE!
 %   this function only execute computation but NOT SAVE.
-if nargin < 5
+if nargin < 6
     stimIn = 1000;
 end
 % time = allTime;
