@@ -1,4 +1,4 @@
-function [r,v,g] = reduce_L4(Delta_e, Delta_i, Iattn, ratio_sens_attn, allTime)
+function [r,v,g] = reduce_L4(Delta_e, Delta_i, Iattn, ratio_sens_attn, allTime, stimIn)
 %ONCE run the simulation once including five conditions
 %   INPUT arguments includes parameters of the column model
 %   OUTPUT arguments are the results of computation, including the time
@@ -6,13 +6,14 @@ function [r,v,g] = reduce_L4(Delta_e, Delta_i, Iattn, ratio_sens_attn, allTime)
 %   conductance.
 %   BY SETTING "ratio_sens_attn = 0", IT IS FOR ONLY ATTENTION CASE!
 %   this function only execute computation but NOT SAVE.
-
+if nargin < 5
+    stimIn = 1000;
+end
 % time = allTime;
 dt = 0.01;
 % timeax = 0:dt:time;
 % timeax = timeax';
 step_all = allTime/dt;
-stimIn = 1000;
 stimDur = allTime-stimIn;
 stimOut = 0;
 step_stimIn = stimIn/dt;
