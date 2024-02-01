@@ -13,8 +13,9 @@ clc;
 %     search_reduce_L4;
 % end
 
-ratio_sens_attn = 0;
-search_reduce_L4;
+search_onlyA_blockL6E_L4E;
 
-ratio_sens_attn = 3;
-search_reduce_L4;
+clear;
+clc;
+
+search_onlyA_blockL6E_L4I;

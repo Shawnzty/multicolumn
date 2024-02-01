@@ -1,4 +1,4 @@
-function [r,v,g] = blockL6E_L4I(Delta_e, Delta_i, Iattn, allTime, stimIn)
+function [r,v,g] = onlyA_blockL6E_L4I(Delta_e, Delta_i, Iattn, allTime, stimIn)
 %ONCE run the simulation once including five conditions
 %   INPUT arguments includes parameters of the column model
 %   OUTPUT arguments are the results of computation, including the time
@@ -20,7 +20,7 @@ step_stimIn = stimIn/dt;
 step_stim = stimDur/dt;
 step_stimOut = stimOut/dt;
 
-ratio_sens_attn = 3; % linspace(0.5,5,20) % fix at 9000/3000 = 3
+ratio_sens_attn = 0; % onlyA
 Isens =  Iattn*ratio_sens_attn;
 
 ratio_barE_attn = 16/3; % linspace(0.5,5,20) % fix at 16/3=5.33

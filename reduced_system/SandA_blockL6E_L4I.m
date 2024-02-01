@@ -1,4 +1,4 @@
-function [r,v,g] = blockL6E_L4E(Delta_e, Delta_i, Iattn, allTime, stimIn)
+function [r,v,g] = SandA_blockL6E_L4I(Delta_e, Delta_i, Iattn, allTime, stimIn)
 %ONCE run the simulation once including five conditions
 %   INPUT arguments includes parameters of the column model
 %   OUTPUT arguments are the results of computation, including the time
@@ -59,8 +59,8 @@ tau = repmat([0, 0; 0, 0],[8,8,5]); % connect delay not used
 %           0.036, 0.001, 0.003, 0.001, 0.028, 0.008, 0.066, 0.144]; % intracolumn connection probability % [Potjans 2014]
 p_base = [0.1184, 0.1552, 0.0846, 0.0629, 0.0323, 0.0000, 0.0076, 0.0000;
           0.1008, 0.1371, 0.0363, 0.0515, 0.0755, 0.0000, 0.0042, 0.0000;
-          0.0077, 0.0059, 0.0519, 0.1453, 0.0067, 0.0003, 0.0000, 0.0000;
-          0.0691, 0.0029, 0.1093, 0.1597, 0.0033, 0.0000, 0.1057, 0.0000;
+          0.0077, 0.0059, 0.0519, 0.1453, 0.0067, 0.0003, 0.0453, 0.0000;
+          0.0691, 0.0029, 0.1093, 0.1597, 0.0033, 0.0000, 0.0000, 0.0000;
           0.1017, 0.0622, 0.0411, 0.0057, 0.0758, 0.3765, 0.0204, 0.0000;
           0.0436, 0.0269, 0.0209, 0.0022, 0.0566, 0.3158, 0.0086, 0.0000;
           0.0156, 0.0066, 0.0211, 0.0166, 0.0572, 0.0197, 0.0401, 0.2252;
